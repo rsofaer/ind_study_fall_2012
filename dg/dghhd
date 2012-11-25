@@ -1,0 +1,45 @@
+digraph dg_4917 {
+	graph [size="7,10"];
+	subgraph g0 {
+		graph [shape=ellipse,
+			style=bold
+		];
+	}
+	subgraph g1 {
+		graph [shape=ellipse,
+			style=bold
+		];
+	}
+	subgraph g2 {
+		graph [shape=ellipse,
+			style=bold
+		];
+	}
+	subgraph g3 {
+		graph [shape=ellipse,
+			style=bold
+		];
+	}
+	subgraph g4 {
+		graph [shape=ellipse,
+			style=bold
+		];
+	}
+	subgraph g5 {
+		graph [shape=ellipse,
+			style=bold
+		];
+	}
+	n0 -> n5;
+	n1 -> n5;
+	n2 -> n3;
+	n2 -> n4;
+	n2 -> n5;
+	n3 -> n9;
+	n4 -> n9;
+	n5 -> n6;
+	n6 -> n7;
+	n6 -> n8;
+	n7 -> n4;
+	n8 -> n9;
+}

@@ -1,0 +1,37 @@
+digraph dg_3674 {
+	subgraph sym {
+	}
+	subgraph ll {
+	}
+	n0 [label=x,shape=box];
+	n1 [label=x,shape=box];
+	n2 [label=x,shape=box];
+	n3 [label=44,shape=box];
+	n4 [label=47,shape=box];
+	n5 [label=68,shape=box];
+	n6 [label=71,shape=box];
+	n7 [label=74,shape=box];
+	n8 -> n9;
+	n10 -> n8;
+	n11 -> n8;
+	n12 -> n8;
+	n13 -> n0;
+	n13 -> n3;
+	n13 -> n8;
+	n14 -> n1;
+	n14 -> n4;
+	n14 -> n13;
+	n15 -> n14;
+	n16 -> n14;
+	n17 -> n14;
+	n18 -> n13;
+	n19 -> n0;
+	n19 -> n5;
+	n19 -> n8;
+	n20 -> n1;
+	n20 -> n6;
+	n20 -> n19;
+	n21 -> n2;
+	n21 -> n7;
+	n21 -> n20;
+}

@@ -1,0 +1,54 @@
+digraph dg_3390 {
+	graph [fontsize=14,
+		label="\nxxxxxxx xxxxx (xxxxxxxxx xxx)\nxxxxxxxxxxxxxxx xxx xxxxxxx\n(x) xxxxxxx xx xxxxxx\
+xxxxx 1993",
+		page="8.5,12",
+		rankdir=LR,
+		size="15,23"
+	];
+	node [fontname=Helvetica,
+		fontsize=6,
+		height=".1",
+		width=".12"
+	];
+	n0 -> n1;
+	n0 -> n2;
+	n1 -> n3;
+	n1 -> n4;
+	n2 -> n3;
+	n4 -> n5;
+	n4 -> n6;
+	n4 -> n7;
+	n6 -> n12;
+	n7 -> n17;
+	n8 -> n2;
+	n8 -> n9;
+	n9 -> n4;
+	n9 -> n10;
+	n11 -> n10;
+	n13 -> n2;
+	n13 -> n14;
+	n14 -> n4;
+	n14 -> n15;
+	n16 -> n15;
+	n18 -> n9;
+	n18 -> n16;
+	n19 -> n20;
+	n21 -> n7;
+	n21 -> n20;
+	n22 -> n7;
+	n22 -> n23;
+	n22 -> n24;
+	n24 -> n29;
+	n25 -> n2;
+	n25 -> n26;
+	n26 -> n16;
+	n26 -> n22;
+	n27 -> n28;
+	n30 -> n19;
+	n30 -> n21;
+	n31 -> n15;
+	n32 -> n15;
+	n32 -> n22;
+	n33 -> n17;
+}

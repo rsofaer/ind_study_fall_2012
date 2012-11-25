@@ -1,0 +1,21 @@
+digraph dg_452 {
+	graph [page="7.5, 9.5",
+		ranksep=1,
+		size="7.5, 9.5"
+	];
+	subgraph BE {
+	}
+	subgraph BDE {
+	}
+	subgraph FG {
+	}
+	subgraph CFG {
+	}
+	n0 -> n1;
+	n0 -> n2;
+	n5 -> n3;
+	n5 -> n4;
+	n6;
+	n7 -> n0;
+	n7 -> n5;
+}

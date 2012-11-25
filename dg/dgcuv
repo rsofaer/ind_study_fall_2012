@@ -1,0 +1,50 @@
+digraph dg_1893 {
+	graph [center=TRUE,
+		margin=".25,.25",
+		page="8.5,11",
+		ratio=auto
+	];
+	n0 [shape=box];
+	n0 -> n1;
+	n0 -> n2;
+	n0 -> n3;
+	n0 -> n4;
+	n0 -> n5;
+	n6 [shape=box];
+	n6 -> n7;
+	n6 -> n8;
+	n6 -> n9;
+	n6 -> n10;
+	n6 -> n11;
+	n6 -> n12;
+	n6 -> n13;
+	n6 -> n14;
+	n15 [shape=box];
+	n15 -> n16;
+	n15 -> n17;
+	n15 -> n18;
+	n15 -> n19;
+	n20 [peripheries=2];
+	n15 -> n20;
+	n20 -> n21;
+	n20 -> n22;
+	n20 -> n23;
+	n24 [peripheries=2];
+	n20 -> n24;
+	n25 [peripheries=2];
+	n20 -> n25;
+	n24 -> n1;
+	n24 -> n2;
+	n24 -> n26;
+	n24 -> n27;
+	n25 -> n16;
+	n25 -> n17;
+	n25 -> n18;
+	n25 -> n19;
+	n28 [shape=diamond];
+	n28 -> n0;
+	n28 -> n15;
+	n29 [shape=diamond];
+	n29 -> n0;
+	n29 -> n6;
+}

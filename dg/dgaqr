@@ -1,0 +1,26 @@
+digraph dg_433 {
+	graph [ratio=fill,
+		size="8,11"
+	];
+	node [fontsize=32];
+	edge [fontsize=32,
+		style=solid
+	];
+	n0 -> n1;
+	n0 -> n2;
+	n1 -> n3;
+	n1 -> n4;
+	n1 -> n5;
+	n1 -> n6;
+	n2 -> n3;
+	n2 -> n5;
+	n2 -> n7;
+	n3 -> n8;
+	n3 -> n9;
+	n4 -> n8;
+	n5 -> n9;
+	n6 -> n4;
+	n6 -> n5;
+	n6 -> n7;
+	n7 -> n8;
+}

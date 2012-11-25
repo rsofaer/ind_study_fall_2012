@@ -1,0 +1,30 @@
+graph ug_9 {
+	graph [fontsize=20,
+		label="\n\nxxxxxx xxxxxxxx xxxxxxx\nxxxxx xx xxxxx"
+	];
+	node [color=lightgrey,
+		shape=diamond,
+		style=filled
+	];
+	n0 [color="",shape=box,style=""];
+	n1 [color="",label=xxxx,shape=ellipse,style=""];
+	n0 -- n1;
+	n2 [color="",shape=ellipse,style=""];
+	n0 -- n2;
+	n0 -- n3 [label=x,len="1.00"];
+	n0 -- n4 [label=x,len="1.00"];
+	n5 [color="",shape=box,style=""];
+	n3 -- n5 [label=1,len="1.00"];
+	n8 [color="",shape=box,style=""];
+	n4 -- n8 [label=x,len="1.00"];
+	n6 [color="",label=xxxx,shape=ellipse,style=""];
+	n5 -- n6;
+	n5 -- n7 [label=1,len="1.00"];
+	n7 -- n8 [label=x,len="1.00"];
+	n9 [color="",label=xxxx,shape=ellipse,style=""];
+	n8 -- n9;
+	n10 [color="",shape=ellipse,style=""];
+	n8 -- n10;
+	n11 [color="",shape=ellipse,style=""];
+	n8 -- n11;
+}

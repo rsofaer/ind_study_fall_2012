@@ -1,0 +1,18 @@
+digraph dg_210 {
+	graph [nodesep=2,
+		size="5,5"
+	];
+	n0 [label="x1.x1"];
+	n1 [label="x2.x2"];
+	n0 -> n1;
+	n2 [label="x3.x3"];
+	n1 -> n2;
+	n3 [label="x4.x4"];
+	n1 -> n3;
+	n2 -> n0;
+	n3 -> n0;
+	n4 [label="x5.x5"];
+	n3 -> n4;
+	n4 -> n0;
+	n4 -> n1;
+}

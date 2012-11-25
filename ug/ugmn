@@ -1,0 +1,24 @@
+graph ug_325 {
+	graph [center=TRUE,
+		fontsize=12,
+		orientation=landscape,
+		page="8.5,11",
+		ratio=compress,
+		size="8.0,10.5"
+	];
+	n0 [shape=box];
+	n1 [label="xxxxx\nxxxx"];
+	n0 -- n1 [dir=none];
+	n2 [label="xxxx\nxxxx"];
+	n0 -- n2 [dir=none];
+	n3 [label="xxxxxx\nxxxxxxx"];
+	n0 -- n3 [dir=none];
+	n4 [label="xxx\n(xxx)"];
+	n0 -- n4 [dir=none];
+	n0 -- n5 [dir=none];
+	n0 -- n6 [dir=none];
+	n0 -- n7 [dir=none];
+	n0 -- n8 [dir=none];
+	n9 [label="xxxxx\nxxxxxx"];
+	n0 -- n9 [dir=none];
+}

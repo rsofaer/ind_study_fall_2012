@@ -1,0 +1,18 @@
+digraph dg_3987 {
+	n0 [height=".1",label="<f0> |<f1> X|<f2> ",shape=record];
+	n1 [height=".1",label="<f0> X|<f1> X|<f2>",shape=record];
+	n0:f0 -> n1:f1;
+	n2 [height=".1",label="<f0> X|<f1> |<f2>",shape=record];
+	n0:f2 -> n2:f1;
+	n3 [height=".1",label="<f0> X|<f1> X|<f2> X'",shape=record];
+	n1:f2 -> n3:f1;
+	n4 [height=".1",label="<f0> X|<f1> X|<f2>",shape=record];
+	n2:f1 -> n4:f1;
+	n5 [height=".1",label="<f0> |<f1> |<f2>",shape=record];
+	n2:f2 -> n5:f1;
+	n6 [height=".1",label="<f0> X|<f1>|<f2> X",shape=record];
+	n4:f2 -> n6:f1;
+	n5:f2 -> n3:f1;
+	n5:f0 -> n6:f1;
+	n6:f1 -> n3:f1;
+}

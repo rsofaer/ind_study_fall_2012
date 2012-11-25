@@ -1,0 +1,151 @@
+digraph dg_52 {
+	subgraph cluster1 {
+		graph [color=white,
+			label=xxxx12,
+			style=filled
+		];
+		subgraph cluster2 {
+			graph [color=lightgrey,
+				label=xxxxxx,
+				style=filled
+			];
+			subgraph cluster3 {
+				graph [color=white,
+					label=xxxxx,
+					style=filled
+				];
+				output3 [height=".1",label="<e1> |<e2> |<e3> X",shape=record];
+				n4:o1 -> output3:e3;
+			}
+			subgraph cluster5 {
+				graph [color=white,
+					label=xxxxx,
+					style=filled
+				];
+				n6:o1 -> n8:i2;
+				n9 [height=".2",label="{{<i1> |<i2> }|XXXXX|{<o1> }}",shape=record];
+				n7:o1 -> n9:i2;
+				n8:o1 -> n9:i1;
+				output5 [height=".1",label="<e1> |<e2> |<e3> |<e4> ",shape=record];
+				n9:o1 -> output5:e4;
+			}
+			subgraph cluster10 {
+				graph [color=white,
+					label=xxxxx,
+					style=filled
+				];
+				output10 [height=".1",label="<e1> ",shape=record];
+				n11:o1 -> output10:e1;
+			}
+			output3 [height=".1",label="<e1> |<e2> |<e3> X",shape=record];
+			n4:o1 -> output3:e3;
+			output5 [height=".1",label="<e1> |<e2> |<e3> |<e4> ",shape=record];
+			n9:o1 -> output5:e4;
+			output10 [height=".1",label="<e1> ",shape=record];
+			n11:o1 -> output10:e1;
+		}
+		output3 [height=".1",label="<e1> |<e2> |<e3> X",shape=record];
+		n4:o1 -> output3:e3;
+		output5 [height=".1",label="<e1> |<e2> |<e3> |<e4> ",shape=record];
+		n9:o1 -> output5:e4;
+		output10 [height=".1",label="<e1> ",shape=record];
+		n11:o1 -> output10:e1;
+		output1 [height=".1",label="<e1> ",shape=record];
+		n12:o1 -> output1:e1;
+	}
+	subgraph cluster13 {
+		graph [color=white,
+			label=xxxx,
+			style=filled
+		];
+		subgraph cluster14 {
+			graph [color=lightgrey,
+				label=xxxxxx,
+				style=filled
+			];
+			subgraph cluster15 {
+				graph [color=white,
+					label=xxxxx,
+					style=filled
+				];
+				output15 [height=".1",label="<e1> |<e2> |<e3> |<e4> X",shape=record];
+				n16:o1 -> output15:e4;
+			}
+			subgraph cluster17 {
+				graph [color=white,
+					label=xxxxx,
+					style=filled
+				];
+				output17 [height=".1",label="<e1> |<e2> |<e3> |<e4> |<e5> X",shape=record];
+				n18:o1 -> output17:e5;
+			}
+			subgraph cluster19 {
+				graph [color=white,
+					label=xxxxx,
+					style=filled
+				];
+				output19 [height=".1",label="<e1> ",shape=record];
+				n20:o1 -> output19:e1;
+			}
+			output15 [height=".1",label="<e1> |<e2> |<e3> |<e4> X",shape=record];
+			n16:o1 -> output15:e4;
+			output17 [height=".1",label="<e1> |<e2> |<e3> |<e4> |<e5> X",shape=record];
+			n18:o1 -> output17:e5;
+			output19 [height=".1",label="<e1> ",shape=record];
+			n20:o1 -> output19:e1;
+		}
+		output15 [height=".1",label="<e1> |<e2> |<e3> |<e4> X",shape=record];
+		n16:o1 -> output15:e4;
+		output17 [height=".1",label="<e1> |<e2> |<e3> |<e4> |<e5> X",shape=record];
+		n18:o1 -> output17:e5;
+		output19 [height=".1",label="<e1> ",shape=record];
+		n20:o1 -> output19:e1;
+	}
+	n0 [height=".1",label="<e1> X",shape=record];
+	n0:e1 -> n4:i2;
+	n1 [height=".1",label="<e1> |<e2> |<e3> X",shape=record];
+	n4:o1 -> n1:e3;
+	n2 [height=".1",label="<e1> |<e2> X|<e3> X",shape=record];
+	n1:e1 -> n2:e1;
+	n2:e3 -> n6:i1;
+	n2:e3 -> n7:i2;
+	n2:e2 -> n8:i1;
+	n3 [height=".1",label="<e1> |<e2> |<e3> |<e4> ",shape=record];
+	n9:o1 -> n3:e4;
+	n5 [height=".1",label="<e1> |<e2> |<e3> |<e4> ",shape=record];
+	n3:e1 -> n5:e1;
+	n5:e4 -> n11:i2;
+	n10 [height=".1",label="<e1> ",shape=record];
+	n11:o1 -> n10:e1;
+	n14 [height=".1",label="<e1> ",shape=record];
+	n10:e1 -> n14:e1;
+	n13 [height=".1",label="<e1> X|<e2> X",shape=record];
+	n13:e1 -> n0:e1;
+	n14:e1 -> n12:i1;
+	n15 [height=".1",label="<e1> ",shape=record];
+	n12:o1 -> n15:e1;
+	n17 [height=".1",label="<e1> X|<e2> X",shape=record];
+	n17:e2 -> n13:e2;
+	n19 [height=".1",label="<e1> XXX",shape=record];
+	n19:e1 -> n16:i2;
+	n21 [height=".1",label="<e1> |<e2> |<e3> |<e4> X",shape=record];
+	n16:o1 -> n21:e4;
+	n22 [height=".1",label="<e1> |<e2> X|<e3> XXX",shape=record];
+	n21:e1 -> n22:e1;
+	n22:e3 -> n18:i3;
+	n23 [height=".1",label="<e1> |<e2> |<e3> |<e4> |<e5> X",shape=record];
+	n18:o1 -> n23:e5;
+	n24 [height=".1",label="<e1> |<e2> |<e3> |<e4> |<e5> X",shape=record];
+	n23:e1 -> n24:e1;
+	n24:e5 -> n20:i1;
+	n25 [height=".1",label="<e1> ",shape=record];
+	n20:o1 -> n25:e1;
+	n26 [height=".1",label="<e1> ",shape=record];
+	n25:e1 -> n26:e1;
+	n28 [height=".1",label="<e1> ",shape=record];
+	n26:e1 -> n28:e1;
+	n27 [height=".1",label="<e1> XXX|<e2> X|<e3> XXX",shape=record];
+	n27:e1 -> n19:e1;
+	n29 [height=".1",label="<e1> XXX|<e2> X|<e3> XXX",shape=record];
+	n29:e3 -> n27:e3;
+}

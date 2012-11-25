@@ -1,0 +1,32 @@
+digraph dg_3783 {
+	n2 [label="x(x,x,x,x)"];
+	n3 [label="x(x,x,x,x) :- xxxx([x,x],[x,x]).",shape=box];
+	n2 -> n3;
+	n11 [label="x(x,x,x,x) :- xxxx([x,x],[x,x]).",shape=box];
+	n3 -> n11;
+	n4 [label="xxxx([x,x],[x,x])"];
+	n3 -> n4;
+	n12 [label="xxxx([x,x],[x,x])"];
+	n11 -> n12;
+	n5 [label="xxxx(x,x) :- x=[x,x],x=[x,x],x<x",shape=box];
+	n4 -> n5;
+	n13 [label="xxxx(x,x) :- x=[x,x],x=[x,x],x>x",shape=box];
+	n12 -> n13;
+	n8 [label="xxxx(x,x) :- x=[x,x],x=[x,x],x==x,x<x",shape=box];
+	n5 -> n8;
+	n6 [label="x=[x,x]"];
+	n5 -> n6;
+	n8 -> n6;
+	n7 [label="x<x"];
+	n6 -> n7;
+	n9 [label="x==x"];
+	n6 -> n9;
+	n14 [label="x>x"];
+	n6 -> n14;
+	n7 -> n9;
+	n9 -> n14;
+	n13 -> n6;
+	n15 [label="xxxx(x,x) :- x=[x,x],x=[x,x],x==x,x>x",shape=box];
+	n13 -> n15;
+	n15 -> n6;
+}

@@ -1,0 +1,26 @@
+digraph dg_4221 {
+	graph [orientation=portrait,
+		size="7.5, 10"
+	];
+	node [ranksep="1.25",
+		shape=box
+	];
+	subgraph clustersdfgx3142x {
+	}
+	n0 [style=invis];
+	n1 [style=invis];
+	n0 -> n1;
+	n2 [label=xxxx_3145];
+	n3 [label=xxxx_3178];
+	n4 [label=xxxx_3143];
+	n5 [label=0];
+	n6 [label=xxxxxxx_3147];
+	n5 -> n6;
+	n6 -> n3;
+	n7 [label=0];
+	n7 -> n6;
+	n8 [label="-1"];
+	n8 -> n6;
+	n9 [label=x];
+	n9 -> n6;
+}

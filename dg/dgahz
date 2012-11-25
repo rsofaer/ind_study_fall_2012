@@ -1,0 +1,88 @@
+digraph dg_207 {
+	graph [page="8.5,11",
+		size="7.5,20"
+	];
+	subgraph cluster1 {
+		graph [color=white,
+			label=xxxx,
+			style=filled
+		];
+		subgraph cluster2 {
+			graph [color=lightgrey,
+				label=xxxxx,
+				style=filled
+			];
+			subgraph cluster3 {
+				graph [color=white,
+					label=xxxxx,
+					style=filled
+				];
+				n4:o1 -> output3:e1;
+			}
+			subgraph cluster5 {
+				graph [color=white,
+					label=xxxxx,
+					style=filled
+				];
+				output5 [height=".1",label="<e1> ",shape=record];
+				n6:o1 -> output5:e1;
+			}
+			subgraph cluster7 {
+				graph [color=white,
+					label=xxxxx,
+					style=filled
+				];
+				n8:o1 -> output7:e1;
+			}
+			subgraph cluster9 {
+				graph [color=white,
+					label=xxxxx,
+					style=filled
+				];
+				output9 [height=".1",label="<e1> ",shape=record];
+				n10:o2 -> output9:e1;
+			}
+			n4:o1 -> output3:e1;
+			output5 [height=".1",label="<e1> ",shape=record];
+			n6:o1 -> output5:e1;
+			n8:o1 -> output7:e1;
+			output9 [height=".1",label="<e1> ",shape=record];
+			n10:o2 -> output9:e1;
+		}
+		n4:o1 -> output3:e1;
+		output5 [height=".1",label="<e1> ",shape=record];
+		n6:o1 -> output5:e1;
+		n8:o1 -> output7:e1;
+		output9 [height=".1",label="<e1> ",shape=record];
+		n10:o2 -> output9:e1;
+	}
+	n0 [height=".1",label="<e1> X",shape=record];
+	n0:e1 -> n4:i2;
+	n1 [height=".1",label="<e1> XXX-X|<e2> X",shape=record];
+	n0:e1 -> n1:e2;
+	n4:o1 -> n1:e1;
+	n2 [height=".1",label="<e1> X",shape=record];
+	n1:e1 -> n2:e1;
+	n2:e1 -> n6:i1;
+	n3 [height=".1",label="<e1> ",shape=record];
+	n6:o1 -> n3:e1;
+	n5 [height=".1",label="<e1> X",shape=record];
+	n3:e1 -> n5:e1;
+	n5:e1 -> n8:i2;
+	n7 [height=".1",label="<e1> XXX-X|<e2> X",shape=record];
+	n5:e1 -> n7:e2;
+	n8:o1 -> n7:e1;
+	n9 [height=".1",label="<e1> |<e2> X",shape=record];
+	n7:e1 -> n9:e1;
+	n9:e2 -> n10:i2;
+	n11 [height=".1",label="<e1> ",shape=record];
+	n10:o2 -> n11:e1;
+	n12 [height=".1",label="<e1> ",shape=record];
+	n11:e1 -> n12:e1;
+	n14 [height=".1",label="<e1> ",shape=record];
+	n12:e1 -> n14:e1;
+	n13 [height=".1",label="<e1> X",shape=record];
+	n13:e1 -> n0:e1;
+	n15 [height=".1",label="<e1> X",shape=record];
+	n15:e1 -> n13:e1;
+}

@@ -1,0 +1,19 @@
+digraph dg_472 {
+	graph [bb="0,0,256,288",
+		size="4,4"
+	];
+	node [label="\N"];
+	n0 [height="0.50",pos="100,270",width="0.75"];
+	n1 [height="0.50",pos="137,166",width="0.75"];
+	n0 -> n1;
+	n2 [height="0.50",pos="209,166",width="0.75"];
+	n0 -> n2;
+	n3 [height="0.50",pos="65,166",width="0.75"];
+	n0 -> n3;
+	n4 [height="0.50",pos="65,92",width="0.75"];
+	n1 -> n4;
+	n3 -> n4;
+	n5 [height="0.50",pos="33,18",width="0.75"];
+	n4 -> n5;
+	n5 -> n0;
+}

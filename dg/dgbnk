@@ -1,0 +1,38 @@
+digraph dg_1024 {
+	graph [center=true,
+		ordering=out,
+		size="7.5,10"
+	];
+	node [shape=circle];
+	n0 [shape=box];
+	n1 [shape=box];
+	n0 -> n1;
+	n3 [shape=box];
+	n1 -> n3;
+	n2 -> n0;
+	n2 -> n1;
+	n2 -> n3;
+	n4 [shape=box];
+	n2 -> n4;
+	n5 [shape=box];
+	n2 -> n5;
+	n6 [shape=box];
+	n2 -> n6;
+	n7 [shape=box];
+	n2 -> n7;
+	n8 [shape=box];
+	n2 -> n8;
+	n9 [shape=box];
+	n2 -> n9;
+	n10 [shape=box];
+	n2 -> n10;
+	n3 -> n4;
+	n4 -> n5;
+	n5 -> n6;
+	n6 -> n7;
+	n7 -> n8;
+	n8 -> n9;
+	n9 -> n10;
+	n10 -> n10;
+	n11 -> n2;
+}

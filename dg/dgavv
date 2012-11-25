@@ -1,0 +1,15 @@
+digraph dg_567 {
+	graph [size="4,4"];
+	subgraph ax {
+		subgraph bx {
+		}
+	}
+	n0 -> n1;
+	n1 -> n2;
+	n1 -> n3;
+	n1 -> n4;
+	n2 -> n5;
+	n4 -> n5;
+	n5 -> n6;
+	n6 -> n1;
+}

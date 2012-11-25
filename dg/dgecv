@@ -1,0 +1,54 @@
+digraph dg_2777 {
+	graph [orientation=landscape,
+		size="10,10"
+	];
+	node [fontname=Helvetica,
+		fontsize=18
+	];
+	edge [fontname=Helvetica,
+		fontsize=16,
+		len=2,
+		style=bold
+	];
+	subgraph cluster0 {
+	}
+	subgraph cluster1 {
+	}
+	n0 -> n11;
+	n0 -> n14;
+	n1 -> n0;
+	n2 -> n3;
+	n3 -> n1;
+	n4 -> n3;
+	n5 -> n6;
+	n6 -> n7;
+	n7 -> n0;
+	n7 -> n1;
+	n7 -> n2;
+	n7 -> n4;
+	n7 -> n6;
+	n7 -> n8;
+	n10 [style=filled];
+	n7 -> n10;
+	n7 -> n12;
+	n7 -> n18;
+	n8 -> n5;
+	n9 -> n7;
+	n10 -> n11;
+	n11 -> n10;
+	n12 -> n11;
+	n13 -> n11;
+	n14 -> n12;
+	n15 -> n16;
+	n16 -> n17;
+	n17 -> n6;
+	n17 -> n10;
+	n17 -> n16;
+	n18 -> n19;
+	n19 -> n20;
+	n20 -> n1;
+	n20 -> n4;
+	n20 -> n6;
+	n20 -> n10;
+	n21 -> n14;
+}

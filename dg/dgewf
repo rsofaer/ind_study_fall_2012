@@ -1,0 +1,39 @@
+digraph dg_3281 {
+	graph [size="7.5, 10"];
+	node [ranksep="1.25",
+		shape=box
+	];
+	subgraph clusterx0 {
+	}
+	n0 [label="31:xxx"];
+	n1 [label="30:xxxxx"];
+	n0 -> n1;
+	n2 [label="224:xxxx"];
+	n1 -> n2;
+	n3 [label="78:xxxx"];
+	n1 -> n3;
+	n2 -> n3;
+	n5 [label="177:xxxxx"];
+	n3 -> n5;
+	n4 [label="32:0.000000"];
+	n4 -> n1;
+	n11 [label="-1:xxx"];
+	n5 -> n11;
+	n6 [label="221:xxxxx-6"];
+	n7 [label="220:xxxxx"];
+	n6 -> n7;
+	n7 -> n2;
+	n8 [label="-1:xxxxx-6"];
+	n9 [label="223:xxxxxxx"];
+	n8 -> n9;
+	n9 -> n7;
+	n10 [label="178:xxxxxx-4"];
+	n10 -> n5;
+	n13 [label="xxxxx-xxx-xxx-312"];
+	n11 -> n13;
+	n12 [label="79:xxx"];
+	n12 -> n3;
+	n14 [label="7.5, 10",style=invis];
+	n15 [label="xxxxx-xxx-xx-311"];
+	n16 [label="7.5, 10",style=invis];
+}

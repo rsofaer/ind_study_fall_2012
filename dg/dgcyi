@@ -1,0 +1,16 @@
+digraph dg_1984 {
+	graph [nodesep=".35",
+		orientation=landscape,
+		ratio="1.0",
+		size="22.22,22.22"
+	];
+	node [fontsize=6];
+	n0 [height=".556",shape=box,width="1.667"];
+	n1 [height=".556",shape=diamond,width="1.250"];
+	n0 -> n1;
+	n2 [height=".556",shape=diamond,width="1.250"];
+	n0 -> n2;
+	n3 [height=".556",shape=box,width="1.667"];
+	n1 -> n3;
+	n2 -> n3;
+}

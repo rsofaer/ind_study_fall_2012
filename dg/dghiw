@@ -1,0 +1,138 @@
+digraph dg_4962 {
+	graph [concentrators=true,
+		fontname=Helvetica,
+		fontsize=20,
+		label="xxxxxx-xxxxxxx\nxxxxxxxxxx: xxx xxx 28 13:00:39 xxx xxx 1993\n(x) xxxxxxx xx xxxxx\
+xxxxxx 1993",
+		page="8,11.5",
+		rankdir=LR
+	];
+	node [fontsize=9,
+		height=".1",
+		shape=box
+	];
+	edge [style=invis];
+	n0 [fontsize=14,height="8.1993",shape=plaintext];
+	n1 [fontsize=14,height="9.1993",shape=plaintext];
+	n0 -> n1;
+	n2 [fontsize=14,height="10.1993",shape=plaintext];
+	n1 -> n2;
+	n3 [fontsize=14,height="Z.3.2",label="x.3.2\n13.8.1993",peripheries=2,style=dotted];
+	n4 [fontsize=14,height="Z.3.3",label="x.3.3\n24.9.1993",peripheries=2,style=dotted];
+	n3 -> n4;
+	n6 [fontsize=14,height="Z.3.4",label="x.3.4\n29.10.1993",peripheries=2,style=dotted];
+	n4 -> n6;
+	n5 [fontsize=14,height="Z.3.1(2)",label="x.3.1(2)\n4.8.1993",peripheries=2,style=dotted];
+	n5 -> n3;
+	n7 [fontsize=14,height="T.1.0",label="x.1.0\n8.8.1993",peripheries=2,style=dotted];
+	n7 -> n5;
+	n8 [fontsize=14,height="T.1.1",label="x.1.1\n9.8.1993",peripheries=2,style=dotted];
+	n8 -> n7;
+	n9 [label="xxx: 210: xxx xxxx-xxxxxxx '\nxxxx' xxxxxx'x xxxxxxxxx",peripheries=1,style=dotted];
+	n9 -> n3;
+	n10 [label="xxx: xxxxxxxxxx xx_xx_545[12]\n_xxx, xx_xx_5251_xxx:xxxxxx-\nxxxxx",peripheries=1,style=dotted];
+	n10 -> n9;
+	n11 [label="xx: ..: xxxxx xxxxxxxxxxxxx xx \nxxx-xxxxx xxx xxxxxx:xxxxxxxx?",peripheries=1,style=dotted];
+	n11 -> n3;
+	n12 [label="xx: 207: xxxxxxxxxxxxx xxx \nxxxxxx xxx xxxx",peripheries=1,style=dotted];
+	n12 -> n3;
+	n13 [label="xxx: xx...9017: x186: xxxxxx!",peripheries=1,style=dotted];
+	n13 -> n3;
+	n14 [label="xx: xxxx xx xxx xxx \nxxxxxxxxxxxxxxx xx xxxxxxxx",peripheries=1,style=dotted];
+	n15 [label="xxx:xxxxxxx",peripheries=1,style=dotted];
+	n14 -> n15;
+	n16 [label="xxx: xx-xxxx",peripheries=1,style=dotted];
+	n15 -> n16;
+	n16 -> n3;
+	n17 [label="xxx: xxxxxxxxxxxx-xxx xxxxx",peripheries=1,style=dotted];
+	n17 -> n16;
+	n18 [label="xxx: xxxxxxxx xxx xxxxxxxxxxxx",peripheries=1,style=dotted];
+	n18 -> n3;
+	n19 [label="101: xxx :xxxx: x-xxxxxxxxxxx",peripheries=1,style=dotted];
+	n19 -> n3;
+	n20 [label="145: xxx :xxxx: xxx-xxxxxxxxxx \nxxxxxx",peripheries=1,style=dotted];
+	n20 -> n3;
+	n21 [label="xxx: 61: xxx-xxxxxxxxx xxx \nxxxxxxxxxxx xxxxx xxxxx",peripheries=1,style=dotted];
+	n21 -> n3;
+	n22 [label="xx:  20: xxx_xxxxxxx - xxxxxx",peripheries=1,style=dotted];
+	n22 -> n3;
+	n23 [label="xxx: 38: xxx-xxxxxx xxxx xxx",peripheries=1,style=dotted];
+	n23 -> n5;
+	n24 [label="xxx: 81:  xxx-xxxxxxx \nxxxxxxxxxxxxxxxxxx xx xxx-\nxxxxxxxxxxxxxx",peripheries=1,style=dotted];
+	n24 -> n3;
+	n25 [label="xx: 141:  xxxxxxxxxx x1702",peripheries=1,style=dotted];
+	n25 -> n3;
+	n26 [label="xxx: 162:  xxx x-xxxxxxx xxxx \nxxx xxxxxxx xxxxx xxxxxxxxxxx",peripheries=1,style=dotted];
+	n26 -> n3;
+	n27 [label="! xxx: 163:  xxx xxxxxxxxxxx \nxxxxx xxx xxxx xxxxx xxxx \nxxxxxx xxxxxxx",peripheries=1,style=dotted];
+	n27 -> n3;
+	n28 [label="xxx,xxx: 166:  xxxxxxxxxxxxxxx \nxxx xxx'x xxx xxx'xx xxx \nxxxxxxxxxxx xxxxxx",peripheries=1,style=dotted];
+	n28 -> n3;
+	n29 [label="!xxx: 167:  xxxxx xxxxxx xxx x-\nx. xx xxx xx. xxx xxxx *-xxx. \nxxxxxxx...",peripheries=1,style=dotted];
+	n29 -> n3;
+	n30 [label="xxx: 171:  xxxxxxx xxx */x-\nxxxxxx",peripheries=1,style=dotted];
+	n30 -> n3;
+	n31 [label="xx: 172:  xx-xxxxxxxxxx xx \nxxxxxx.xxxxxx ...",peripheries=1,style=dotted];
+	n31 -> n3;
+	n32 [label="xx: xx-xxxxxx xxxxx xxxxx xxx \nxx xxx-xxxx",peripheries=1,style=dotted];
+	n32 -> n3;
+	n33 [label="xxx: 186:  xx xxxxxx xxxx \nxxxxxxxxxxxxxxx xxx xxxxxxx",peripheries=1,style=dotted];
+	n33 -> n3;
+	n34 [label="xx: 177: xxx-xxxxxxx xxxxxx xxx \nxxxxxxxxx xxxxx-xxx",peripheries=1,style=dotted];
+	n34 -> n3;
+	n35 [label="xx/xxxx: 64:  xxx - xxxxxxxx \nxxx xxxxxxxxxxx xxx xxx. xxxxxx",peripheries=1,style=dotted];
+	n36 [label="xx/xxx: 64:  xxxxxxxx xxx \nxxxxxxxxxxx xxx xxx. xxxxxx",peripheries=1,style=dotted];
+	n35 -> n36;
+	n36 -> n4;
+	n37 [label="xxx/xxxx: 64:  xxx/xxx - \nxxxxxxxx xxx xxxxxxxxxxx xxx \nxxx. xxxxxx",peripheries=1,style=dotted];
+	n37 -> n36;
+	n38 [label="xxx: 64:  xxxxxxxx xxx \nxxxxxxxxxxx xxx xxx. xxxxxx:\nxxxxxxxx xx xxxxxx",peripheries=1,style=dotted];
+	n38 -> n36;
+	n39 [label="xxx: 62:  xxxx xxx-xxxx-\nxxxxxxxxxxx xxx xxx xxxxxxxxxx \nxxxx xxxxxxxxx",peripheries=1,style=dotted];
+	n39 -> n4;
+	n40 [label="xx: 146: xxxx: xxxxxxxxxxxxxxx \nxxxxx xxx xxxxx",peripheries=1,style=dotted];
+	n40 -> n4;
+	n41 [label="xx: 18 xxxxx xx xxxxxxx - \nxxxxxxx xxxx xxxxxx xxxxxxxx",peripheries=1,style=dotted];
+	n41 -> n4;
+	n42 [label="xxx: 170:  xxxxxx.xxxxxxxxx \nxxxxxxx. xxxxxx.xxx xxxxxx",peripheries=1,style=dotted];
+	n42 -> n3;
+	n42 -> n4;
+	n43 [label="xx: xx-xxxxxx xxxxxxx xxxxx \nxxxxx",peripheries=1,style=dotted];
+	n43 -> n4;
+	n44 [label="xxx: 135:  %xx, %xx xx xxxxxxx \nxxxxxxx!",peripheries=1,style=dotted];
+	n44 -> n4;
+	n45 [label="xxx: 164:  xxxxxxx<< xxxxxxxxx",peripheries=1,style=dotted];
+	n45 -> n4;
+	n46 [label="xxx: 105:  xxxxxx-xxxxxxxxxxxx \nxxxxxxxxxx (x.x.xxxxxxxxxxxx.x)",peripheries=1,style=dotted];
+	n46 -> n4;
+	n47 [label="xxx: 29:  xxxxxxxxxxxx-\nxxxxxxxxxxxxxxx xxxxxxxxxxxx \nxxxxxxxxxxx",peripheries=1,style=dotted];
+	n47 -> n4;
+	n48 [label="xxx: xxxxxxxxxxxxx xx \nxxxxxxxxxxxx",peripheries=1,style=dotted];
+	n48 -> n4;
+	n49 [label="xxx: xxxxxxxx xxx xxxxxxxxxxxxx",peripheries=1,style=dotted];
+	n49 -> n4;
+	n50 [label="xxx+xx/xx/xxx: xxx - xxx - \nxxxxxxxxxx-xxxxxxx (xxxx x-\nxxxxxx)",peripheries=1,style=dotted];
+	n50 -> n4;
+	n51 [label="xx/xxx: xxxxx-xxxxxxx xxxx xxxx \nxxx xxxxxxxxxxx",peripheries=1,style=dotted];
+	n51 -> n4;
+	n52 [label="xx: 212: xxxxx xxxx xxxxx",peripheries=1,style=dotted];
+	n52 -> n6;
+	n53 [label="xxx_xxxxxx, xxxx xxx.xxx-\nxxxxxxxxx xxxxx xxxxxxxxxxx",peripheries=1,style=dotted];
+	n53 -> n6;
+	n54 [label="xxx: xxxxxxxxxxxx \nxxxxxxxxxxxxxx xxxx xxxx-xxxx",peripheries=1,style=dotted];
+	n54 -> n6;
+	n55 [label="xxx: xxxxxxxxxxxxxxxxx-xxxx",peripheries=1,style=dotted];
+	n55 -> n6;
+	n56 [label="xxx: 54:  xxxxxxxx xxxxx-xxxxxxx",peripheries=1,style=dotted];
+	n56 -> n3;
+	n56 -> n6;
+	n57 [label="xx/xxx: 175:  (xx xxx 93) xxxx \nxxx-xxxxxxxxx, xxxxxxxxxxxxxxxx",peripheries=1,style=dotted];
+	n57 -> n6;
+	n57 -> n53;
+	n58 [label="xxx: 52 xxxxxx xxxxx xxxxxx xx \nxxxx xxxxxxxxx xxx (xxxx!)",peripheries=1,style=dotted];
+	n58 -> n6;
+	n59 [label="xx: 184:  xxxxxx xxx xxxxxxxx",peripheries=1,style=dotted];
+	n59 -> n7;
+	n60 [label="xxxxxxxxxxxxxxxxxxx xxxxxxxxxx",peripheries=1,style=dotted];
+	n60 -> n8;
+}

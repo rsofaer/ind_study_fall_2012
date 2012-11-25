@@ -1,0 +1,36 @@
+digraph dg_4024 {
+	graph [orientation=landscape];
+	subgraph cluster_remote {
+		graph [label=xxxxxx];
+		node [color=red,
+			style=filled
+		];
+	}
+	subgraph cluster_nearby {
+		graph [label=xxxxxx];
+		node [color=blue,
+			style=filled
+		];
+	}
+	subgraph cluster_binary {
+		graph [label=xxxxxx];
+		node [color=pink,
+			style=filled
+		];
+	}
+	subgraph cluster_local_links {
+		graph [label=xxxxx];
+		node [color=green,
+			style=filled
+		];
+	}
+	n0 [color="<f0> a|<f1> c|<f2> (NOT c)",style="<f0> a|<f1> c|<f2> (NOT c)"];
+	n1 [color="<f0> a|<f1> c|<f2> (NOT c)",style="<f0> a|<f1> c|<f2> (NOT c)"];
+	n2 [color="<f0> a|<f1> c|<f2> (NOT c)",style="<f0> a|<f1> c|<f2> (NOT c)"];
+	n3 [color="<f0> a|<f1> c|<f2> (NOT c)",style="<f0> a|<f1> c|<f2> (NOT c)"];
+	n4 [color="<f0> a|<f1> c|<f2> (NOT c)",style="<f0> a|<f1> c|<f2> (NOT c)"];
+	n5 -> n6;
+	n5 -> n7;
+	n5 -> n8;
+	n5 -> n9;
+}

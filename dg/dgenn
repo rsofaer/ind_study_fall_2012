@@ -1,0 +1,5 @@
+digraph dg_3055 {
+	n0 [label=x,peripheries=2];
+	n0;
+	n0 -> n0;
+}

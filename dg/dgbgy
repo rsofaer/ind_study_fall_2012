@@ -1,0 +1,10 @@
+digraph dg_856 {
+	graph [size="8,8"];
+	n0 -> n1;
+	n1 -> n2;
+	n1 -> n3;
+	n2 -> n0;
+	n3 -> n4;
+	n4 -> n5;
+	n5 -> n3;
+}

@@ -1,0 +1,24 @@
+digraph dg_800 {
+	edge [style=dashed];
+	n0 -> n1;
+	n2 [shape=box];
+	n0 -> n2;
+	n1 -> n2;
+	n3 [shape=diamond];
+	n1 -> n3;
+	n1 -> n4;
+	n1 -> n5;
+	n6 [shape=diamond];
+	n1 -> n6;
+	n2 -> n3;
+	n2 -> n5;
+	n7 [shape=box];
+	n2 -> n7;
+	n3 -> n6;
+	n4 -> n7;
+	n4 -> n8;
+	n5 -> n9;
+	n6 -> n4;
+	n6 -> n5;
+	n7 -> n8;
+}

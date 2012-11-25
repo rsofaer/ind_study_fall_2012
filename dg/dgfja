@@ -1,0 +1,58 @@
+digraph dg_3614 {
+	graph [color=white,
+		nodesep="0.05",
+		orientation=landscape,
+		rankdir=LR
+	];
+	node [fontsize=8,
+		height="1.25",
+		shape=record,
+		width="0.5"
+	];
+	subgraph cluster {
+		node [height=""];
+	}
+	n0 [height="0.2",label="{<key> (X,X)| <next>}"];
+	n15 [label="<f0>\l(X,X)   |<f1>\l(X,X)   |<f2>\l(X,X) XXX|<f3>\l(X,X) |\nXXXX\nXXXXX"];
+	n0:key -> n15:f0;
+	n1 [height="0.2",label="{<key> XXX| <next>}"];
+	n1:key -> n15:f2;
+	n2 [height="0.2",label="{<key> (X,X)| <next>}"];
+	n2:key -> n15:f2;
+	n3 [height="0.2",label="{<key> (X,X)| <next>}"];
+	n3:key -> n15:f1;
+	n4 [height="1.0",label="<f0>|<f1>|<f2>|\nXXXX\nXXXX\nXXXXX"];
+	n5 [height="0.20",label="{<key> X| <next>}",width="0.1"];
+	n4:f0 -> n5:key;
+	n6 [height="0.20",label="{<key> X| <next>}",width="0.1"];
+	n4:f1 -> n6:key;
+	n7 [height="0.20",label="{<key> X| <next>}",width="0.1"];
+	n5:next -> n7:key;
+	n8 [height="1.0",label="<f0>\nX|<f1>\nX|<f2>\nX|<f3>\nX|<f4>\n\n|<f5>\nXXXX\nXXXXX"];
+	n5:key -> n8:f0;
+	n6:key -> n8:f2;
+	n9 [height="0.20",label="{<key> X| <next>}",width="0.1"];
+	n6:next -> n9:key;
+	n7:key -> n8:f1;
+	n10 [height="0.20",label="{<f0> | XXXXXXXX...\n\n}"];
+	n8:f0 -> n10:f0;
+	n11 [height="0.20",label="{<f0> | \n\nXXXXXXXX...}"];
+	n8:f1 -> n11:f0;
+	n12 [height="0.20",label="{<f0> | \n\nXXXXXXX...}"];
+	n8:f1 -> n12:f0;
+	n13 [height="0.20",label="{<f0> | <f1> | \n\nXXXXXXX...}"];
+	n8:f2 -> n13:f0;
+	n14 [height="0.20",label="{<f0> | \n\nXXXXXXXX...}"];
+	n8:f2 -> n14:f0;
+	n9:key -> n8:f3;
+	n10:f0 -> n15:f0;
+	n11:f0 -> n15:f1;
+	n12:f0 -> n15:f0;
+	n13:f1 -> n15:f2;
+	n14:f0 -> n15:f2;
+	n16 [height="0.5",label="<f0>|<f1>|<f2>|<f3>|<f4>|\nXXXX\nXXXX\nXXXXX"];
+	n16:f0 -> n0:key;
+	n16:f1 -> n1:key;
+	n16:f2 -> n2:key;
+	n16:f3 -> n3:key;
+}

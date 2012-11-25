@@ -1,0 +1,32 @@
+digraph dg_218 {
+	edge [style=dashed];
+	n0 [label="x1 x"];
+	n0 -> n1;
+	n0 -> n2;
+	n1 -> n2;
+	n3 [label="x4 x"];
+	n1 -> n3;
+	n1 -> n4;
+	n2 -> n3;
+	n2 -> n4;
+	n4 -> n3;
+	n5 [label="x5 x"];
+	n4 -> n5;
+	n6 [label="x6 x"];
+	n6 -> n7;
+	n8 [label="x8 x"];
+	n7 -> n8;
+	n9 [label="x9 x"];
+	n9 -> n10;
+	n9 -> n11;
+	n9 -> n12;
+	n9 -> n13;
+	n10 -> n11;
+	n14 [label="x12 x"];
+	n10 -> n14;
+	n11 -> n14;
+	n15 [label="x12 x"];
+	n12 -> n15;
+	n13 -> n10;
+	n13 -> n12;
+}

@@ -1,0 +1,17 @@
+digraph dg_3512 {
+	node [style=filled];
+	n0 [color=slate_blue_medium,fontcolor="hot pink",fontname="Palatino-Italic",fontsize=24,label="xxxxx\nxxxxx"];
+	n1 [color=red];
+	n2 [color=green];
+	n1 -> n2;
+	n3 [color=blue,fontcolor=black];
+	n1 -> n3;
+	n4 [color=yellow];
+	n2 -> n4;
+	n5 [color=orange];
+	n2 -> n5;
+	n6 [color=cyan];
+	n3 -> n6;
+	n7 [color=magenta];
+	n3 -> n7;
+}

@@ -1,0 +1,38 @@
+digraph dg_3868 {
+	node [color=red];
+	n0 [color=green,shape=circle];
+	n1 [shape=polygon,sides=6];
+	n0 -> n1;
+	n2 [color=green,shape=box];
+	n0 -> n2;
+	n0 -> n3;
+	n4 [color=green,shape=box];
+	n2 -> n4;
+	n2 -> n5;
+	n6 [color=green,shape=box];
+	n4 -> n6;
+	n7 [color=green,shape=box];
+	n6 -> n7;
+	n6 -> n8;
+	n6 -> n9;
+	n6 -> n10;
+	n6 -> n11;
+	n6 -> n12;
+	n13 [color=green,shape=box];
+	n7 -> n13;
+	n14 [color=green,shape=box];
+	n7 -> n14;
+	n15 [color=green,shape=box];
+	n13 -> n15;
+	n16 [color=green,shape=box];
+	n15 -> n16;
+	n17 [color=green,shape=box];
+	n15 -> n17;
+	n18 [color=green,shape=box];
+	n16 -> n18;
+	n21 [color=green,shape=box];
+	n16 -> n21;
+	n18 -> n19;
+	n18 -> n20;
+	n21 -> n22;
+}

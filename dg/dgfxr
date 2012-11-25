@@ -1,0 +1,13 @@
+digraph dg_3995 {
+	graph [orientation=landscape];
+	n0 [color=blue,style=filled];
+	n1 -> n0;
+	n2 [color=green,style=filled];
+	n1 -> n2;
+	n3 [color=red,style=filled];
+	n1 -> n3;
+	n4 [color=green,style=filled];
+	n1 -> n4;
+	n5 [color=blue,style=filled];
+	n1 -> n5;
+}

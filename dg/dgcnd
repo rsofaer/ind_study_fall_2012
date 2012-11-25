@@ -1,0 +1,6 @@
+digraph dg_1693 {
+	graph [comment="lctest comment"];
+	n0 -> n1;
+	n2 [comment="dn comment",label="0.001,0.001",size="0.001,0.001"];
+	n3 [comment="dn2 comment",label="0,0",size="0,0"];
+}

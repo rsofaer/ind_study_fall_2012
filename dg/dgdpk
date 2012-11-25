@@ -1,0 +1,17 @@
+digraph dg_2428 {
+	graph [size="7.5,10"];
+	n0 [shape=box];
+	n1 [shape=box];
+	n1 -> n2;
+	n1 -> n3;
+	n1 -> n4;
+	n5 [shape=box];
+	n5 -> n3;
+	n5 -> n6;
+	n7 [shape=box];
+	n7 -> n5;
+	n8 [shape=box];
+	n9 [shape=box];
+	n10 [shape=box];
+	n10 -> n5;
+}

@@ -1,0 +1,26 @@
+digraph dg_4012 {
+	graph [orientation=landscape];
+	subgraph remote {
+		node [color=red,
+			style=filled
+		];
+	}
+	subgraph nearby {
+		node [color=blue,
+			style=filled
+		];
+	}
+	n0 [color=red,style=filled];
+	n1 [color=red,style=filled];
+	n0 -> n1;
+	n2 [color=blue,style=filled];
+	n3 [color=blue,style=filled];
+	n2 -> n3;
+	n4 [color=blue,style=filled];
+	n2 -> n4;
+	n5 [color=blue,style=filled];
+	n2 -> n5;
+	n6 -> n0;
+	n6 -> n2;
+	n6 -> n7;
+}

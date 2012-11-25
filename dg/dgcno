@@ -1,0 +1,3 @@
+digraph dg_1704 {
+	n0 [color=red,label=" x xxxxx",shape=triangle];
+}

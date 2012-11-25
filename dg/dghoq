@@ -1,0 +1,21 @@
+digraph dg_5112 {
+	graph [concentrators=true,
+		fontname=Helvetica,
+		fontsize=20,
+		label="\nxxxxxx-xxxxxxx\nxxxx: xxx.xxxx - xxxx-xxxxxxx %x%\nxxxxxxxxxx: xxx xxx 12 16:06:3\
+7 xxx xxx 1993\n(x) xxxxxxx xx xxxxxxxxxxx 1993",
+		page="8.5,12",
+		rankdir=LR
+	];
+	node [fontsize=9,
+		height=".1",
+		shape=box
+	];
+	edge [style=invis];
+	n0 [fontsize=14,height="8.1993",shape=plaintext];
+	n1 [fontsize=14,height="test.13",label="xxxx.13:xxx xxxxxxxxxx xxxx!\n28.8.93",peripheries=2];
+	n2 [label="xx(93.08.12):xxxx.3:xxxx xxxx #\n2 xxx xxxxxx xx xxxxxxxx \nxxxxxxx xxxxxx",peripheries=1];
+	n2 -> n1;
+	n3 [label="xx(93.08.11):xxxx.5:xx: xxxx \nxxxx #2 xxx xxxxxx xx xxxxxxxx \nxxxxxxx xx",peripheries=1];
+	n3 -> n2;
+}

@@ -1,0 +1,21 @@
+digraph dg_3568 {
+	graph [concentrators=true,
+		fontsize=14,
+		label="\nxxxxxxx xxxxx (xxxxxxxxx xxx)\nxxxxxxxxxxxxxxx xxx xxxxxxx",
+		nodesep=".2",
+		page="8.5,12",
+		rankdir=LR,
+		ranksep=".4",
+		size="15,23"
+	];
+	node [fontname=Helvetica,
+		fontsize=6,
+		height=".2",
+		width=".12"
+	];
+	n0;
+	n1;
+	n2;
+	n3;
+	n4;
+}

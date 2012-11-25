@@ -1,0 +1,12 @@
+digraph dg_3091 {
+	graph [size="7.5,10"];
+	n0 [label=x,peripheries=2];
+	n0;
+	n0 -> n0;
+	n1 [label=x];
+	n0 -> n1;
+	n1 -> n0;
+	n2 [label=x];
+	n1 -> n2;
+	n2 -> n0;
+}

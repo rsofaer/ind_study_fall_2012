@@ -1,0 +1,56 @@
+digraph dg_1702 {
+	graph [center=true,
+		fontsize=18,
+		ordering=out,
+		orientation=landscape,
+		page="8.5,11",
+		ratio=fill,
+		size="10,7.5"
+	];
+	node [shape=circle];
+	n0 [color=black,label="2260:\n/xxx/xxxxxx/xxxx/xxxxxxxx/xxxxx/xxxxxxxxxxx.xx\n/xxx/xxxxxx/xxxx/xx/xxx/xxx\
+x",shape=ellipse];
+	n1 [color=black,label="2261:\n/xxx/xxx/xxxxx",shape=ellipse];
+	n0 -> n1;
+	n2 [color=black,label="2262:\n/xxx/xxx/xx",shape=ellipse];
+	n0 -> n2;
+	n3 [height="0.05",label=xx,shape=diamond,width="0.05"];
+	n0 -> n3;
+	n6 [color=brown,shape=box];
+	n1 -> n6;
+	n7 [color=red,shape=box];
+	n1 -> n7;
+	n8 [color=black,label="2263:\n/xxx/xxx/xx",shape=ellipse];
+	n2 -> n8;
+	n9 [color=brown,shape=box];
+	n3 -> n9;
+	n4 -> n0;
+	n5 [color=black,label="2264:\n/xxx/xxx/xx",shape=ellipse];
+	n4 -> n5;
+	n10 [color=black,label="2265:\n/xxx/xxx/xxxxxx",shape=ellipse];
+	n5 -> n10;
+	n11 [color=black,label="2268:\n/xxx/xxx/xxxxx",shape=ellipse];
+	n5 -> n11;
+	n6 -> n3;
+	n11 -> n7;
+	n12 [color=black,label="2266:\n/xxx/xxx/xx",shape=ellipse];
+	n13 [color=black,shape=box];
+	n12 -> n13;
+	n14 [color=black,label="2267:\n/xxx/xxx/xxxx",shape=ellipse];
+	n12 -> n14;
+	n16 [color=black,shape=box];
+	n14 -> n16;
+	n15 -> n12;
+	n17 [color=black,shape=triangle];
+	n17 -> n4;
+	n18 [color=black,shape=triangle];
+	n18 -> n12;
+	n19 [color=red,shape=triangle];
+	n19 -> n1;
+	n19 -> n5;
+	n19 -> n12;
+	n19 -> n15;
+	n19 -> n20;
+	n19 -> n21;
+	n19 -> n22;
+}

@@ -1,0 +1,23 @@
+digraph dg_4855 {
+	n0 [label="x\nxx- x:=x+x"];
+	n0 -> n1;
+	n1 -> n2;
+	n1 -> n3;
+	n4 [label="x3\nx:=x"];
+	n2 -> n4;
+	n9 [fontname="Times-Italic",label="x5\nx4- x:=x+x; x"];
+	n3 -> n9;
+	n10 [fontname="Times-Italic",label="x6\nx3- x:=x+x"];
+	n3 -> n10;
+	n5 [label="x4\nx:=x+x"];
+	n4 -> n5;
+	n6 [shape=plaintext];
+	n7 [fontname="Times-Italic",label="x1\nx1- x:=x+x"];
+	n6 -> n7;
+	n7 -> n2;
+	n8 [fontname="Times-Italic",label="x4\nx2- x:=x+x"];
+	n7 -> n8;
+	n8 -> n5;
+	n9 -> n4;
+	n10 -> n5;
+}

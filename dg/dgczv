@@ -1,0 +1,87 @@
+digraph dg_2023 {
+	graph [fontname=Helvetica,
+		fontsize=8,
+		nodesep=".3",
+		page="8.5,11",
+		ranksep=".5",
+		ratio=auto
+	];
+	n0 [label="xxxx 0
+\l	xxxx	 x9,x3,31
+",shape=box];
+	n1 [label="xxxx 1
+\l	xxx	 x9,x9,0<5>
+\l	xxx	 x10,x9,0<2>
+\l	xxx	 x9,x3,x10
+\l	xx	 x3,x0,x2
+\l	xx\
+	 x5,x0,x3
+\l	xxxx	 x4,x2,x9
+\l	xxx	 x9,x5,x4
+\l	xx0.x	 xx,x9,@x20
+	xx	 x11,x0,1
+\l\l\
+",shape=box];
+	n0 -> n1;
+	n2 [label="xxxx 2
+\l	xxx	 x9,x7,x4
+",shape=box];
+	n1 -> n2;
+	n3 [label="xxxx 3
+\l\l\l	xx	 x9,x0,x12
+\l	xxx	 x9,x11,x9
+\l	xxxx.x	 xx0,x9,@x9
+	xxxx	 x13,x7,x10\
+\l\l	xxx	 x9,x7,x13
+",shape=box];
+	n2 -> n3;
+	n4 [label="xxxx 4
+\l\l\l	xx	 x9,x0,x7
+\l	xx	 x8,x0,x6
+\l	xx	 x9,x9,x8
+\l	xx	 x9,x0,x7
+\l	xxxx	 x7,\
+x7,4
+\l	xxx	 x9,x7,x13
+\l	xx1.x	 xx,x9,@x12
+	xxxx	 x6,x6,4
+\l",shape=box];
+	n3 -> n4;
+	n5 [label="xxxx 5
+\l",shape=box];
+	n4 -> n5;
+	n6 [label="xxxx 6
+\l\l",shape=box];
+	n5 -> n6;
+	n7 [label="xxxx 7
+\l	xx1.x	 xx,x9,@x8
+	xxxx	 x12,x12,x10
+\l\l@x7:
+\l\l	xxx	 x11,x11,0<1>
+\l	xxxx.\
+x	 xx0,x11,@x16
+	xxxx	 x5,x5,x10
+\l\l	xx	 x11,x0,1
+\l	xxxx	 x3,x3,4
+\l@x16:
+\l\l\l	xxx	\
+ x9,x5,x4
+\l	xx1.x	 xx,x9,@x19
+	xx	 x7,x0,x2
+\l\l\l\l@x20:
+\l	xxx	 x1
+\l",shape=box];
+	n6 -> n7;
+	n8 [label="xxxx 8
+\l\l	xxx	 x11,x11,0<1>
+\l	xxxx.x	 xx0,x11,@x16
+	xxxx	 x5,x5,x10
+\l\l	xx	 x11,x\
+0,1
+",shape=box];
+	n7 -> n8;
+	n9 [label="xxxx 9
+\l\l\l	xxx	 x9,x5,x4
+",shape=box];
+	n8 -> n9;
+}

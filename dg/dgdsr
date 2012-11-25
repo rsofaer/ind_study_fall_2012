@@ -1,0 +1,50 @@
+digraph dg_2513 {
+	graph [page="8,11",
+		rankdir=LR
+	];
+	node [color=gray];
+	n0 [color="8,11",label="xx0900\nxxxxxxxxxxxxxxxx"];
+	n1 [color="CD0900\nKompilatorteknik",label="xx2620\nxxxxxxxxxxxxxxxx\nxx"];
+	n0 -> n1;
+	n2 [color="CD2620\nKompilatorteknik\nfk",label="xx----\nxxxxxxxxxxxxx-\nxxxxxxxx"];
+	n1 -> n2;
+	n3 [color="CD----\nProgramspraks-\nsemantik",label="xx1000\nxxxxxxxxxxx\nxxxxxxxxxxxxx"];
+	n4 [color="CD1000\nFunktionell\nprogrammering",label="xx----\nxxxxx-\nxxxxxxxxxxxxx"];
+	n3 -> n4;
+	n5 [color="CD----\nLogik-\nprogrammering",label="xx1100\nxxxxxxxxxxx xxx\nxxxxxxxxxxx"];
+	n5 -> n0;
+	n6 [color="CD1100\nAutomatater och\nberakningar",label="xx1210\nxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxx"];
+	n7 [color="CD1210\nObjektorienterad\nprogrammering",label="xx2100\nxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxx, xx"];
+	n6 -> n7;
+	n8 [color="CD2100\nObjektorienterad\nprogrammering, fk",label="xx2490\nxxxxxxxxxx\nxxxxxxx"];
+	n8 -> n5;
+	n9 [color="CD2490\nDatalogins\ngrunder",label="xx2560\nxxxxxxxxxxxxxx xxx\nxxxxxxxxxx"];
+	n8 -> n9;
+	n9 -> n3;
+	n9 -> n6;
+	n10 [color="CD2560\nDatastrukturer och\nalgoritmer",label="xx----\nxxxxxxxxxxx\nxxxxxxxxxxx"];
+	n9 -> n10;
+	n11 [color="CD----\nArtificiell\nIntelligens",label="xx2510\nxxxxxxxxxx xx\nxxxxxxxxxxxxxx"];
+	n12 [color="CD2510\nUtveckling av\noperativsystem",label="xx2660\nxxxxxxxxxx xx\nxxxxxxxxxxxxxx"];
+	n11 -> n12;
+	n13 [color="CD2660\nUtveckling av\nrealtidssystem",label="xx2520\nxxxxxxxxxxxxxxxxx xxx\nxxxxxxxxxxxxx xxxxxx"];
+	n12 -> n13;
+	n14 [color="CD2520\nDatakommunikation och\nDistribuerade system",label="xx2710\nxxxxxxxxxxxxx\nxxxxxxxxxxxxxx"];
+	n13 -> n14;
+	n15 [color="CD2710\nDistribuerade\nrealtidssystem",label="xx1430\nxxxxxxx\nxxxxxxxxxxxx"];
+	n16 [color="CE1430\nDigital\nkonstruktion",label="xx1500\nxxxx-xxxxxxxxxxxx"];
+	n15 -> n16;
+	n17 [color="CE1500\nVLSI-konstruktion",label="xx1470\nxxxxxxxxxx-\nxxxxxx 1"];
+	n17 -> n11;
+	n18 [color="CE1470\nMikrodator-\nteknik 1",label="xx0130\nxxxxxxxxxxxxxxx"];
+	n17 -> n18;
+	n19 [color="CE0130\nDatorarkitektur",label="xx0300\nxxxxxxxxxxxxxxxx"];
+	n17 -> n19;
+	n20 [color="CE0300\nSystemarkitektur",label="xx1440\nxxxxxxxxxx-\nxxxxxx 2"];
+	n17 -> n20;
+	n21 [color="CE1440\nMikrodator-\nteknik 2",label="xx1050\nxxxxxxxxxxxxxx-\nxxxxxx xxx x"];
+	n21 -> n8;
+	n21 -> n11;
+	n22 [color="SD1050\nProgrammerings-\nteknik med C",label="xx----\nxxxxxxxxxxxxxx,\nxxxxxxxxxxxx-\nxxxxxxxxxxxxx"];
+	n21 -> n22;
+}

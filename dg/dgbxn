@@ -1,0 +1,19 @@
+digraph dg_1287 {
+	node [shape=circle];
+	subgraph cluster0 {
+		graph [label="x 1",
+			style=dotted
+		];
+	}
+	subgraph cluster1 {
+		graph [label="x 2",
+			style=dotted
+		];
+	}
+	n0 -> n1;
+	n0 -> n2;
+	n0 -> n3;
+	n3 -> n4;
+	n3 -> n5;
+	n3 -> n6;
+}

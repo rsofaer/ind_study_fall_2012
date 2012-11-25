@@ -1,0 +1,8 @@
+digraph dg_2496 {
+	node [fontname=Courier,
+		fontsize=8
+	];
+	n0 [label="xxxxxxxxxxxxxxxxxxxx xxx x"];
+	n1 [label="xxxxxxxxx xxx xxxxxxxxxxx"];
+	n0 -> n1;
+}

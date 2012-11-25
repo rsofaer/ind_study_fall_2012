@@ -1,0 +1,13 @@
+digraph dg_118 {
+	graph [orientation=landscape,
+		page="8.0, 10.5",
+		rankstep="1.5",
+		ratio=auto,
+		size="7.5, 10.0"
+	];
+	n0 [shape=box];
+	n1 -> n2;
+	n1 -> n3;
+	n4 -> n5;
+	n4 -> n6;
+}

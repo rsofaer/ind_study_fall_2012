@@ -1,0 +1,6 @@
+digraph dg_3498 {
+	node [shape=ellipse];
+	n0;
+	n1;
+	n2 -> n3;
+}

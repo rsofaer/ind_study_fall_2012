@@ -1,0 +1,14 @@
+digraph dg_1566 {
+	graph [comment="M:a;M:a -> b;M:b;$M:b;M:b -> c;M:c;$ M:c;M:c -> d;M:d;$ M:d;M:d -> e;M:e;$ M:e;M\
+:e -> a;M:a;$ M:a;M:a -> b;M:b;$"];
+	n0 [color=red,shape=diamond];
+	n1 [color=green];
+	n0 -> n1;
+	n2 [color=blue];
+	n1 -> n2;
+	n3 [color=".1 .2 .3"];
+	n2 -> n3;
+	n4 [color="1 .9 .8"];
+	n3 -> n4;
+	n4 -> n0;
+}

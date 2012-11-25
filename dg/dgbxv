@@ -1,0 +1,54 @@
+digraph dg_1295 {
+	graph [center=TRUE,
+		orientation=landscape,
+		ratio=compress,
+		size="7.5,10"
+	];
+	edge [dir=back];
+	subgraph cluster0 {
+	}
+	n1 -> n14;
+	n1 -> n15;
+	n1 -> n16;
+	n1 -> n17;
+	n2 -> n14;
+	n2 -> n15;
+	n2 -> n18;
+	n3 -> n14;
+	n3 -> n19;
+	n3 -> n20;
+	n3 -> n21;
+	n4 -> n15;
+	n4 -> n22;
+	n4 -> n23;
+	n5 -> n14;
+	n5 -> n15;
+	n6 -> n14;
+	n6 -> n15;
+	n7 -> n14;
+	n7 -> n24;
+	n8 -> n14;
+	n8 -> n15;
+	n9 -> n14;
+	n9 -> n15;
+	n10 -> n14;
+	n10 -> n15;
+	n10 -> n20;
+	n10 -> n25;
+	n10 -> n26;
+	n11 -> n14;
+	n12 -> n14;
+	n12 -> n27;
+	n13 -> n14;
+	n13 -> n15;
+	n28 -> n29;
+	n30 -> n0;
+	n31 -> n0;
+	n32 -> n14;
+	n32 -> n15;
+	n32 -> n33;
+	n34 -> n14;
+	n34 -> n15;
+	n35 -> n14;
+	n35 -> n15;
+}

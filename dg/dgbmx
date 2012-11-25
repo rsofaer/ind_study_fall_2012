@@ -1,0 +1,16 @@
+digraph dg_1011 {
+	graph [size="4,4"];
+	n1 [label=x1];
+	n2 [label=x0];
+	n3 [label=xxx];
+	n3 -> n1;
+	n3 -> n2;
+	n4 [label=x1];
+	n5 [label=4];
+	n6 [label=xxx];
+	n6 -> n2;
+	n6 -> n5;
+	n7 [label=xxx];
+	n7 -> n4;
+	n7 -> n6;
+}

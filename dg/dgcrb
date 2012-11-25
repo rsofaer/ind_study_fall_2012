@@ -1,0 +1,28 @@
+digraph dg_1795 {
+	graph [center=true,
+		fontsize=18,
+		ordering=out,
+		orientation=portrait,
+		page="8.5,11",
+		ratio=fill,
+		size="7.5,10"
+	];
+	node [shape=circle];
+	n0 [label=11925,shape=ellipse];
+	n1 [shape=box];
+	n0 -> n1;
+	n2 [shape=box];
+	n0 -> n2;
+	n3 [shape=box];
+	n0 -> n3;
+	n4 [shape=box];
+	n0 -> n4;
+	n5 [shape=box];
+	n0 -> n5;
+	n6 [shape=box];
+	n0 -> n6;
+	n7 [shape=box];
+	n0 -> n7;
+	n8 [shape=box];
+	n0 -> n8;
+}

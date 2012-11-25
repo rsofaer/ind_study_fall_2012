@@ -1,0 +1,44 @@
+digraph dg_269 {
+	graph [fontname=Helvetica,
+		fontsize=20,
+		label="#xxxxxx - xxxxxxxxxxxxx xxxx-xxxxxxx %x%\nxxxxxxxxxx: xxx xxx  4 20:54:45 xxx 199\
+4\n(x) xxxxxxx xx xxxxxxxxxxx 1994",
+		page="8.5,12"
+	];
+	node [fontsize=9,
+		height=".1",
+		shape=box
+	];
+	n0 [label="--\nxxxxxxxx.xx\n--\n--\n--\n",style=solid];
+	n1 [color=grey90,label="xxxxxx-xxxxx xxxxxxxxxxxxxxxxxx\nxxxxxx.xxxxxx\nxxxxxxx\n94/02/16\n--\n1.3",style=filled];
+	n0 -> n1;
+	n2 [label="--\nxxxxxxxx2.xx\n--\n--\n--\n",style=solid];
+	n0 -> n2;
+	n3 [label="--\nxxxxxxxx.xx\n--\n--\n--\n",style=solid];
+	n0 -> n3;
+	n4 [color=grey90,label="xxx_xxxxx.x (xxx)\nxxx_xxxxx.x\nxxxxxxx xxxxxxxxxxxxx, xxx41\n--\n--\n2.2",style=filled];
+	n0 -> n4;
+	n5 [color=grey90,label="xxxxxxxxxxxxxx.x (xxx/xxxx)\nxxxxxxxxxxxxxx.x\nxxxxxx x. xxxxxxx\n--\n--\n2.4",style=filled];
+	n0 -> n5;
+	n6 [color=grey90,label="xxxxxx-xxxx xxxxxxxxxx\nxxxxxxxxxx.xx\nxxxxxxx xxxxxxxxxxxxx\n--\n--\n1.6",style=filled];
+	n0 -> n6;
+	n7 [color=grey90,label="xxxxxxxxxxxxx xx - xxx-xxxxxxxx\nxx. x. xxxxxxx, xx. x. xxxxxxxxx\n16.2.1994\n1.5.x\
+xx\n1.5",style=filled];
+	n0 -> n7;
+	n8 [color=grey90,label="xxxxxxxxxx - xxxxxxxxxxx\nxxxxxxxxxx.xxx\nxxxxxx xxxxxxxxx\n--\n--\n4.78",style=filled];
+	n0 -> n8;
+	n9 [color=grey90,label="xxxxxx-xxxxxxxxx xx xxxxxxxxxxxx\nxxxxxxxxxxxx.xx\nx. x. xxxxxxx\n--\n--\n2.6",style=filled];
+	n0 -> n9;
+	n10 [color=grey90,label="xxxxxxx xx xxxxxxx\nxxxxxxx.x\nxxxxxxx\n940117\n--\n1.3",style=filled];
+	n0 -> n10;
+	n11 [color=grey90,label="xxxxxxxxxxxxxxxx-xxxxxxxxx\nxxxxxxxxxxxxxxxx.xxxx.xx\nxxxxxxxxxxxxx, xxx 41\n--\n1.1\
+\n",style=filled];
+	n2 -> n11;
+	n12 [label="--\nxxxxxxxx.xx\n--\n--\n--\n",style=solid];
+	n2 -> n12;
+	n3 -> n11;
+	n3 -> n12;
+	n13 [color=grey90,label="xxxxxxxxxxxx.xxx (xxx)\nxxxxxxxxxxxx.xxx\nxxxxxx x. xxxxxxx, xxx41\n--\n--\n2.7",style=filled];
+	n9 -> n13;
+	n12 -> n12;
+}

@@ -1,0 +1,30 @@
+graph ug_73 {
+	graph [orientation=landscape];
+	edge [len=3];
+	n0 -- n1 [len=""];
+	n0 -- n2 [len=""];
+	n0 -- n3 [len=""];
+	n4 [label="xxxxxxxxxx xx"];
+	n4 -- n5 [len=""];
+	n4 -- n6 [len=""];
+	n4 -- n7;
+	n8 [label=xxxxxxxxxxxx];
+	n7 -- n8;
+	n8 -- n9 [len=""];
+	n8 -- n10 [len=""];
+	n8 -- n11 [len=""];
+	n10 -- n12 [len=""];
+	n10 -- n13 [len=""];
+	n10 -- n14 [len=""];
+	n15 [label=xxxxxxxxx];
+	n10 -- n15;
+	n10 -- n16 [len=""];
+	n15 -- n17 [len=""];
+	n15 -- n18 [len=""];
+	n15 -- n19 [len=""];
+	n16 -- n20 [len=""];
+	n16 -- n21;
+	n21 -- n22;
+	n21 -- n23;
+	n21 -- n24;
+}

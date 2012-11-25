@@ -1,0 +1,66 @@
+digraph dg_3244 {
+	graph [size="7.5, 10"];
+	node [ranksep="1.25",
+		shape=box
+	];
+	subgraph clusterx0 {
+	}
+	subgraph clusterx1 {
+	}
+	n0 [label="185:xxxxxxx-0"];
+	n1 [label="65:xxxxx"];
+	n0 -> n1;
+	n2 [label="75:xxxx"];
+	n1 -> n2;
+	n6 [label="-1:xxx"];
+	n2 -> n6;
+	n7 [label="xxxxx-xx-xxx-95"];
+	n2 -> n7;
+	n3 [label="68:x"];
+	n4 [label="67:xxxx"];
+	n3 -> n4;
+	n4 -> n1;
+	n5 [label="69:xxxxx"];
+	n4 -> n5;
+	n5 -> n6;
+	n13 [label="xxxxx-xxx-xxx-58"];
+	n6 -> n13;
+	n8 [label="70:x"];
+	n8 -> n5;
+	n9 [label="73:x"];
+	n10 [label="72:xxxx"];
+	n9 -> n10;
+	n10 -> n5;
+	n11 [label="71:-"];
+	n10 -> n11;
+	n11 -> n5;
+	n12 [label="74:1"];
+	n12 -> n11;
+	n14 [label="184:xxxxxxx-0"];
+	n14 -> n2;
+	n15 [label="7.5, 10",style=invis];
+	n16 [label="xxxxx-xxx-xx-57"];
+	n17 [label="7.5, 10",style=invis];
+	n27 [label="xxxxx-xx-xxx-95",style=invis];
+	n17 -> n27;
+	n18 [label="79:xxx"];
+	n19 [label="78:xxxxx"];
+	n18 -> n19;
+	n20 [label="-1:xxx"];
+	n19 -> n20;
+	n26 [label="xxxxx-xxx-xxx-56"];
+	n20 -> n26;
+	n21 [label="82:xxx"];
+	n22 [label="81:xxxx"];
+	n21 -> n22;
+	n22 -> n19;
+	n23 [label="80:+"];
+	n22 -> n23;
+	n23 -> n19;
+	n24 [label="84:x"];
+	n25 [label="83:xxxx"];
+	n24 -> n25;
+	n25 -> n23;
+	n28 [label="xxxxx-xxx-xx-55"];
+	n29 [label="xxxxx-xx-xxx-95",style=invis];
+}

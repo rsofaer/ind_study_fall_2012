@@ -1,0 +1,14 @@
+digraph dg_747 {
+	n0 -> n1;
+	n2 [label=x9];
+	n2 -> n3;
+	n2 -> n4;
+	n2 -> n5;
+	n6 [label=x5];
+	n6 -> n3;
+	n6 -> n4;
+	n6 -> n7;
+	n8 [label=x6];
+	n8 -> n3;
+	n9 -> n7;
+}

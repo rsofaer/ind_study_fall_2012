@@ -1,0 +1,32 @@
+digraph dg_3518 {
+	graph [ratio=fill,
+		size="8,8"
+	];
+	node [fontsize=12,
+		height=".2",
+		shape=circle,
+		width=".2"
+	];
+	edge [fontsize=12];
+	n0 -> n0;
+	n1 [shape=doublecircle];
+	n0 -> n1;
+	n0 -> n2;
+	n0 -> n3;
+	n0 -> n4;
+	n1 -> n4;
+	n2 -> n0;
+	n3 -> n0;
+	n3 -> n3;
+	n3 -> n5;
+	n3 -> n6;
+	n3 -> n7;
+	n3 -> n8;
+	n4 -> n0;
+	n5 -> n0;
+	n5 -> n6;
+	n6 -> n0;
+	n7 -> n3;
+	n8 -> n3;
+	n9 -> n3;
+}

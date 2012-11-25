@@ -1,0 +1,24 @@
+digraph dg_2051 {
+	graph [nodesep=".35",
+		orientation=landscape,
+		ratio="1.0",
+		size="22.22,22.22"
+	];
+	node [fontsize=6];
+	n0 [height=".556",shape=box,width="1.667"];
+	n1 [height=".556",shape=diamond,width="1.250"];
+	n0 -> n1;
+	n2 [height=".556",shape=diamond,width="1.250"];
+	n0 -> n2;
+	n3 [height=".556",shape=diamond,width="1.250"];
+	n0 -> n3;
+	n4 [height=".556",shape=box,width="1.667"];
+	n1 -> n4;
+	n6 [height=".556",shape=box,width="1.667"];
+	n2 -> n6;
+	n5 [height=".556",shape=box,width="1.667"];
+	n3 -> n5;
+	n7 [height=".556",shape=diamond,width="1.250"];
+	n6 -> n7;
+	n7 -> n0;
+}

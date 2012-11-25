@@ -1,0 +1,50 @@
+digraph dg_4308 {
+	graph [label="xxx xx-",
+		orientation=portrait,
+		size="7.5, 10"
+	];
+	node [ranksep="1.25",
+		shape=box
+	];
+	subgraph clustersdfgx1038x {
+		graph [label="xxx xx-"];
+		node [shape="1.25"];
+	}
+	n0 [style=invis];
+	n1 [style=invis];
+	n0 -> n1;
+	n2 [label=xxxx_1041,shape=diamond];
+	n3 [label=xxxx_1042,shape=diamond];
+	n4 [label=xxxx_1134,shape=diamond];
+	n5 [label=xxxx_1039,shape=diamond];
+	n6 [label="{X|{<1056> XX|<1057> XX}}",shape=record];
+	n7 [label="{{<1058> XX}|XXXX_XX|{<1052> XX|<1053> XX}}",shape=record];
+	n6:1056 -> n7:1058;
+	n8 [label="{{<1061> XX|<1117> XX}|XXXX_XX|{<1048> XX|<1049> XX}}",shape=record];
+	n7:1052 -> n8:1061;
+	n9 [label="{{<1120> XX|<1127> XX}|XXXXX_XX|{<1045> XX}}",shape=record];
+	n8:1048 -> n9:1120;
+	n18 [label="{{<1432> XX}|XXX_XXXX|{<1429> XX}}",shape=record];
+	n9:1045 -> n18:1432;
+	n10 [label="{XXXX|{<1082> XX|<1083> XX}}",shape=record];
+	n11 [label="{{<1084> XX}|XXXX_XX|{<1078> XX|<1079> XX}}",shape=record];
+	n10:1082 -> n11:1084;
+	n12 [label="{{<1087> XX|<1094> XX}|XXXX_XX|{<1074> XX|<1075> XX}}",shape=record];
+	n11:1078 -> n12:1087;
+	n13 [label="{{<1097> XX|<1104> XX}|XXXX_XX|{<1070> XX|<1071> XX}}",shape=record];
+	n12:1074 -> n13:1097;
+	n15 [label="{{<1107> XX|<1114> XX}|XXXX_XX|{<1066> XX|<1067> XX}}",shape=record];
+	n13:1070 -> n15:1107;
+	n14 [label="{X|{<1092> XX|<1093> XX}}",shape=record];
+	n14:1092 -> n12:1094;
+	n15:1066 -> n8:1117;
+	n16 [label="{X|{<1102> XX|<1103> XX}}",shape=record];
+	n16:1102 -> n13:1104;
+	n17 [label="{X|{<1112> XX|<1113> XX}}",shape=record];
+	n17:1112 -> n15:1114;
+	n18:1429 -> n5;
+	n19 [label="{X.XXXXXX|{<1125> XX|<1126> XX}}",shape=record];
+	n19:1125 -> n9:1127;
+	n20 [label="{X|{<1132> XX|<1133> XX}}",shape=record];
+	n20:1132 -> n4;
+}

@@ -1,0 +1,122 @@
+digraph dg_2 {
+	graph [label="xxx x",
+		orientation=landscape
+	];
+	node [ranksep="1.25",
+		shape=box
+	];
+	subgraph clustersdfgx1464x {
+		graph [label="xxx x"];
+		node [shape="1.25"];
+		subgraph clusterschemax1474x {
+			graph [label="1474:xx_1474"];
+			node [shape=""];
+			subgraph clustersdfgx1476x {
+				graph [label="1474:xx_1474"];
+			}
+			subgraph clustersdfgx1478x {
+				graph [label="1474:xx_1474"];
+			}
+		}
+	}
+	n0 [label="xxxx_1479.0 xx0",shape=diamond];
+	n1 [label="xxxx_1526.0 xx0",shape=diamond];
+	n2 [label="{{<1535> XX|<1843> XX}|XXXX_XX|{<1521> XX|<1522> XX}}",shape=record];
+	n1 -> n2:1843;
+	n8 [label="{{<1538> XX|<1545> XX}|XXXX_XX|{<1517> XX|<1518> XX}}",shape=record];
+	n2:1521 -> n8:1538;
+	n3 [label="xxxx_1849.0 xx1",shape=diamond];
+	n4 [label="{{<1858> XX|<1861> XX}|XXX_XXXX|{<1857> XX}}",shape=record];
+	n3 -> n4:1861;
+	n5 [label="xxxx_1852.0 xx0",shape=diamond];
+	n4:1857 -> n5;
+	n33 [label="xxxx_1852 xx0",shape=diamond];
+	n5 -> n33;
+	n6 [style=invis];
+	n7 [style=invis];
+	n6 -> n7;
+	n32 [style=invis];
+	n7 -> n32;
+	n10 [label="{{<1548> XX|<1555> XX|<1777> XX}|XXXXX_XX|{<1514> XX}}",shape=record];
+	n8:1517 -> n10:1548;
+	n9 [label=x,shape=plaintext];
+	n9 -> n2:1535;
+	n10:1514 -> n4:1858;
+	n11 [label=8,shape=plaintext];
+	n11 -> n8:1545;
+	n12 [label="0.000000",shape=plaintext];
+	n12 -> n10:1555;
+	n13 [label=0,shape=plaintext];
+	n14 [label="xxxx_1479.1 xx0",shape=diamond];
+	n15 [label="xxxx_1526.1 xx0",shape=diamond];
+	n16 [label="{{<1580> XX|<1846> XX}|XXXX_XX|{<1571> XX|<1572> XX}}",shape=record];
+	n15 -> n16:1846;
+	n22 [label="{{<1583> XX|<1590> XX}|XXXX_XX|{<1567> XX|<1568> XX}}",shape=record];
+	n16:1571 -> n22:1583;
+	n17 [label="xxxx_1849.1 xx1",shape=diamond];
+	n18 [label="{{<1869> XX|<1872> XX}|XXX_XXXX|{<1868> XX}}",shape=record];
+	n17 -> n18:1872;
+	n19 [label="xxxx_1852.1 xx0",shape=diamond];
+	n18:1868 -> n19;
+	n19 -> n33;
+	n20 [style=invis];
+	n21 [style=invis];
+	n20 -> n21;
+	n21 -> n32;
+	n24 [label="{{<1593> XX|<1600> XX|<1765> XX|<1789> XX}|XXXXX_XX|{<1564> XX}}",shape=record];
+	n22:1567 -> n24:1593;
+	n23 [label=x,shape=plaintext];
+	n23 -> n16:1580;
+	n24:1564 -> n18:1869;
+	n25 [label=16,shape=plaintext];
+	n25 -> n22:1590;
+	n26 [label="0.000000",shape=plaintext];
+	n26 -> n24:1600;
+	n27 [label=0,shape=plaintext];
+	n28 [label="xxxx_1849 xx1",shape=diamond];
+	n28 -> n3;
+	n28 -> n17;
+	n29 [label="xxxx_1526 xx0",shape=diamond];
+	n29 -> n1;
+	n29 -> n15;
+	n30 [label="xxxx_1479 xx0",shape=diamond];
+	n30 -> n0;
+	n30 -> n14;
+	n31 [style=invis];
+	n31 -> n6;
+	n31 -> n20;
+	n31 -> n32;
+	n42 [label="{{<1888> XX|<1891> XX}|XXX_XXXX|{<1887> XX}}",shape=record];
+	n33 -> n42:1888;
+	n34 [label="xxxx_1611.0 xx0",shape=diamond];
+	n35 [label="xxxx_1465.0 xx0",shape=diamond];
+	n35 -> n28;
+	n36 [label="xxxx_1775.0 xx1",shape=diamond];
+	n35 -> n36;
+	n37 [label="xxxx_1787.0 xx2",shape=diamond];
+	n35 -> n37;
+	n38 [label="xxxx_1469.0 xx1",shape=diamond];
+	n38 -> n29;
+	n39 [label="xxxx_1471.0 xx2",shape=diamond];
+	n40 [label="{{<1497> XX|<1840> XX}|XXXX_XX|{<1488> XX|<1489> XX}}",shape=record];
+	n39 -> n40:1840;
+	n46 [label="{{<1500> XX|<1507> XX}|XX_XX|{<1484> XX|<1485> XX}}",shape=record];
+	n40:1488 -> n46:1500;
+	n41 [label="xxxx_1763.0 xx3",shape=diamond];
+	n41 -> n42:1891;
+	n43 [label="xxxx_1467.0 xx0",shape=diamond];
+	n42:1887 -> n43;
+	n44 [style=invis];
+	n45 [style=invis];
+	n44 -> n45;
+	n46:1484 -> n30;
+	n47 [label=xxxx,shape=plaintext];
+	n47 -> n40:1497;
+	n48 [label=10,shape=plaintext];
+	n48 -> n46:1507;
+	n49 [label=0,shape=plaintext];
+	n49 -> n34;
+	n50 [style=invis];
+	n51 [style=invis];
+	n50 -> n51;
+}

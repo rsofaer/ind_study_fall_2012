@@ -1,0 +1,10 @@
+digraph dg_4388 {
+	graph [ratio=auto];
+	node [shape=circle];
+	n0 -> n1;
+	n0 -> n2;
+	n1 -> n0;
+	n1 -> n3;
+	n2 -> n0;
+	n3 -> n0;
+}

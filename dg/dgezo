@@ -1,0 +1,19 @@
+digraph dg_3368 {
+	graph [center=true,
+		ordering=out
+	];
+	n0 [label="{<top>XXXXXXXXXX\ XX|{X}|{<b1>|<b2>}}",shape=record];
+	n1 [label="{<top>XXXXXXXX\ XX|{X\ ->\ X\ X\ X}|{<b1>|<b2>|<b3>}}",shape=record];
+	n0:b1 -> n1:top;
+	n2 [label="{<top>XXXXXXXX\ XX|{X\ ->\ X\ X\ X}|{<b1>|<b2>|<b3>}}",shape=record];
+	n0:b2 -> n2:top;
+	n3 [label="{XXXXXXXX\ XX|X}",shape=record];
+	n1:b1 -> n3;
+	n4 [label="{XXXXXXXX\ XX|X}",shape=record];
+	n1:b2 -> n4;
+	n5 [label="{XXXXXXXX\ XX|X}",shape=record];
+	n1:b3 -> n5;
+	n2:b3 -> n0;
+	n2:b1 -> n3;
+	n2:b2 -> n4;
+}

@@ -1,0 +1,17 @@
+digraph dg_1165 {
+	graph [center=true,
+		fontsize=12,
+		orientation=landscape,
+		page="8.5,11",
+		size="10,7.5"
+	];
+	node [shape=circle];
+	n0 [style=plaintext];
+	n1 [style=invis];
+	n2 [shape=box];
+	n1 -> n2;
+	n3 [shape=ellipse];
+	n3 -> n2;
+	n4 [shape=box];
+	n3 -> n4;
+}

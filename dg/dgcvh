@@ -1,0 +1,13 @@
+digraph dg_1905 {
+	graph [center=TRUE,
+		margin=".25,.25",
+		orientation=landscape,
+		page="8.5,11",
+		size="8,10.5"
+	];
+	n0 [shape=box];
+	n0 -> n1;
+	n0 -> n2;
+	n0 -> n3;
+	n0 -> n4;
+}

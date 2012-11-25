@@ -1,0 +1,27 @@
+digraph dg_142 {
+	graph [label="xxxxx_x x",
+		orientation=landscape,
+		page="8.5, 11",
+		ratio=fill,
+		size="7.5,10"
+	];
+	node [ranksep="1.25",
+		shape=box
+	];
+	subgraph clustersdfgx924x {
+		graph [label="xxxxx_x x"];
+		node [shape="1.25"];
+	}
+	n0 [label="xxxx_935.0 xx0(4)",shape=diamond];
+	n1 [label="xxxx_925.0 xx0(0)",shape=diamond];
+	n2 [label="xxxx_929.0 xx1(8)",shape=diamond];
+	n3 [label="xxxx_927.0 xx0(0)",shape=diamond];
+	n4 [style=invis];
+	n5 [style=invis];
+	n4 -> n5;
+	n6 [label=22,shape=plaintext];
+	n6 -> n0;
+	n7 [style=invis];
+	n8 [style=invis];
+	n7 -> n8;
+}

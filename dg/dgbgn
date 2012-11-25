@@ -1,0 +1,31 @@
+digraph dg_845 {
+	graph [ratio=fill,
+		size="8,11"
+	];
+	n0 [shape=box];
+	n0 -> n1;
+	n2 [shape=box];
+	n2 -> n1;
+	n3 [shape=ellipse];
+	n2 -> n3;
+	n2 -> n4;
+	n2 -> n5;
+	n3 -> n1;
+	n3 -> n4;
+	n3 -> n5;
+	n6 [shape=box];
+	n6 -> n1;
+	n6 -> n4;
+	n6 -> n5;
+	n7 [shape=ellipse];
+	n6 -> n7;
+	n7 -> n1;
+	n7 -> n4;
+	n7 -> n5;
+	n8 [shape=diamond];
+	n8 -> n0;
+	n8 -> n2;
+	n8 -> n4;
+	n8 -> n6;
+	n9 -> n8;
+}

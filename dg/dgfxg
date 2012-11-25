@@ -1,0 +1,19 @@
+digraph dg_3984 {
+	node [height=".1",
+		shape=record
+	];
+	n0 [label="<f0> |<f1> X|<f2> "];
+	n1 [label="<f0> X|<f1> X|<f2> X"];
+	n0:f0 -> n1:f1;
+	n2 [label="<f0> X|<f1> |<f2>"];
+	n0:f2 -> n2:f1;
+	n3 [label="<f0> X|<f1> X|<f2>"];
+	n2:f1 -> n3:f1;
+	n4 [label="<f0> |<f1> |<f2>"];
+	n2:f2 -> n4:f1;
+	n5 [label="<f0> X|<f1>|<f2> X"];
+	n3:f2 -> n5:f1;
+	n4:f0 -> n5:f1;
+	n6 [label="<f0> X|<f1> X|<f2> X'"];
+	n4:f2 -> n6:f1;
+}

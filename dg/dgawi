@@ -1,0 +1,7 @@
+digraph dg_580 {
+	graph [size="4,4"];
+	n0 [label="4,4"];
+	n1 [label="4,4"];
+	n1 -> n2;
+	n2 -> n0;
+}

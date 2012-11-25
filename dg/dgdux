@@ -1,0 +1,21 @@
+digraph dg_2571 {
+	graph [fontsize=12];
+	node [shape=box];
+	n0;
+	n1;
+	n2;
+	n3 [distortion=".8",shape=polygon,sides=4];
+	n4;
+	n5;
+	n6;
+	n7;
+	n8 [distortion=".8",shape=polygon,sides=4];
+	n9 -> n8;
+	n10 [distortion=".8",shape=polygon,sides=4];
+	n11 -> n10;
+	n12;
+	n13;
+	n14;
+	n15;
+	n16;
+}

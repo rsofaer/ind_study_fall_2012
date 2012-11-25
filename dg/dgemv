@@ -1,0 +1,33 @@
+digraph dg_3037 {
+	graph [color=black,
+		fontcolor=black,
+		fontname="Times-Roman",
+		fontsize=14
+	];
+	node [color=black,
+		fontcolor=black,
+		fontname="Times-Roman",
+		fontsize=14,
+		shape=ellipse
+	];
+	edge [color=black,
+		fontcolor=black,
+		fontname="Times-Roman",
+		fontsize=14
+	];
+	n0 [label="\N"];
+	n1 [label="\N"];
+	n0 -> n1;
+	n3 [label="\N"];
+	n0 -> n3;
+	n1 -> n0;
+	n2 [label="\N"];
+	n1 -> n2;
+	n5 [label="\N"];
+	n1 -> n5;
+	n4 [label="\N"];
+	n3 -> n4;
+	n2 -> n0;
+	n2 -> n4;
+	n5 -> n3;
+}

@@ -1,0 +1,25 @@
+digraph dg_430 {
+	graph [ratio=fill,
+		size="8,11"
+	];
+	edge [style=solid];
+	n0 -> n1;
+	n2 [shape=diamond];
+	n0 -> n2;
+	n1 -> n3;
+	n1 -> n4;
+	n1 -> n5;
+	n1 -> n6;
+	n2 -> n3;
+	n2 -> n5;
+	n7 [shape=diamond];
+	n2 -> n7;
+	n3 -> n8;
+	n3 -> n9;
+	n4 -> n8;
+	n5 -> n9;
+	n6 -> n4;
+	n6 -> n5;
+	n6 -> n7;
+	n7 -> n8;
+}

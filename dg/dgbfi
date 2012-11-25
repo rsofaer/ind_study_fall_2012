@@ -1,0 +1,24 @@
+digraph dg_814 {
+	graph [ratio=fill,
+		size="8,11"
+	];
+	n0 [shape=box];
+	n1 [shape=ellipse];
+	n0 -> n1;
+	n2 [shape=box];
+	n0 -> n2;
+	n0 -> n3;
+	n2 -> n4;
+	n3 -> n9;
+	n5 [shape=diamond];
+	n5 -> n2;
+	n5 -> n3;
+	n5 -> n6;
+	n6 -> n4;
+	n7 -> n0;
+	n7 -> n8;
+	n8 -> n1;
+	n8 -> n3;
+	n8 -> n5;
+	n8 -> n6;
+}

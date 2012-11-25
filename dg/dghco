@@ -1,0 +1,88 @@
+digraph dg_4798 {
+	graph [label="xxx1 ",
+		orientation=landscape,
+		size="10, 7.5"
+	];
+	node [ranksep="1.25",
+		shape=box
+	];
+	subgraph clustersdfgx1320x {
+		graph [label="xxx1 "];
+		node [shape="1.25"];
+		subgraph clusterschemax1330x {
+			graph [label="1330:xx_1330"];
+			node [shape=""];
+			subgraph clustersdfgx1332x {
+				graph [label="1330:xx_1330"];
+			}
+			subgraph clustersdfgx1334x {
+				graph [label="1330:xx_1330"];
+			}
+		}
+	}
+	n0 [label="xxxx_1335.0 xx0",shape=diamond];
+	n1 [label="xxxx_1338.0 xx0",shape=diamond];
+	n2 [label="{{<1949> XX|<1952> XX}|XXX_XXXX|{<1946> XX}}",shape=record];
+	n1 -> n2:1952;
+	n3 [label="xxxx_1341.0 xx0",shape=diamond];
+	n2:1946 -> n3;
+	n22 [label="xxxx_1341 xx0",shape=diamond];
+	n3 -> n22;
+	n4 [style=invis];
+	n5 [style=invis];
+	n4 -> n5;
+	n20 [style=invis];
+	n5 -> n20;
+	n6 [label="0 (1354:507)",shape=plaintext];
+	n7 [label="{{<1357> XX|<1364> XX}|XXXXX_XX|{<1352> XX}}",shape=record];
+	n6 -> n7:1357;
+	n7:1352 -> n2:1949;
+	n8 [label="0.000000 (1361:73)",shape=plaintext];
+	n8 -> n7:1364;
+	n9 [label="xxxx_1335.1 xx0",shape=diamond];
+	n10 [label="xxxx_1338.1 xx0",shape=diamond];
+	n11 [label="{{<1960> XX|<1963> XX}|XXX_XXXX|{<1957> XX}}",shape=record];
+	n10 -> n11:1963;
+	n12 [label="xxxx_1341.1 xx0",shape=diamond];
+	n11:1957 -> n12;
+	n12 -> n22;
+	n13 [style=invis];
+	n14 [style=invis];
+	n13 -> n14;
+	n14 -> n20;
+	n15 [label="0 (1375:509)",shape=plaintext];
+	n16 [label="{{<1378> XX|<1385> XX}|XXXXX_XX|{<1373> XX}}",shape=record];
+	n15 -> n16:1378;
+	n16:1373 -> n11:1960;
+	n17 [label="0.000000 (1382:83)",shape=plaintext];
+	n17 -> n16:1385;
+	n18 [label="xxxx_1335 xx0",shape=diamond];
+	n18 -> n0;
+	n18 -> n9;
+	n19 [style=invis];
+	n19 -> n4;
+	n19 -> n13;
+	n19 -> n20;
+	n21 [label="xxxx_1338 xx0",shape=diamond];
+	n21 -> n1;
+	n21 -> n10;
+	n25 [label="{{<1971> XX|<1974> XX|<1977> XX|<1980> XX}|XXX_XXXX|{<1968> XX}}",shape=record];
+	n22 -> n25:1971;
+	n23 [label="xxxx_1396.0 xx0",shape=diamond];
+	n24 [label="xxxx_1321.0 xx0",shape=diamond];
+	n24 -> n25:1974;
+	n28 [label="xxxx_1323.0 xx0",shape=diamond];
+	n25:1968 -> n28;
+	n26 [label="xxxx_1325.0 xx1",shape=diamond];
+	n26 -> n25:1977;
+	n27 [label="xxxx_1327.0 xx2",shape=diamond];
+	n27 -> n25:1980;
+	n29 [style=invis];
+	n30 [style=invis];
+	n29 -> n30;
+	n31 [label="0 (1345:505)",shape=plaintext];
+	n31 -> n18;
+	n32 [style=invis];
+	n33 [style=invis];
+	n32 -> n33;
+}

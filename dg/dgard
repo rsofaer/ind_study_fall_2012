@@ -1,0 +1,19 @@
+digraph dg_445 {
+	subgraph BE {
+	}
+	subgraph BDE {
+	}
+	subgraph FG {
+	}
+	subgraph CFG {
+	}
+	n0 -> n2;
+	n0 -> n6;
+	n1;
+	n3;
+	n6 -> n4;
+	n6 -> n5;
+	n7;
+	n8 -> n0;
+	n8 -> n6;
+}

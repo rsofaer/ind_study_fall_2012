@@ -1,0 +1,10 @@
+digraph dg_1689 {
+	graph [comment="lctest comment"];
+	subgraph A {
+		graph [comment="A comment"];
+	}
+	subgraph B {
+		graph [comment="B comment"];
+	}
+	n0;
+}

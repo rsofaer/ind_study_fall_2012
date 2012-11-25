@@ -1,0 +1,39 @@
+digraph dg_4023 {
+	graph [orientation=landscape];
+	subgraph remote {
+		node [color=red,
+			style=filled
+		];
+	}
+	subgraph nearby {
+		node [color=blue,
+			style=filled
+		];
+	}
+	subgraph binaries {
+		node [color=pink,
+			style=filled
+		];
+	}
+	subgraph local_links {
+		node [color=green,
+			style=filled
+		];
+	}
+	n0 [color=pink,style=filled];
+	n1 [color=pink,style=filled];
+	n0 -> n1;
+	n2 [color=pink,style=filled];
+	n0 -> n2;
+	n3 [color=pink,style=filled];
+	n0 -> n3;
+	n4 [color=green,style=filled];
+	n5 [color=green,style=filled];
+	n4 -> n5;
+	n6 [color=green,style=filled];
+	n4 -> n6;
+	n7 -> n4;
+	n7 -> n8;
+	n7 -> n9;
+	n7 -> n10;
+}

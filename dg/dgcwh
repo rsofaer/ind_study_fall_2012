@@ -1,0 +1,51 @@
+digraph dg_1931 {
+	graph [nodesep=".35",
+		orientation=landscape,
+		ratio="1.0",
+		size="22.22,22.22"
+	];
+	node [fontsize=6];
+	n0 [height=".556",shape=box,width="1.667"];
+	n1 [height=".556",shape=diamond,width="1.250"];
+	n0 -> n1;
+	n2 [height=".556",shape=diamond,width="1.250"];
+	n0 -> n2;
+	n3 [height=".556",shape=diamond,width="1.250"];
+	n0 -> n3;
+	n13 [height=".556",shape=box,width="1.667"];
+	n1 -> n13;
+	n14 [height=".556",shape=box,width="1.667"];
+	n2 -> n14;
+	n16 [height=".556",shape=box,width="1.667"];
+	n3 -> n16;
+	n4 [height=".556",shape=box,width="1.667"];
+	n5 [height=".556",shape=diamond,width="1.250"];
+	n4 -> n5;
+	n6 [height=".556",shape=diamond,width="1.250"];
+	n4 -> n6;
+	n7 [height=".556",shape=diamond,width="1.250"];
+	n4 -> n7;
+	n5 -> n0;
+	n6 -> n13;
+	n7 -> n14;
+	n8 [height=".556",shape=box,width="1.667"];
+	n9 [height=".556",shape=diamond,width="1.250"];
+	n8 -> n9;
+	n10 [height=".556",shape=diamond,width="1.250"];
+	n8 -> n10;
+	n11 [height=".556",shape=diamond,width="1.250"];
+	n8 -> n11;
+	n9 -> n0;
+	n10 -> n13;
+	n11 -> n14;
+	n12 [height=".556",shape=box,width="1.667"];
+	n15 [height=".556",shape=diamond,width="1.250"];
+	n14 -> n15;
+	n15 -> n13;
+	n17 [height=".556",shape=diamond,width="1.250"];
+	n16 -> n17;
+	n18 [height=".556",shape=diamond,width="1.250"];
+	n16 -> n18;
+	n17 -> n13;
+	n18 -> n14;
+}

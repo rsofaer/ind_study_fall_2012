@@ -1,0 +1,38 @@
+digraph dg_4809 {
+	edge [style=dashed];
+	n0 -> n1;
+	n0 -> n2;
+	n0 -> n3;
+	n0 -> n4;
+	n0 -> n5;
+	n1 -> n6;
+	n2 -> n3;
+	n3 -> n4;
+	n4 -> n5;
+	n5 -> n1;
+	n5 -> n20;
+	n5 -> n21;
+	n6 -> n7;
+	n7 -> n8;
+	n7 -> n9;
+	n10 [shape=diamond];
+	n7 -> n10;
+	n7 -> n11;
+	n7 -> n12;
+	n7 -> n13;
+	n7 -> n14;
+	n8 -> n13;
+	n9 -> n15;
+	n10 -> n11;
+	n11 -> n12;
+	n12 -> n8;
+	n13 -> n14;
+	n14 -> n9;
+	n14 -> n22;
+	n15 -> n16;
+	n17 [shape=diamond];
+	n16 -> n17;
+	n17 -> n18;
+	n17 -> n19;
+	n19 -> n18;
+}

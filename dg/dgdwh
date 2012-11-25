@@ -1,0 +1,28 @@
+digraph dg_2607 {
+	graph [rankdir=LR,
+		size="5,15"
+	];
+	n0 [shape=circle];
+	n1 [shape=circle];
+	n0 -> n1;
+	n2 [shape=circle];
+	n3 [shape=circle];
+	n2 -> n3;
+	n4 [shape=circle];
+	n5 [shape=circle];
+	n5 -> n0;
+	n5 -> n2;
+	n6 [shape=circle];
+	n5 -> n6;
+	n7 [shape=circle];
+	n5 -> n7;
+	n8 [shape=circle];
+	n9 [shape=circle];
+	n9 -> n3;
+	n10 [shape=circle];
+	n10 -> n1;
+	n11 [shape=circle];
+	n12 [shape=circle];
+	n11 -> n12;
+	n13 [shape=circle];
+}

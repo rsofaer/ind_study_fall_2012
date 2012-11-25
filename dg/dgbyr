@@ -1,0 +1,21 @@
+digraph dg_1317 {
+	graph [center=TRUE,
+		color=Gray
+	];
+	node [shape=circle];
+	subgraph cluster0 {
+		graph [label="x 1"];
+		subgraph cluster2 {
+			graph [label="x 1"];
+		}
+	}
+	subgraph cluster1 {
+		graph [label="x 2"];
+	}
+	n2 -> n0;
+	n2 -> n1;
+	n2 -> n3;
+	n3 -> n4;
+	n3 -> n5;
+	n3 -> n6;
+}

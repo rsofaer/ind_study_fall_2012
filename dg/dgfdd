@@ -1,0 +1,61 @@
+digraph dg_3461 {
+	graph [size="5.9,5.9"];
+	edge [dir=none];
+	subgraph cluster1 {
+		graph [rank=same];
+		node [fontname=Courier,
+			fontsize=5,
+			height="0.15",
+			shape=box,
+			width="0.2"
+		];
+	}
+	subgraph cluster2 {
+		graph [rank=same];
+		node [fontname=Courier,
+			fontsize=5,
+			height="0.15",
+			shape=box,
+			width="0.2"
+		];
+	}
+	n0 [fontname="0.2",fontsize="0.2",height="0.2",label=xxx,shape="0.2",width="0.2"];
+	n0 -> n21;
+	n1 [fontname="0.2",fontsize="0.2",height="0.2",label=xxx,shape="0.2",width="0.2"];
+	n1 -> n22;
+	n2 [fontname="0.2",fontsize="0.2",height="0.2",label=xxx,shape="0.2",width="0.2"];
+	n2 -> n21;
+	n2 -> n22;
+	n3 [fontname="0.2",fontsize="0.2",height="0.2",label=xxx,shape="0.2",width="0.2"];
+	n4 [fontname="0.2",fontsize="0.2",height="0.2",label=xxx,shape="0.2",width="0.2"];
+	n4 -> n22;
+	n5 [fontname="0.2",fontsize="0.2",height="0.2",label=xxx,shape="0.2",width="0.2"];
+	n5 -> n23;
+	n6 [fontname="0.2",fontsize="0.2",height="0.2",label=xxx,shape="0.2",width="0.2"];
+	n6 -> n21;
+	n6 -> n23;
+	n7 -> n8;
+	n17 [label=xxxxxxxxxxxxxxxxxxxxxxx];
+	n8 -> n17;
+	n9 -> n8;
+	n10 -> n8;
+	n11 -> n12;
+	n12 -> n17;
+	n13 -> n14;
+	n14 -> n17;
+	n18 [label=xxxxxxxxxxxxxxxxxxxxxxx];
+	n14 -> n18;
+	n15 -> n14;
+	n16 -> n14;
+	n17 -> n0;
+	n17 -> n2;
+	n17 -> n3;
+	n17 -> n4;
+	n19 [fontname=Courier,fontsize=5,height="0.2",label=x123,shape=circle,width="0.2"];
+	n17 -> n19;
+	n18 -> n5;
+	n20 [fontname=Courier,fontsize=5,height="0.2",label=x124,shape=circle,width="0.2"];
+	n18 -> n20;
+	n19 -> n1;
+	n20 -> n6;
+}

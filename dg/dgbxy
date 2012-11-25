@@ -1,0 +1,28 @@
+digraph dg_1298 {
+	graph [center=true,
+		fontname=Courier,
+		label="\nxxxxx=xxxxxxxxx\n12 xxx, 1994 (19:57)",
+		ratio=fill,
+		size="7.5,10"
+	];
+	n0 [label=" xx      x7,x8 \l xxxxx   x8 \l xxxxxx  x7,x9,x10 \l xxxxx   x10,x0,x11 \l xxxx    x\
+11,x0,x12 \l xx      x13,x14 \l xxxxx   x9,x14 \l xxxxxx  x12,x0,x12 \l",shape=box];
+	n1 [label=" xxxx    x5,x15 \l xxxxxx  x13,x15,x16 \l xxxxxx  x16,x2,x17 \l xxxxx   x5,x18 \l xx\
+xxx   x17,x18,x19 \l xxxxx   x19 \l xxxxx   x13,x0,x13 \l xxxxxx  x12,x0,x12 \l",shape=box];
+	n0 -> n1;
+	n2 [label=" xx      x6,x20 \l xxxxx   x21,x20 \l xxxxxx  x7,x22,x23 \l xxxxx   x23,x0,x24 \l xx\
+xx    x24,x0,x25 \l xx      x26,x27 \l xxxxx   x22,x27 \l xxxxxx  x25,x0,x25 \l",shape=box];
+	n0 -> n2;
+	n1 -> n1;
+	n1 -> n2;
+	n3 [label=" xx      x6,x28 \l xxxx    x5,x29 \l xxxxxx  x26,x29,x30 \l xxxxxx  x30,x2,x31 \l xx\
+xxx   x5,x32 \l xxxxx   x31,x32,x33 \l xxxxx   x33,x34 \l xxxxx   x6,x34,x35 \l xxxx\
+x   x35,x28 \l xxxxx   x26,x0,x26 \l xxxxxx  x25,x0,x25 \l",shape=box];
+	n2 -> n3;
+	n4 [label=" xxxxxx  x6 \l",shape=box];
+	n2 -> n4;
+	n3 -> n3;
+	n3 -> n4;
+	n4 -> n5;
+	n6 -> n0;
+}

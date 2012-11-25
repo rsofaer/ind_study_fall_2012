@@ -1,0 +1,41 @@
+digraph dg_2075 {
+	graph [nodesep=".35",
+		orientation=landscape,
+		ratio="1.0",
+		size="22.22,22.22"
+	];
+	node [fontsize=6];
+	n0 [height=".556",shape=box,width="1.667"];
+	n1 [height=".556",shape=box,width="1.667"];
+	n2 [height=".556",shape=box,width="1.667"];
+	n3 [height=".556",shape=box,width="1.667"];
+	n4 [height=".556",shape=diamond,width="1.250"];
+	n3 -> n4;
+	n4 -> n0;
+	n5 [height=".556",shape=box,width="1.667"];
+	n6 [height=".556",shape=diamond,width="1.250"];
+	n5 -> n6;
+	n7 [height=".556",shape=diamond,width="1.250"];
+	n5 -> n7;
+	n8 [height=".556",shape=diamond,width="1.250"];
+	n5 -> n8;
+	n9 [height=".556",shape=diamond,width="1.250"];
+	n5 -> n9;
+	n10 [height=".556",shape=diamond,width="1.250"];
+	n5 -> n10;
+	n6 -> n2;
+	n7 -> n3;
+	n8 -> n1;
+	n9 -> n0;
+	n11 [height=".556",shape=box,width="1.667"];
+	n10 -> n11;
+	n12 [height=".556",shape=diamond,width="1.250"];
+	n11 -> n12;
+	n13 [height=".556",shape=diamond,width="1.250"];
+	n11 -> n13;
+	n14 [height=".556",shape=diamond,width="1.250"];
+	n11 -> n14;
+	n12 -> n1;
+	n13 -> n1;
+	n14 -> n0;
+}

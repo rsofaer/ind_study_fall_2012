@@ -1,0 +1,4 @@
+digraph dg_2426 {
+	graph [size="7.5,10"];
+	n0 [shape=box];
+}

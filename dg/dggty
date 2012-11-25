@@ -1,0 +1,30 @@
+digraph dg_4574 {
+	subgraph cluster1 {
+		graph [color=white,
+			label=xxxxxx,
+			style=filled
+		];
+		subgraph cluster3 {
+			graph [color=lightgrey,
+				label=xxxxxx,
+				style=filled
+			];
+		}
+		output1 [height=".1",label="<e1> |<e2> ",shape=record];
+		n52:o1 -> output1:e1;
+		n53:o1 -> output1:e2;
+		n2:o1 -> n52:i2;
+		n2:o1 -> n53:i2;
+	}
+	n0 [height=".1",label="<e1> X|<e2> XXXXX|<e3> X",shape=record];
+	n1 [height=".1",label="<e1> |<e2> ",shape=record];
+	n0:e1 -> n1:e1;
+	n1:e1 -> n52:i1;
+	n1:e2 -> n53:i1;
+	n3 [height=".1",label="<e1> |<e2> ",shape=record];
+	n52:o1 -> n3:e1;
+	n53:o1 -> n3:e2;
+	n4 [height=".1",label="<e1> XXXXX|<e2> X|<e3> X",shape=record];
+	n4:e3 -> n0:e3;
+	n4:e2 -> n2:i1;
+}

@@ -1,0 +1,50 @@
+digraph dg_2510 {
+	graph [orientation=land,
+		page="8,11",
+		rankdir=LR
+	];
+	n0 [label="xx0900\nxxxxxxxxxxxxxxxx"];
+	n1 [label="xx2620\nxxxxxxxxxxxxxxxx\nxx"];
+	n0 -> n1;
+	n2 [label=xxxxxxxx];
+	n1 -> n2;
+	n3 [label="xx1000\nxxxxxxxxxxx\nxxxxxxxxxxxxx"];
+	n4 [label=xxxxxxxxxxxxxxxxxx];
+	n3 -> n4;
+	n5 [label="xx1100\nxxxxxxxxxxxxx"];
+	n5 -> n0;
+	n6 [label="xx1210\nxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxx"];
+	n7 [label="xx2100\nxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxx, xx"];
+	n6 -> n7;
+	n8 [label="xx2490\nxxxxxxxxxx\nxxxxxxx"];
+	n8 -> n5;
+	n9 [label="xx2560\nxxxxxxxxxxxxxx xxx\nxxxxxxxxxx"];
+	n8 -> n9;
+	n9 -> n3;
+	n9 -> n6;
+	n10 [label="xxxxxxxxxxx\nxxxxxxxxxxx"];
+	n9 -> n10;
+	n11 [label="xx2510\nxxxxxxxxxx xx\nxxxxxxxxxxxxxx"];
+	n12 [label="xx2660\nxxxxxxxxxx xx\nxxxxxxxxxxxxxx"];
+	n11 -> n12;
+	n13 [label="xx2520\nxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxx xxxxxx"];
+	n12 -> n13;
+	n14 [label="xx2710\nxxxxxxxxxxxxx\nxxxxxxxxxxxxxx"];
+	n13 -> n14;
+	n15 [label="xx1430\nxxxxxxx\nxxxxxxxxxxxx"];
+	n16 [label="xx1500\nxxxx-xxxxxxxxxxxx"];
+	n15 -> n16;
+	n17 [label="xx1470\nxxxxxxxxxx-\nxxxxxx 1"];
+	n17 -> n11;
+	n18 [label="xx0130\nxxxxxxxxxxxxxxx"];
+	n17 -> n18;
+	n19 [label="xx0300\nxxxxxxxxxxxxxxxx"];
+	n17 -> n19;
+	n20 [label="xx1440\nxxxxxxxxxx-\nxxxxxx 2"];
+	n17 -> n20;
+	n21 [label="xx1050\nxxxxxxxxxxxxxx-\nxxxxxx x"];
+	n21 -> n8;
+	n21 -> n11;
+	n22 [label="xxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxx"];
+	n21 -> n22;
+}

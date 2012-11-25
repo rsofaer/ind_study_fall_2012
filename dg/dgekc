@@ -1,0 +1,24 @@
+digraph dg_2966 {
+	graph [fontname="Ryumin-Light-83pv-RKSJ-H",
+		fontsize=12,
+		orientation=landscape,
+		page="8.1,11.5"
+	];
+	n0 [label="{X$X?XXXX(X | {<val1> X$XXX$$X(X | <val2> X$XXX$$X(X}}",shape=record];
+	n1 [label="{X$XXXXXX(X | {<val1> X$X:X$$X(X | <val2> X$XXXXXX(X | <val3> X$XX@$$X(X}}",shape=record];
+	n0:val1 -> n1;
+	n2 [label="{X$XXXXXX(X | {<val1> X$X:X$$X(X | <val2> X$XXXXXX(X | <val3> X$XX@$$X(X}}",shape=record];
+	n0:val2 -> n2;
+	n3 [label="x$x$x$x$x$$x(x"];
+	n1:val1 -> n3;
+	n4 [label="x$x$x$x$xx(x\nx$x$x$x$x$$x(x"];
+	n1:val2 -> n4;
+	n5 [label="x$x$x$x$xx(x\nx$x$x$x$x$$x(x"];
+	n1:val3 -> n5;
+	n6 [label="x$x$x$x$xx(x\nx$x$x$x$x$$x(x"];
+	n2:val1 -> n6;
+	n7 [label="x$x$x$x$xx(x\nx$x$x$x$x$$x(x"];
+	n2:val2 -> n7;
+	n8 [label="x$x$x$x$x$$x(x"];
+	n2:val3 -> n8;
+}

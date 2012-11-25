@@ -1,0 +1,9 @@
+digraph dg_2667 {
+	graph [nodesep=".75",
+		rankdir=LR,
+		size="5,5"
+	];
+	n0 [shape=circle];
+	n1 [shape=circle];
+	n0 -> n1;
+}

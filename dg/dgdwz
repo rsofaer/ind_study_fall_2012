@@ -1,0 +1,55 @@
+digraph dg_2625 {
+	graph [nodesep=".75",
+		rankdir=LR,
+		size="5,15;"
+	];
+	n0 [shape=circle];
+	n1 [shape=circle];
+	n0 -> n1;
+	n2 [shape=circle];
+	n0 -> n2;
+	n3 [shape=circle];
+	n0 -> n3;
+	n4 [shape=circle];
+	n5 [shape=circle];
+	n6 [shape=circle];
+	n7 [shape=circle];
+	n6 -> n7;
+	n8 [shape=circle];
+	n9 [shape=circle];
+	n8 -> n9;
+	n10 [shape=circle];
+	n8 -> n10;
+	n9 -> n0;
+	n9 -> n8;
+	n11 [shape=circle];
+	n9 -> n11;
+	n12 [shape=circle];
+	n12 -> n9;
+	n13 [shape=circle];
+	n13 -> n6;
+	n14 [shape=circle];
+	n14 -> n0;
+	n14 -> n11;
+	n15 [shape=circle];
+	n15 -> n11;
+	n16 [shape=circle];
+	n15 -> n16;
+	n16 -> n10;
+	n16 -> n15;
+	n17 [shape=circle];
+	n17 -> n0;
+	n17 -> n11;
+	n17;
+	n17 -> n17;
+	n18 [shape=circle];
+	n18 -> n0;
+	n18 -> n15;
+	n19 [shape=circle];
+	n19 -> n7;
+	n20 [shape=circle];
+	n20 -> n17;
+	n21 [shape=circle];
+	n22 [shape=circle];
+	n22 -> n21;
+}

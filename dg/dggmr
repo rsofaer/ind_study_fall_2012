@@ -1,0 +1,56 @@
+digraph dg_4385 {
+	subgraph cluster100 {
+		graph [color=white,
+			label=xxxx,
+			style=filled
+		];
+		subgraph cluster103 {
+			graph [color=lightgrey,
+				label=xxxxxx,
+				style=filled
+			];
+			subgraph cluster104 {
+				graph [color=white,
+					label=xxxxx,
+					style=filled
+				];
+			}
+			subgraph cluster105 {
+				graph [color=white,
+					label=xxxxx,
+					style=filled
+				];
+			}
+			subgraph cluster106 {
+				graph [color=white,
+					label=xxxxx,
+					style=filled
+				];
+			}
+		}
+		n102 [color=lightgrey,height=".2",label="{{<i1> }|XXX|{<o1> }}",shape=record];
+		n101:o1 -> n102:i1;
+		n102:o1 -> input103:e1;
+	}
+	n0 [color=lightgrey,height=".1",label="<e1> ",shape=record];
+	n1 [color=lightgrey,height=".1",label="<e1> ",shape=record];
+	n0:e1 -> n1:e1;
+	n2 [color=lightgrey,height=".1",label="<e1> |<e2> |<e3> X",shape=record];
+	n1:e1 -> n2:e1;
+	n3 [color=lightgrey,height=".1",label="<e1> X",shape=record];
+	n2:e3 -> n3:e1;
+	n4 [color=lightgrey,height=".1",label="<e1> |<e2> X",shape=record];
+	n3:e1 -> n4:e1;
+	n5 [color=lightgrey,height=".1",label="<e1> X",shape=record];
+	n4:e2 -> n5:e1;
+	n6 [color=white,height=".1",label="<e1> ",shape=record];
+	n5:e1 -> n6:e1;
+	n8 [color=lightgrey,height=".1",label="<e1> ",shape=record];
+	n6:e1 -> n8:e1;
+	n7 [color=white,height=".1",label="<e1> |<e2> X|<e3> X",shape=record];
+	n7:e1 -> n0:e1;
+	n9 [color=lightgrey,height=".1",label="<e1> X|<e2> X",shape=record];
+	n9:e2 -> n7:e3;
+	n9:e1 -> n101:i1;
+	n102:o1 -> n7:e1;
+}

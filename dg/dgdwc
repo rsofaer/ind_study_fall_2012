@@ -1,0 +1,14 @@
+digraph dg_2602 {
+	graph [rankdir=LR,
+		size="5,5"
+	];
+	n0 [shape=circle];
+	n1 [fontsize=10,height=".5",shape=circle,width=".5"];
+	n0 -> n1;
+	n2 [fontsize=10,height=".5",shape=circle,width=".5"];
+	n0 -> n2;
+	n3 [fontsize=10,height=".5",shape=circle,width=".5"];
+	n0 -> n3;
+	n4 [fontsize=10,height=".5",shape=circle,width=".5"];
+	n0 -> n4;
+}

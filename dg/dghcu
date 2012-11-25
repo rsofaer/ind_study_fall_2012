@@ -1,0 +1,78 @@
+digraph dg_4804 {
+	graph [label="xxx1 x",
+		orientation=landscape,
+		size="10, 7.5"
+	];
+	node [ranksep="1.25",
+		shape=box
+	];
+	subgraph clustersdfgx1340x {
+		graph [label="xxx1 x"];
+		node [shape="1.25"];
+		subgraph clusterschemax1350x {
+			graph [label="1350:xx_1350"];
+			node [shape=""];
+			subgraph clustersdfgx1352x {
+				graph [label="1350:xx_1350"];
+			}
+			subgraph clustersdfgx1354x {
+				graph [label="1350:xx_1350"];
+			}
+		}
+	}
+	n0 [label="xxxx_1355.0 xx0",shape=diamond];
+	n1 [label="xxxx_1358.0 xx0",shape=diamond];
+	n2 [label="xxxx_1361.0 xx0",shape=diamond];
+	n22 [label="xxxx_1361 xx0",shape=diamond];
+	n2 -> n22;
+	n3 [style=invis];
+	n4 [style=invis];
+	n3 -> n4;
+	n20 [style=invis];
+	n4 -> n20;
+	n5 [label="0 (1374:507)",shape=plaintext];
+	n6 [label="{{<1377> XX|<1384> XX}|XXXXX_XX|{<1372> XX}}",shape=record];
+	n5 -> n6:1377;
+	n7 [label="0.000000 (1381:73)",shape=plaintext];
+	n7 -> n6:1384;
+	n8 [label="0 (1388:74)",shape=plaintext];
+	n9 [label="xxxx_1355.1 xx0",shape=diamond];
+	n10 [label="xxxx_1358.1 xx0",shape=diamond];
+	n11 [label="xxxx_1361.1 xx0",shape=diamond];
+	n11 -> n22;
+	n12 [style=invis];
+	n13 [style=invis];
+	n12 -> n13;
+	n13 -> n20;
+	n14 [label="0 (1395:509)",shape=plaintext];
+	n15 [label="{{<1398> XX|<1405> XX}|XXXXX_XX|{<1393> XX}}",shape=record];
+	n14 -> n15:1398;
+	n16 [label="0.000000 (1402:83)",shape=plaintext];
+	n16 -> n15:1405;
+	n17 [label="0 (1409:84)",shape=plaintext];
+	n18 [label="xxxx_1355 xx0",shape=diamond];
+	n18 -> n0;
+	n18 -> n9;
+	n19 [style=invis];
+	n19 -> n3;
+	n19 -> n12;
+	n19 -> n20;
+	n21 [label="xxxx_1358 xx0",shape=diamond];
+	n21 -> n1;
+	n21 -> n10;
+	n23 [label="xxxx_1416.0 xx0",shape=diamond];
+	n24 [label="xxxx_1341.0 xx0",shape=diamond];
+	n25 [label="xxxx_1345.0 xx1",shape=diamond];
+	n26 [label="xxxx_1347.0 xx2",shape=diamond];
+	n27 [label="xxxx_1343.0 xx0",shape=diamond];
+	n28 [style=invis];
+	n29 [style=invis];
+	n28 -> n29;
+	n30 [label="0 (1365:505)",shape=plaintext];
+	n30 -> n18;
+	n31 [label="0 (1413:85)",shape=plaintext];
+	n31 -> n23;
+	n32 [style=invis];
+	n33 [style=invis];
+	n32 -> n33;
+}

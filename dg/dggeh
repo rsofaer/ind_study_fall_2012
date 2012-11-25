@@ -1,0 +1,79 @@
+digraph dg_4167 {
+	graph [center=1,
+		size="8.5,11"
+	];
+	node [height="0.25",
+		shape=box,
+		width="0.25"
+	];
+	n0 [fontsize=8,label=xxxxx,shape=invtriangle];
+	n1 [fontsize=10,label="x5\nxxxx",shape=circle];
+	n0 -> n1;
+	n23 [fontsize=10,label="x6\nx",shape=circle];
+	n1 -> n23;
+	n24 [fontsize=10,label="x7\nx",shape=circle];
+	n1 -> n24;
+	n25 [fontsize=10,label="x8\nx",shape=circle];
+	n1 -> n25;
+	n2 [fontsize=8,label=xxxxx,shape=invtriangle];
+	n3 [fontsize=10,label=x1];
+	n2 -> n3;
+	n15 [fontsize=10,label="x0\n*",shape=circle];
+	n3 -> n15;
+	n20 [fontsize=10,label="x4\n*",shape=circle];
+	n3 -> n20;
+	n26 [fontsize=10,label="x9\n+",shape=circle];
+	n3 -> n26;
+	n4 [fontsize=8,label=xxxxx,shape=invtriangle];
+	n5 [fontsize=10,label=x2];
+	n4 -> n5;
+	n5 -> n1;
+	n18 [fontsize=10,label="x1\n*",shape=circle];
+	n5 -> n18;
+	n5 -> n23;
+	n6 [fontsize=8,label=xxxxx,shape=invtriangle];
+	n7 [fontsize=10,label=x3];
+	n6 -> n7;
+	n19 [fontsize=10,label="x2\n*",shape=circle];
+	n7 -> n19;
+	n7 -> n24;
+	n8 [fontsize=8,label=xxxxx,shape=invtriangle];
+	n9 [fontsize=10,label=x4];
+	n8 -> n9;
+	n9 -> n15;
+	n9 -> n25;
+	n10 [fontsize=8,label=xxxxx,shape=invtriangle];
+	n11 [fontsize=8,label=xxxxx,shape=invtriangle];
+	n12 [fontsize=8,label=xxxxx,shape=invtriangle];
+	n13 [fontsize=10,label=x0,shape=invtriangle];
+	n14 [fontsize=10,label=x5];
+	n13 -> n14;
+	n14 -> n18;
+	n14 -> n19;
+	n16 [fontsize=10,label="x3\n*",shape=circle];
+	n15 -> n16;
+	n17 [fontsize=8,label="x10\n+",shape=circle];
+	n15 -> n17;
+	n21 [fontsize=8,label="x11\n-",shape=circle];
+	n16 -> n21;
+	n28 [fontsize=8,label="x14\nx",shape=circle];
+	n17 -> n28;
+	n18 -> n16;
+	n19 -> n20;
+	n22 [fontsize=8,label="x12\n-",shape=circle];
+	n20 -> n22;
+	n21 -> n22;
+	n29 [fontsize=8,label="x15\nx",shape=circle];
+	n22 -> n29;
+	n23 -> n26;
+	n27 [fontsize=8,label="x13\nx",shape=circle];
+	n23 -> n27;
+	n24 -> n17;
+	n24 -> n28;
+	n25 -> n21;
+	n25 -> n29;
+	n26 -> n27;
+	n27 -> n10;
+	n28 -> n11;
+	n29 -> n12;
+}

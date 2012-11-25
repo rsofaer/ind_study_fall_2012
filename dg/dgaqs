@@ -1,0 +1,19 @@
+digraph dg_434 {
+	graph [ratio=fill,
+		size="8,11"
+	];
+	node [fontsize=26];
+	edge [fontsize=26,
+		style=solid
+	];
+	n0;
+	n1;
+	n2 [shape=diamond];
+	n3 [shape=diamond];
+	n4 -> n5;
+	n4 -> n6;
+	n7;
+	n8 [shape=diamond];
+	n9;
+	n10;
+}

@@ -1,0 +1,26 @@
+digraph dg_5008 {
+	graph [label="xxx (x) xxxxxxx xx xxxxxxxxxxx",
+		page="8.5,12"
+	];
+	n0 [fontsize=9];
+	n0;
+	n0 -> n0;
+	n1 [fontsize=9];
+	n0 -> n1;
+	n1 -> n0;
+	n4 [fontsize=9];
+	n1 -> n4;
+	n2 -> n0;
+	n2 -> n1;
+	n3 [fontsize=9];
+	n2 -> n3;
+	n2 -> n4;
+	n5 [fontsize=9];
+	n2 -> n5;
+	n3 -> n1;
+	n3 -> n3;
+	n4 -> n3;
+	n4 -> n4;
+	n5 -> n3;
+	n5 -> n5;
+}

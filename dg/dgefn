@@ -1,0 +1,134 @@
+digraph dg_2847 {
+	graph [size="8,8"];
+	node [color=white,
+		fontsize=18,
+		shape=circle,
+		style=filled
+	];
+	subgraph cluster0 {
+		subgraph cluster2 {
+			graph [color=lightgray,
+				style=filled
+			];
+		}
+		subgraph cluster1 {
+			graph [color=lightgray,
+				style=filled
+			];
+			subgraph cluster4 {
+				graph [color=gray95,
+					style=filled
+				];
+			}
+			subgraph cluster3 {
+				graph [color=gray95,
+					style=filled
+				];
+			}
+		}
+	}
+	n0 -> n1;
+	n0 -> n3;
+	n0 -> n4;
+	n0 -> n5;
+	n1 -> n3;
+	n1 -> n4;
+	n1 -> n5;
+	n2 -> n3;
+	n2 -> n4;
+	n2 -> n5;
+	n3 -> n4;
+	n3 -> n5;
+	n4 -> n0;
+	n4 -> n1;
+	n4 -> n3;
+	n4 -> n5;
+	n5 -> n0;
+	n5 -> n1;
+	n5 -> n3;
+	n5 -> n4;
+	n6 -> n1;
+	n6 -> n7;
+	n6 -> n9;
+	n6 -> n10;
+	n6 -> n11;
+	n6 -> n13;
+	n7 -> n1;
+	n7 -> n9;
+	n7 -> n10;
+	n7 -> n11;
+	n7 -> n13;
+	n8 -> n2;
+	n8 -> n3;
+	n8 -> n4;
+	n8 -> n5;
+	n8 -> n9;
+	n8 -> n10;
+	n8 -> n11;
+	n9 -> n1;
+	n9 -> n10;
+	n9 -> n11;
+	n9 -> n13;
+	n10 -> n1;
+	n10 -> n11;
+	n10 -> n13;
+	n11 -> n1;
+	n11 -> n13;
+	n12 -> n2;
+	n12 -> n3;
+	n12 -> n4;
+	n12 -> n5;
+	n13 -> n0;
+	n13 -> n1;
+	n13 -> n3;
+	n13 -> n4;
+	n13 -> n5;
+	n14 -> n0;
+	n14 -> n1;
+	n14 -> n3;
+	n14 -> n4;
+	n14 -> n5;
+	n14 -> n6;
+	n14 -> n7;
+	n14 -> n17;
+	n14 -> n20;
+	n15 -> n6;
+	n15 -> n7;
+	n15 -> n17;
+	n16 -> n0;
+	n16 -> n1;
+	n16 -> n3;
+	n16 -> n4;
+	n16 -> n5;
+	n16 -> n6;
+	n16 -> n7;
+	n16 -> n17;
+	n16 -> n20;
+	n17 -> n0;
+	n17 -> n1;
+	n17 -> n6;
+	n17 -> n7;
+	n17 -> n9;
+	n17 -> n10;
+	n17 -> n11;
+	n17 -> n13;
+	n18 -> n12;
+	n18 -> n13;
+	n18 -> n19;
+	n18 -> n20;
+	n19 -> n2;
+	n19 -> n3;
+	n19 -> n4;
+	n19 -> n5;
+	n19 -> n8;
+	n19 -> n9;
+	n19 -> n10;
+	n19 -> n11;
+	n20 -> n1;
+	n20 -> n6;
+	n20 -> n7;
+	n20 -> n9;
+	n20 -> n10;
+	n20 -> n11;
+	n20 -> n13;
+}

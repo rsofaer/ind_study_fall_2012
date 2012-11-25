@@ -1,0 +1,52 @@
+digraph dg_456 {
+	graph [size="8,6"];
+	subgraph cluster_4 {
+		graph [label=4];
+	}
+	subgraph cluster_7 {
+		graph [label=7];
+	}
+	subgraph cluster_9 {
+		graph [label=9];
+	}
+	subgraph cluster_10 {
+		graph [label=10];
+	}
+	subgraph cluster_11 {
+		graph [label=11];
+	}
+	n0 -> n1;
+	n0 -> n2;
+	n0 -> n3;
+	n0 -> n4;
+	n0 -> n5;
+	n0 -> n6;
+	n0 -> n7;
+	n0 -> n8;
+	n0 -> n9;
+	n0 -> n10;
+	n11 -> n12;
+	n11 -> n13;
+	n11 -> n27;
+	n11 -> n28;
+	n14 -> n15;
+	n14 -> n16;
+	n14 -> n29;
+	n16 -> n17;
+	n16 -> n18;
+	n16 -> n19;
+	n16 -> n20;
+	n20 -> n21;
+	n20 -> n30;
+	n22 -> n11;
+	n22 -> n23;
+	n22 -> n24;
+	n22 -> n25;
+	n24 -> n0;
+	n25 -> n26;
+	n27 -> n14;
+	n30 -> n31;
+	n30 -> n32;
+	n31 -> n33;
+	n31 -> n34;
+}

@@ -1,0 +1,25 @@
+digraph dg_3431 {
+	subgraph math {
+		graph [label=xxxx];
+	}
+	subgraph physics {
+		graph [label=xxxxxxx];
+	}
+	n0 -> n1;
+	n0 -> n5;
+	n1 -> n2;
+	n2 -> n3;
+	n2 -> n6;
+	n3 -> n4;
+	n3 -> n7;
+	n3 -> n10;
+	n4 -> n7;
+	n4 -> n11;
+	n5 -> n6;
+	n5 -> n10;
+	n6 -> n7;
+	n8 -> n7;
+	n8 -> n11;
+	n9;
+	n10 -> n11;
+}

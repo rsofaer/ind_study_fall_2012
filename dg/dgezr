@@ -1,0 +1,15 @@
+digraph dg_3371 {
+	graph [rankdir=LR];
+	subgraph clusterCriteres {
+	}
+	n3 [shape=box,style=filled];
+	n0 -> n3;
+	n1 -> n3;
+	n2 -> n3;
+	n3 -> n5;
+	n3 -> n6;
+	n3 -> n7;
+	n4 -> n3;
+	n8 -> n3;
+	n9 -> n3;
+}

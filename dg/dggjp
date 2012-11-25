@@ -1,0 +1,165 @@
+digraph dg_4305 {
+	graph [label="xxxxx_21 x-",
+		orientation=portrait,
+		size="7.5, 10"
+	];
+	node [ranksep="1.25",
+		shape=box
+	];
+	subgraph clustersdfgx1958x {
+		graph [label="xxxxx_21 x-"];
+		node [shape="1.25"];
+		subgraph clusterschemax1962x {
+			graph [label="{{<1993> x0|<2007> x1}|xx_326|{<1973> x0|<1974> x1}}"];
+			node [shape=""];
+			subgraph clustersdfgx1964x {
+				graph [label="{{<1993> x0|<2007> x1}|xx_326|{<1973> x0|<1974> x1}}"];
+			}
+			subgraph clustersdfgx1967x {
+				graph [label="{{<1993> x0|<2007> x1}|xx_326|{<1973> x0|<1974> x1}}"];
+			}
+		}
+	}
+	n0 [style=dotted];
+	n1 [style=dotted];
+	n0 -> n1;
+	n58 [style=dotted];
+	n1 -> n58;
+	n2 [label=xxxx_1965,shape=diamond];
+	n3 [label="{X|{<2025> XX|<2026> XX}}",shape=record];
+	n4 [label="{{<2027> XX}|XXXX_XXX|{<2021> XX|<2022> XX}}",shape=record];
+	n3:2025 -> n4:2027;
+	n5 [label="{{<2030> XX|<2100> XX}|XXXX_XXX|{<2017> XX|<2018> XX}}",shape=record];
+	n4:2021 -> n5:2030;
+	n6 [label="{{<2103> XX|<2201> XX|<5087> XX}|XXXXX_XXX|{<2014> XX}}",shape=record];
+	n5:2017 -> n6:2103;
+	n17 [label="{{<2341> XX|<5003> XX|<5039> XX|<5051> XX|<5093> XX}|XXXX_XXXX|{<2328> XX|<2329>\
+ XX}}",shape=record];
+	n6:2014 -> n17:5039;
+	n18 [label="{{<2260> XX|<2323> XX|<5000> XX|<5048> XX|<5090> XX}|XXXXX_XXX|{<2206> XX}}",shape=record];
+	n6:2014 -> n18:5000;
+	n19 [label="{{<2320> XX|<5045> XX}|XXXX_XXX|{<2265> XX|<2266> XX}}",shape=record];
+	n6:2014 -> n19:5045;
+	n7 [label="{XXXX|{<2051> XX|<2052> XX}}",shape=record];
+	n8 [label="{{<2053> XX}|XXXX_XXX|{<2047> XX|<2048> XX}}",shape=record];
+	n7:2051 -> n8:2053;
+	n9 [label="{{<2056> XX|<2077> XX}|XXXX_XXX|{<2043> XX|<2044> XX}}",shape=record];
+	n8:2047 -> n9:2056;
+	n10 [label="{{<2080> XX|<2087> XX}|XXXX_XXX|{<2039> XX|<2040> XX}}",shape=record];
+	n9:2043 -> n10:2080;
+	n14 [label="{{<2090> XX|<2097> XX}|XXXX_XXX|{<2035> XX|<2036> XX}}",shape=record];
+	n10:2039 -> n14:2090;
+	n11 [label="{XXXX_XXXX_XXXX_XXXX|{<2065> XX|<2066> XX}}",shape=record];
+	n12 [label="{{<2067> XX|<2074> XX}|XXXX_XXXX|{<2061> XX|<2062> XX}}",shape=record];
+	n11:2065 -> n12:2067;
+	n12:2061 -> n9:2077;
+	n13 [label="{X|{<2072> XX|<2073> XX}}",shape=record];
+	n13:2072 -> n12:2074;
+	n14:2035 -> n5:2100;
+	n15 [label="{X|{<2085> XX|<2086> XX}}",shape=record];
+	n15:2085 -> n10:2087;
+	n16 [label="{X|{<2095> XX|<2096> XX}}",shape=record];
+	n16:2095 -> n14:2097;
+	n34 [label="{{<5600> XX}|XXX_XXXX|{<5597> XX}}",shape=record];
+	n17:2329 -> n34:5600;
+	n18:2206 -> n17:5003;
+	n19:2266 -> n17:5051;
+	n19:2266 -> n18:5048;
+	n20 [label="{XXXXXXXX_X|{<2120> XX|<2121> XX}}",shape=record];
+	n21 [label="{{<2122> XX}|XXXX_XXX|{<2116> XX|<2117> XX}}",shape=record];
+	n20:2120 -> n21:2122;
+	n22 [label="{{<2125> XX|<2195> XX}|XXXX_XXX|{<2112> XX|<2113> XX}}",shape=record];
+	n21:2116 -> n22:2125;
+	n23 [label="{{<2198> XX}|XXXX_XXX|{<2108> XX|<2109> XX}}",shape=record];
+	n22:2112 -> n23:2198;
+	n23:2109 -> n6:5087;
+	n23:2109 -> n17:5093;
+	n23:2109 -> n18:5090;
+	n24 [label="{XXXX|{<2146> XX|<2147> XX}}",shape=record];
+	n25 [label="{{<2148> XX}|XXXX_XXX|{<2142> XX|<2143> XX}}",shape=record];
+	n24:2146 -> n25:2148;
+	n26 [label="{{<2151> XX|<2172> XX}|XXXX_XXX|{<2138> XX|<2139> XX}}",shape=record];
+	n25:2142 -> n26:2151;
+	n27 [label="{{<2175> XX|<2182> XX}|XXXX_XXX|{<2134> XX|<2135> XX}}",shape=record];
+	n26:2138 -> n27:2175;
+	n31 [label="{{<2185> XX|<2192> XX}|XXXX_XXX|{<2130> XX|<2131> XX}}",shape=record];
+	n27:2134 -> n31:2185;
+	n28 [label="{XXXX_XXXX_XXXX_XXXX|{<2160> XX|<2161> XX}}",shape=record];
+	n29 [label="{{<2162> XX|<2169> XX}|XXXX_XXXX|{<2156> XX|<2157> XX}}",shape=record];
+	n28:2160 -> n29:2162;
+	n29:2156 -> n26:2172;
+	n30 [label="{X|{<2167> XX|<2168> XX}}",shape=record];
+	n30:2167 -> n29:2169;
+	n31:2130 -> n22:2195;
+	n32 [label="{X|{<2180> XX|<2181> XX}}",shape=record];
+	n32:2180 -> n27:2182;
+	n33 [label="{X|{<2190> XX|<2191> XX}}",shape=record];
+	n33:2190 -> n31:2192;
+	n34:5597 -> n2;
+	n35 [label="{X|{<2217> XX|<2218> XX}}",shape=record];
+	n36 [label="{{<2219> XX}|XXXX_XXX|{<2213> XX|<2214> XX}}",shape=record];
+	n35:2217 -> n36:2219;
+	n37 [label="{{<2222> XX|<2257> XX}|XXXX_XXX|{<2209> XX|<2210> XX}}",shape=record];
+	n36:2213 -> n37:2222;
+	n37:2209 -> n18:2260;
+	n38 [label="{X|{<2235> XX|<2236> XX}}",shape=record];
+	n39 [label="{{<2237> XX|<2244> XX}|XXXX_XXXX|{<2231> XX|<2232> XX}}",shape=record];
+	n38:2235 -> n39:2237;
+	n40 [label="{{<2247> XX|<2254> XX}|XXXX_XXXX|{<2227> XX|<2228> XX}}",shape=record];
+	n39:2231 -> n40:2247;
+	n40:2227 -> n37:2257;
+	n41 [label="{XXXX_XXXX_XXXX_XXXX|{<2242> XX|<2243> XX}}",shape=record];
+	n41:2242 -> n39:2244;
+	n42 [label="{X|{<2252> XX|<2253> XX}}",shape=record];
+	n42:2252 -> n40:2254;
+	n43 [label="{XXXXXXXX_X|{<2277> XX|<2278> XX}}",shape=record];
+	n44 [label="{{<2279> XX}|XXXX_XXX|{<2273> XX|<2274> XX}}",shape=record];
+	n43:2277 -> n44:2279;
+	n45 [label="{{<2282> XX|<2317> XX}|XXXX_XXX|{<2269> XX|<2270> XX}}",shape=record];
+	n44:2273 -> n45:2282;
+	n45:2269 -> n19:2320;
+	n46 [label="{X|{<2295> XX|<2296> XX}}",shape=record];
+	n47 [label="{{<2297> XX|<2304> XX}|XXXX_XXXX|{<2291> XX|<2292> XX}}",shape=record];
+	n46:2295 -> n47:2297;
+	n48 [label="{{<2307> XX|<2314> XX}|XXXX_XXXX|{<2287> XX|<2288> XX}}",shape=record];
+	n47:2291 -> n48:2307;
+	n48:2287 -> n45:2317;
+	n49 [label="{XXXX_XXXX_XXXX_XXXX|{<2302> XX|<2303> XX}}",shape=record];
+	n49:2302 -> n47:2304;
+	n50 [label="{X|{<2312> XX|<2313> XX}}",shape=record];
+	n50:2312 -> n48:2314;
+	n51 [label="{XXXXX_XX|{<2336> XX|<2337> XX}}",shape=record];
+	n52 [label="{{<2338> XX}|XXXX_XXXX|{<2332> XX|<2333> XX}}",shape=record];
+	n51:2336 -> n52:2338;
+	n52:2332 -> n17:2341;
+	n53 [style=dotted];
+	n54 [style=dotted];
+	n53 -> n54;
+	n54 -> n58;
+	n55 [label=xxxx_1968,shape=diamond];
+	n56 [label=xxxx_1969,shape=diamond];
+	n57 [style=dotted];
+	n57 -> n0;
+	n57 -> n53;
+	n57 -> n58;
+	n59 [label=xxxx_1970,shape=diamond];
+	n69 [label="{{<5608> XX}|XXX_XXXX|{<5605> XX}}",shape=record];
+	n59 -> n69:5608;
+	n60 [style=dotted];
+	n61 [style=dotted];
+	n60 -> n61;
+	n62 [label=xxxx_1959,shape=diamond];
+	n63 [label="{XXXX_XXXX_XXXX_XXXX|{<1981> XX|<1982> XX}}",shape=record];
+	n64 [label="{{<1983> XX|<1990> XX}|XXXX_XXXX|{<1977> XX|<1978> XX}}",shape=record];
+	n63:1981 -> n64:1983;
+	n65 [label="{{<1993> XX|<2007> XX}|XX_XXX|{<1973> XX|<1974> XX}}",shape=record];
+	n64:1977 -> n65:1993;
+	n65:1973 -> n56;
+	n66 [label="{X|{<1988> XX|<1989> XX}}",shape=record];
+	n66:1988 -> n64:1990;
+	n67 [label="{XXXX|{<2002> XX|<2003> XX}}",shape=record];
+	n68 [label="{{<2004> XX}|XXXX_XXX|{<1998> XX|<1999> XX}}",shape=record];
+	n67:2002 -> n68:2004;
+	n68:1998 -> n65:2007;
+	n69:5605 -> n62;
+}

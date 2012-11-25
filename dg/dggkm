@@ -1,0 +1,78 @@
+digraph dg_4328 {
+	graph [label="xxx xx-",
+		orientation=portrait,
+		size="7.5, 10"
+	];
+	node [ranksep="1.25",
+		shape=box
+	];
+	subgraph clustersdfgx1129x {
+		graph [label="xxx xx-"];
+		node [shape="1.25"];
+	}
+	n0 [style=invis];
+	n1 [style=invis];
+	n0 -> n1;
+	n2 [label=xxxx_1132,shape=diamond];
+	n3 [label=xxxx_1133,shape=diamond];
+	n4 [label=xxxx_1312,shape=diamond];
+	n5 [label=xxxx_1537,shape=diamond];
+	n6 [label="{{<1298> XX|<1305> XX|<1518> XX|<1536> XX|<1536> XX}|XXXXX_XX|{<1223> XX}}",shape=record];
+	n5 -> n6:1536;
+	n8 [label="{{<1634> XX}|XXX_XXXX|{<1631> XX}}",shape=record];
+	n6:1223 -> n8:1634;
+	n7 [label=xxxx_1130,shape=diamond];
+	n8:1631 -> n7;
+	n9 [label="{X|{<1147> XX|<1148> XX}}",shape=record];
+	n10 [label="{{<1149> XX}|XXXX_XX|{<1143> XX|<1144> XX}}",shape=record];
+	n9:1147 -> n10:1149;
+	n11 [label="{{<1152> XX|<1208> XX}|XXXX_XX|{<1139> XX|<1140> XX}}",shape=record];
+	n10:1143 -> n11:1152;
+	n12 [label="{{<1211> XX|<1218> XX}|XXXXX_XX|{<1136> XX}}",shape=record];
+	n11:1139 -> n12:1211;
+	n12:1136 -> n6:1518;
+	n13 [label="{XXXX|{<1173> XX|<1174> XX}}",shape=record];
+	n14 [label="{{<1175> XX}|XXXX_XX|{<1169> XX|<1170> XX}}",shape=record];
+	n13:1173 -> n14:1175;
+	n15 [label="{{<1178> XX|<1185> XX}|XXXX_XX|{<1165> XX|<1166> XX}}",shape=record];
+	n14:1169 -> n15:1178;
+	n16 [label="{{<1188> XX|<1195> XX}|XXXX_XX|{<1161> XX|<1162> XX}}",shape=record];
+	n15:1165 -> n16:1188;
+	n18 [label="{{<1198> XX|<1205> XX}|XXXX_XX|{<1157> XX|<1158> XX}}",shape=record];
+	n16:1161 -> n18:1198;
+	n17 [label="{X|{<1183> XX|<1184> XX}}",shape=record];
+	n17:1183 -> n15:1185;
+	n18:1157 -> n11:1208;
+	n19 [label="{X|{<1193> XX|<1194> XX}}",shape=record];
+	n19:1193 -> n16:1195;
+	n20 [label="{X|{<1203> XX|<1204> XX}}",shape=record];
+	n20:1203 -> n18:1205;
+	n21 [label="{X.XXXXXX|{<1216> XX|<1217> XX}}",shape=record];
+	n21:1216 -> n12:1218;
+	n22 [label="{X|{<1234> XX|<1235> XX}}",shape=record];
+	n23 [label="{{<1236> XX}|XXXX_XX|{<1230> XX|<1231> XX}}",shape=record];
+	n22:1234 -> n23:1236;
+	n24 [label="{{<1239> XX|<1295> XX}|XXXX_XX|{<1226> XX|<1227> XX}}",shape=record];
+	n23:1230 -> n24:1239;
+	n24:1226 -> n6:1298;
+	n25 [label="{XXXX|{<1260> XX|<1261> XX}}",shape=record];
+	n26 [label="{{<1262> XX}|XXXX_XX|{<1256> XX|<1257> XX}}",shape=record];
+	n25:1260 -> n26:1262;
+	n27 [label="{{<1265> XX|<1272> XX}|XXXX_XX|{<1252> XX|<1253> XX}}",shape=record];
+	n26:1256 -> n27:1265;
+	n28 [label="{{<1275> XX|<1282> XX}|XXXX_XX|{<1248> XX|<1249> XX}}",shape=record];
+	n27:1252 -> n28:1275;
+	n30 [label="{{<1285> XX|<1292> XX}|XXXX_XX|{<1244> XX|<1245> XX}}",shape=record];
+	n28:1248 -> n30:1285;
+	n29 [label="{X|{<1270> XX|<1271> XX}}",shape=record];
+	n29:1270 -> n27:1272;
+	n30:1244 -> n24:1295;
+	n31 [label="{X|{<1280> XX|<1281> XX}}",shape=record];
+	n31:1280 -> n28:1282;
+	n32 [label="{X|{<1290> XX|<1291> XX}}",shape=record];
+	n32:1290 -> n30:1292;
+	n33 [label="{X.XXXXXX|{<1303> XX|<1304> XX}}",shape=record];
+	n33:1303 -> n6:1305;
+	n34 [label="{X|{<1310> XX|<1311> XX}}",shape=record];
+	n34:1310 -> n4;
+}

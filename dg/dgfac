@@ -1,0 +1,12 @@
+digraph dg_3382 {
+	graph [concentrators=true,
+		fontname=Helvetica,
+		fontsize=20,
+		label="\nxxxxxxx xxxxx\nxxxxxxxxxxxxxxx xxx xxxxxxx\n(x) xxxxxxx xx xxxxxxxxxxx 1993",
+		page="8.5,12",
+		rankdir=LR
+	];
+	n0;
+	n1 -> n2;
+	n3 -> n2;
+}

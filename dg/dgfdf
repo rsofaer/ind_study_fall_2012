@@ -1,0 +1,36 @@
+digraph dg_3463 {
+	graph [center=true,
+		size="10,10"
+	];
+	node [shape=circle];
+	n0 [shape=doublecircle,style=filled];
+	n0 -> n1;
+	n0 -> n2;
+	n0 -> n3;
+	n0 -> n4;
+	n1 -> n2;
+	n1 -> n3;
+	n1 -> n4;
+	n2 -> n3;
+	n2 -> n4;
+	n3 -> n4;
+	n3 -> n5;
+	n4 -> n6;
+	n4 -> n7;
+	n5 -> n4;
+	n6 -> n8;
+	n6 -> n9;
+	n7 -> n10;
+	n7 -> n11;
+	n8 -> n4;
+	n8 -> n5;
+	n9 -> n7;
+	n10 -> n12;
+	n11 -> n13;
+	n12 -> n14;
+	n12 -> n15;
+	n13 -> n9;
+	n14 -> n5;
+	n14 -> n9;
+	n15 -> n11;
+}

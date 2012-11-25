@@ -1,0 +1,26 @@
+digraph dg_422 {
+	graph [label="xxxx  (xxx)",
+		size="7.5,10.0"
+	];
+	n0 -> n1;
+	n2 [color=lightgrey,style=filled];
+	n1 -> n2;
+	n1 -> n3;
+	n2 -> n4;
+	n2 -> n5;
+	n3 -> n6;
+	n4 -> n7;
+	n4 -> n8;
+	n5 -> n9;
+	n5 -> n10;
+	n7 -> n9;
+	n7 -> n10;
+	n8 -> n5;
+	n8 -> n11;
+	n9 -> n2;
+	n10 -> n3;
+	n11 -> n5;
+	n11 -> n12;
+	n12 -> n9;
+	n12 -> n10;
+}

@@ -1,0 +1,54 @@
+digraph dg_1546 {
+	graph [center=true,
+		comment="A:2067;M:2260;M:2067 -> 2260;$ M:2260;$ A:2260;M:2261;M:2260 -> 2261;$ M:2261;$ \
+A:2260;M:2262;M:2260 -> 2262;$ M:2262;$ M:2261 -> /usr/export/home/jhoaglan/rdis\
+t/rdista02261;M:/usr/export/home/jhoaglan/rdist/rdista02261;A:2261;$ M:2263;$ A:\
+2262;M:2263;M:2262 -> 2263;$ M:/bin/sh;M:/usr/export/home/jhoaglan/rdist/rdista0\
+2261;M:/usr/export/home/jhoaglan/rdist/rdista02261 -> symdia68;M:symdia68 -> /bi\
+n/sh;M:2260 -> symdia68;A:2260;$ M:2261 -> /usr/bin/sh;M:/usr/bin/sh;A:2261;$ A:\
+2067;M:2264;M:2067 -> 2264;$ M:2264;$ A:2264;M:2265;M:2264 -> 2265;$ M:2265;$ A:\
+117;M:2266;M:117 -> 2266;$ M:2266 -> /tmp/croutDYAa00117;M:/tmp/croutDYAa00117;A\
+:2266;$ M:2266;$ M:2267 -> /usr/export/home/cko/cronout;M:/usr/export/home/cko/c\
+ronout;A:2267;$ M:2267;$ A:2266;M:2267;M:2266 -> 2267;$ M:2268;$ A:2264;M:2268;M\
+:2264 -> 2268;$ M:2268 -> /usr/bin/sh;M:/usr/bin/sh;A:2268;$ ",
+		fontsize=18,
+		ordering=out,
+		orientation=landscape,
+		page="8.5,11",
+		ratio=fill,
+		size="10,7.5"
+	];
+	node [shape=circle];
+	n0 [label="2260:\n/xxx/xxxxxx/xxxx/xx/xxx/xxxx",shape=ellipse];
+	n1 [label="2261:\n/xxx/xxx/xxxxx",shape=ellipse];
+	n0 -> n1;
+	n2 [label="2262:\n/xxx/xxx/xx",shape=ellipse];
+	n0 -> n2;
+	n3 [height="0.05",label=xx,shape=diamond,width="0.05"];
+	n0 -> n3;
+	n6 [shape=box];
+	n1 -> n6;
+	n7 [shape=box];
+	n1 -> n7;
+	n8 [label="2263:\n/xxx/xxx/xx",shape=ellipse];
+	n2 -> n8;
+	n9 [shape=box];
+	n3 -> n9;
+	n4 -> n0;
+	n5 [label="2264:\n/xxx/xxx/xx",shape=ellipse];
+	n4 -> n5;
+	n10 [label="2265:\n/xxx/xxx/xxxxxx",shape=ellipse];
+	n5 -> n10;
+	n11 [label="2268:\n/xxx/xxx/xxxxx",shape=ellipse];
+	n5 -> n11;
+	n6 -> n3;
+	n11 -> n7;
+	n12 [label="2266:\n/xxx/xxx/xx",shape=ellipse];
+	n13 [shape=box];
+	n12 -> n13;
+	n14 [label="2267:\n/xxx/xxx/xxxx",shape=ellipse];
+	n12 -> n14;
+	n16 [shape=box];
+	n14 -> n16;
+	n15 -> n12;
+}

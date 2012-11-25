@@ -1,0 +1,9 @@
+digraph dg_3948 {
+	n0 -> n2;
+	n1 -> n3;
+	n2 -> n3;
+	n3 -> n4;
+	n4 -> n5;
+	n6 [color=ligth_gray,style=filled];
+	n5 -> n6;
+}

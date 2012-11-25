@@ -1,0 +1,45 @@
+digraph dg_3561 {
+	subgraph sub1 {
+		graph [color=lightgrey,
+			label=xxx1,
+			style=filled
+		];
+		node [color=white,
+			style=filled
+		];
+	}
+	subgraph sub2 {
+		graph [color=lightgrey,
+			label=xxx2,
+			style=filled
+		];
+		node [color=white,
+			style=filled
+		];
+	}
+	subgraph sub3 {
+		graph [color=lightgrey,
+			style=filled
+		];
+		node [color=white,
+			style=filled
+		];
+	}
+	n0 [color=white,style=filled];
+	n1 [color=white,style=filled];
+	n0 -> n1;
+	n7 [color="confva.milestones.8",style="confva.milestones.8"];
+	n1 -> n7;
+	n2 [color=white,style=filled];
+	n2 -> n1;
+	n3 [color=white,style=filled];
+	n4 [color=white,style=filled];
+	n3 -> n4;
+	n5 [color=white,style=filled];
+	n4 -> n5;
+	n8 [color="confva.milestones.8",style="confva.milestones.8"];
+	n5 -> n8;
+	n6 [color=white,style=filled];
+	n6 -> n4;
+	n6 -> n5;
+}

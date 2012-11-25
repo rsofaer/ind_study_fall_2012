@@ -1,0 +1,11 @@
+digraph dg_3384 {
+	graph [margin="0.3,0.3",
+		rankdir=LR
+	];
+	edge [dir=none];
+	n0 [label=xxxxxxxx,shape=box];
+	n1 [label=xxxxxxx,shape=diamond];
+	n0 -> n1;
+	n2 [label=xxxxxxx,shape=box];
+	n1 -> n2;
+}

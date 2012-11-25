@@ -1,0 +1,18 @@
+digraph dg_2019 {
+	n0 [label="xxxx 5"];
+	n1 [label="xxxx 4"];
+	n2 [label="xxxx 3"];
+	n2 -> n0;
+	n2 -> n1;
+	n3 [label="xxxx 2"];
+	n3 -> n0;
+	n3 -> n1;
+	n3 -> n2;
+	n4 [label="xxxx 1"];
+	n5 [label="xxxx 0"];
+	n5 -> n0;
+	n5 -> n1;
+	n5 -> n2;
+	n5 -> n3;
+	n5 -> n4;
+}

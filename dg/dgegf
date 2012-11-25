@@ -1,0 +1,10 @@
+digraph dg_2865 {
+	graph [size="4,4"];
+	node [shape=circle];
+	n0;
+	n1;
+	n2;
+	n3;
+	n4;
+	n5;
+}

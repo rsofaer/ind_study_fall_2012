@@ -1,0 +1,16 @@
+digraph dg_3809 {
+	graph [label="\nxxxxx xx xxxx = x**-x*"];
+	n0 [label=xxxxxxxxx,shape=box];
+	n1 [height=1,label="xxxxx\nxxx: x*",peripheries=2,shape=polygon,sides=8,width=1];
+	n0 -> n1;
+	n2 [label="xxxxx xxxxxxxxx"];
+	n2 -> n1;
+	n3 [label=xxxxxxxxx,shape=box];
+	n4 [height=1,label="xxxxx\nxxx: x**",peripheries=2,shape=polygon,sides=8,width=1];
+	n3 -> n4;
+	n5 [label="xxxxx xxxxxxxxx"];
+	n5 -> n4;
+	n6 [label=xxxx];
+	n6 -> n3;
+	n6 -> n5;
+}

@@ -1,0 +1,21 @@
+digraph dg_1990 {
+	graph [font=helvetica,
+		orientation=portrait,
+		size="7.5,10"
+	];
+	node [font=helvetica,
+		shape=box
+	];
+	n0 -> n1;
+	n0 -> n2;
+	n1 -> n3;
+	n2 -> n3;
+	n3 -> n4;
+	n3 -> n5;
+	n4 -> n6;
+	n5 -> n6;
+	n6 -> n7;
+	n6 -> n8;
+	n7 -> n9;
+	n8 -> n9;
+}

@@ -1,0 +1,106 @@
+digraph dg_4245 {
+	graph [center=on,
+		concentrate=true,
+		orientation=landscape,
+		size="10.5,7.25"
+	];
+	subgraph cluster1 {
+		node [color=purple2,
+			style=filled
+		];
+	}
+	subgraph cluster2 {
+		node [color=lightblue2,
+			style=filled
+		];
+	}
+	subgraph cluster3 {
+		node [color=seagreen,
+			style=filled
+		];
+	}
+	subgraph cluster4 {
+		node [color=goldenrod2,
+			style=filled
+		];
+	}
+	subgraph cluster5 {
+		node [color=maroon1,
+			style=filled
+		];
+	}
+	subgraph cluster6 {
+		node [color=tomato,
+			style=filled
+		];
+	}
+	n0 [color="10.5,7.25",style="10.5,7.25"];
+	n13 [color="10.5,7.25",style="10.5,7.25"];
+	n0 -> n13;
+	n14 [color="10.5,7.25",style="10.5,7.25"];
+	n0 -> n14;
+	n15 [color="10.5,7.25",style="10.5,7.25"];
+	n0 -> n15;
+	n24 [color="Modules,\nFiles,\nFileDir,\nDisk,\nKernel",style="Modules,\nFiles,\nFileDir,\nDisk,\nKernel"];
+	n0 -> n24;
+	n1 [color="10.5,7.25",style="10.5,7.25"];
+	n1 -> n13;
+	n1 -> n24;
+	n2 [color="10.5,7.25",style="10.5,7.25"];
+	n2 -> n13;
+	n2 -> n24;
+	n3 [color="10.5,7.25",style="10.5,7.25"];
+	n3 -> n13;
+	n3 -> n24;
+	n4 [color="10.5,7.25",style="10.5,7.25"];
+	n6 [color="10.5,7.25",style="10.5,7.25"];
+	n4 -> n6;
+	n4 -> n13;
+	n4 -> n24;
+	n5 [color="10.5,7.25",style="10.5,7.25"];
+	n5 -> n6;
+	n7 [color="10.5,7.25",style="10.5,7.25"];
+	n5 -> n7;
+	n5 -> n13;
+	n5 -> n24;
+	n9 [color="10.5,7.25",style="10.5,7.25"];
+	n6 -> n9;
+	n18 [color="10.5,7.25",style="10.5,7.25"];
+	n6 -> n18;
+	n10 [color="10.5,7.25",style="10.5,7.25"];
+	n7 -> n10;
+	n7 -> n18;
+	n8 [color="10.5,7.25",style="10.5,7.25"];
+	n16 [color="10.5,7.25",style="10.5,7.25"];
+	n8 -> n16;
+	n20 [color="10.5,7.25",style="10.5,7.25"];
+	n8 -> n20;
+	n11 [color="10.5,7.25",style="10.5,7.25"];
+	n9 -> n11;
+	n9 -> n20;
+	n12 [color="10.5,7.25",style="10.5,7.25"];
+	n10 -> n12;
+	n10 -> n20;
+	n13 -> n8;
+	n13 -> n18;
+	n13 -> n24;
+	n14 -> n16;
+	n21 [color="10.5,7.25",label="xxxxxxx,\nxxxxx,\nxxxxxxx,\nxxxx,\nxxxxxx",style="10.5,7.25"];
+	n14 -> n21;
+	n15 -> n16;
+	n15 -> n21;
+	n17 [color="10.5,7.25",style="10.5,7.25"];
+	n16 -> n17;
+	n17 -> n20;
+	n18 -> n20;
+	n19 [color="10.5,7.25",style="10.5,7.25"];
+	n19 -> n20;
+	n22 [color="Modules,\nFiles,\nFileDir,\nDisk,\nKernel",style="Modules,\nFiles,\nFileDir,\nDisk,\nKernel"];
+	n23 [color="Modules,\nFiles,\nFileDir,\nDisk,\nKernel",style="Modules,\nFiles,\nFileDir,\nDisk,\nKernel"];
+	n24 -> n16;
+	n24 -> n18;
+	n24 -> n19;
+	n24 -> n21;
+	n24 -> n22;
+	n24 -> n23;
+}

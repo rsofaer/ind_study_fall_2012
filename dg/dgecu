@@ -1,0 +1,64 @@
+digraph dg_2776 {
+	graph [orientation=landscape,
+		size="10,10"
+	];
+	node [fontname=Helvetica,
+		fontsize=18
+	];
+	edge [fontname=Helvetica,
+		fontsize=16,
+		len=2,
+		style=bold
+	];
+	subgraph cluster0 {
+	}
+	subgraph cluster1 {
+		node [fontname="",
+			fontsize=""
+		];
+	}
+	n0 -> n11;
+	n0 -> n17;
+	n1 -> n0;
+	n2 -> n3;
+	n3 -> n1;
+	n4 -> n3;
+	n5 [fontname="V_NP_NP_[PP]",fontsize="V_NP_NP_[PP]"];
+	n5 -> n0;
+	n5 -> n1;
+	n5 -> n2;
+	n5 -> n4;
+	n7 [fontname="",fontsize=""];
+	n5 -> n7;
+	n8 [fontname="",fontsize=""];
+	n5 -> n8;
+	n10 [fontname="V_NP_NP_[PP]",fontsize="V_NP_NP_[PP]",style=filled];
+	n5 -> n10;
+	n12 [fontname="V_NP_NP_[PP]",fontsize="V_NP_NP_[PP]"];
+	n5 -> n12;
+	n5 -> n13;
+	n6 [fontname="",fontsize=""];
+	n6 -> n7;
+	n7 -> n5;
+	n8 -> n6;
+	n9 [fontname="",fontsize=""];
+	n9 -> n5;
+	n10 -> n11;
+	n11 -> n10;
+	n12 -> n11;
+	n13 -> n19;
+	n14 [fontname="V_NP_NP_[PP]",fontsize="V_NP_NP_[PP]"];
+	n14 -> n7;
+	n14 -> n10;
+	n14 -> n15;
+	n15 -> n14;
+	n16 -> n11;
+	n17 -> n12;
+	n18 -> n15;
+	n19 -> n20;
+	n20 -> n1;
+	n20 -> n4;
+	n20 -> n7;
+	n20 -> n10;
+	n21 -> n17;
+}

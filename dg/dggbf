@@ -1,0 +1,31 @@
+digraph dg_4087 {
+	graph [ratio=fill,
+		size="8,8"
+	];
+	node [fontsize=12,
+		height=".2",
+		shape=circle,
+		width=".2"
+	];
+	edge [fontsize=12];
+	n0 [shape=doublecircle];
+	n0 -> n1;
+	n1 -> n2;
+	n2 -> n0;
+	n2 -> n1;
+	n2 -> n2;
+	n2 -> n3;
+	n2 -> n4;
+	n3 -> n2;
+	n4 -> n2;
+	n4 -> n4;
+	n4 -> n5;
+	n4 -> n6;
+	n4 -> n7;
+	n4 -> n8;
+	n5 -> n2;
+	n5 -> n6;
+	n6 -> n2;
+	n7 -> n4;
+	n8 -> n4;
+}

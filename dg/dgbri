@@ -1,0 +1,90 @@
+digraph dg_1126 {
+	graph [center=true,
+		ordering=out,
+		orientation=portrait,
+		page="8.5,11",
+		ratio="1.3333333333333332593",
+		size="7.5,10"
+	];
+	node [shape=box];
+	n0 [shape=circle];
+	n1 [label="11912:\n/xxx/xxx/xx",shape=ellipse];
+	n0 -> n1;
+	n2 [label="11921:\n/xxx/xxx/xxxxx",shape=ellipse];
+	n0 -> n2;
+	n3 [label="11925:\n/xxx/xxx/xxxxx",shape=ellipse];
+	n0 -> n3;
+	n4 [label="11926:\n/xxx/xxx/xx",shape=ellipse];
+	n0 -> n4;
+	n5 [shape=circle];
+	n0 -> n5;
+	n6 [shape=circle];
+	n0 -> n6;
+	n7 [label="11929:\n/xxx/xxx/xxx",shape=ellipse];
+	n0 -> n7;
+	n8 [label="11933:\n/xxx/xxx/xxxxx",shape=ellipse];
+	n0 -> n8;
+	n9 [label="11942:\n/xxx/xxx/xxxxxx",shape=ellipse];
+	n0 -> n9;
+	n10 [label="11943:\n/xxx/xxx/xxxxxx",shape=ellipse];
+	n0 -> n10;
+	n11 [label="11944:\n/xxx/xxx/xxx",shape=circle];
+	n0 -> n11;
+	n12 [shape=polygon,sides=6];
+	n0 -> n12;
+	n13 [style=invis];
+	n0 -> n13;
+	n14 [style=invis];
+	n1 -> n14;
+	n17 [style=invis];
+	n2 -> n17;
+	n21 [style=invis];
+	n3 -> n21;
+	n22 [style=invis];
+	n4 -> n22;
+	n23 [style=invis];
+	n5 -> n23;
+	n24 [style=invis];
+	n6 -> n24;
+	n20 [shape=polygon,sides=6];
+	n7 -> n20;
+	n25 [style=invis];
+	n7 -> n25;
+	n28 [style=invis];
+	n8 -> n28;
+	n30 [style=invis];
+	n9 -> n30;
+	n32 [style=invis];
+	n10 -> n32;
+	n16 [shape=circle];
+	n11 -> n16;
+	n33 [style=invis];
+	n11 -> n33;
+	n15 [shape=triangle];
+	n15 -> n1;
+	n15 -> n2;
+	n15 -> n3;
+	n15 -> n4;
+	n15 -> n5;
+	n15 -> n6;
+	n15 -> n7;
+	n15 -> n8;
+	n15 -> n9;
+	n15 -> n10;
+	n15 -> n11;
+	n15 -> n16;
+	n34 [style=invis];
+	n16 -> n34;
+	n18 -> n19;
+	n18 -> n20;
+	n19 -> n18;
+	n19 -> n19;
+	n20 -> n26;
+	n26 -> n27;
+	n27 -> n29;
+	n29 -> n29;
+	n29 -> n31;
+	n31 -> n12;
+	n35 [style=invis];
+	n36 -> n35;
+}

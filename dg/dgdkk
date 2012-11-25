@@ -1,0 +1,21 @@
+digraph dg_2298 {
+	n0 [label="xxxxxx xxxxx"];
+	n1 [label=xxx];
+	n0 -> n1;
+	n2 [label="xxxx xxxxx"];
+	n0 -> n2;
+	n3 [label="xxxx xxxxx"];
+	n2 -> n3;
+	n4 [label="xxxx xxxxx"];
+	n2 -> n4;
+	n5 [label="xxxx xxxxx"];
+	n2 -> n5;
+	n6 [label=xxx];
+	n3 -> n6;
+	n7 [label=xx];
+	n3 -> n7;
+	n4 -> n6;
+	n4 -> n7;
+	n5 -> n6;
+	n5 -> n7;
+}

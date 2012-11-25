@@ -1,0 +1,12 @@
+digraph dg_4242 {
+	graph [center=on,
+		concentrate=TRUE,
+		size="10.5,7.25"
+	];
+	n0 -> n1;
+	n1 -> n2;
+	n1 -> n3;
+	n1 -> n4;
+	n5 -> n1;
+	n6 -> n1;
+}

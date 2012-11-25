@@ -1,0 +1,52 @@
+digraph dg_1577 {
+	graph [center=TRUE,
+		color=Gray,
+		fontsize=28,
+		label="./xxxx/xxx.x.xx xx xxxxxx xx xxxxxxxxxxxx xxxx xxxxxx xxxx = 6",
+		margin=".25,.25",
+		page="8.5,11",
+		ratio=auto
+	];
+	node [shape=ellipse];
+	subgraph cluster0 {
+		graph [label="xxxxxx 0"];
+	}
+	subgraph cluster1 {
+		graph [label="xxxxxx 1"];
+	}
+	subgraph cluster2 {
+		graph [label="xxxxxx 2"];
+	}
+	subgraph cluster3 {
+		graph [label="xxxxxx 3"];
+	}
+	subgraph cluster4 {
+		graph [label="xxxxxx 4"];
+	}
+	subgraph cluster5 {
+		graph [label="xxxxxx 5"];
+	}
+	subgraph cluster6 {
+		graph [label="xxxxxx 6"];
+	}
+	n0 -> n1;
+	n0 -> n2;
+	n0 -> n3;
+	n0 -> n5;
+	n0 -> n11;
+	n0 -> n12;
+	n0 -> n13;
+	n0 -> n14;
+	n3 -> n4;
+	n5 -> n6;
+	n5 -> n7;
+	n5 -> n8;
+	n5 -> n9;
+	n5 -> n10;
+	n5 -> n11;
+	n5 -> n12;
+	n5 -> n13;
+	n5 -> n14;
+	n9 -> n15;
+	n14 -> n15;
+}

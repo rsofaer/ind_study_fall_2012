@@ -1,0 +1,75 @@
+digraph dg_1535 {
+	graph [size="6,10"];
+	subgraph quantD {
+	}
+	subgraph quantT {
+	}
+	n0 [color=lightgray,label="^x10/xx-xxxx",style=filled];
+	n1 [label="^x1/xxxxxx"];
+	n0 -> n1;
+	n4 [color=lightgray,label="^x11/xxxxxx",style=filled];
+	n0 -> n4;
+	n10 [color=lightgray,label="^x12/xxxxxx",style=filled];
+	n0 -> n10;
+	n2 [label="^x9/xxxxxx"];
+	n1 -> n2;
+	n12 [label="^x2/xxxxxx"];
+	n1 -> n12;
+	n2 -> n0;
+	n3 [label="^x19/xxxxxx"];
+	n2 -> n3;
+	n20 [label="^x20/xxxxxx"];
+	n3 -> n20;
+	n5 [label="^x3/xxxxxx"];
+	n4 -> n5;
+	n6 [label="^x4/xxxxx"];
+	n4 -> n6;
+	n7 [label="^x5/xxxxxx"];
+	n4 -> n7;
+	n17 [color=lightgray,label="^x13/xx-xxxx",style=filled];
+	n4 -> n17;
+	n5 -> n6;
+	n8 [label="^x16/xxxxxx"];
+	n5 -> n8;
+	n6 -> n7;
+	n6 -> n7;
+	n9 [label="^x8/xxxxxx"];
+	n7 -> n9;
+	n13 [label="^x6/xxxxxx"];
+	n7 -> n13;
+	n19 [color=lightgray,label="^x17/xxxxx",style=filled];
+	n8 -> n19;
+	n9 -> n2;
+	n9 -> n2;
+	n11 [color=lightgray,label="^x0/xxxxxx",style=filled];
+	n10 -> n11;
+	n10 -> n17;
+	n11 -> n1;
+	n11 -> n12;
+	n11 -> n13;
+	n12 -> n5;
+	n14 [label="^x14/xxxxxx"];
+	n12 -> n14;
+	n15 [label="^x7/xx-xxxx"];
+	n13 -> n15;
+	n15;
+	n13 -> n15;
+	n18 [color=lightgray,label="^x15/xxxxxx",style=filled];
+	n14 -> n18;
+	n15 -> n9;
+	n16 [label="^x18/xx-xxxx"];
+	n15 -> n16;
+	n16;
+	n15 -> n16;
+	n16 -> n3;
+	n17 -> n12;
+	n17 -> n14;
+	n18 -> n5;
+	n18 -> n8;
+	n19 -> n13;
+	n19 -> n16;
+	n21 [label="^x21/xxxxxx"];
+	n20 -> n21;
+	n22 [label="^x22/xxxxxx"];
+	n21 -> n22;
+}

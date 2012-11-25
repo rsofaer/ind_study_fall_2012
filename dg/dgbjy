@@ -1,0 +1,17 @@
+digraph dg_934 {
+	n0 [label="xx\nxxxxx\nxxxxx\n",shape=box];
+	n1 [label="xx\nxxxxx\n",shape=box];
+	n0 -> n1;
+	n2 [label="xxxxxx\nxxxxx\nxxxxxx\nxxxxx\n",shape=box];
+	n0 -> n2;
+	n3 [label="xx\nxxxxxx\nxxxxx\nxxxxx\n",shape=box];
+	n1 -> n3;
+	n4 [label="xx\nxx\nxx\n",shape=box];
+	n2 -> n4;
+	n5 [label="xxxxx\nxxxxx\nxxxxx\nxxxxx\n",shape=box];
+	n2 -> n5;
+	n6 [label="xxxxx\n",shape=box];
+	n4 -> n6;
+	n5 -> n6;
+	n6 -> n3;
+}

@@ -1,0 +1,27 @@
+digraph dg_439 {
+	graph [label="x2.xxx",
+		size="7.5,10.0"
+	];
+	n0 -> n1;
+	n1 -> n2;
+	n1 -> n3;
+	n4 [color=lightgrey,style=filled];
+	n2 -> n4;
+	n3 -> n5;
+	n4 -> n6;
+	n4 -> n7;
+	n6 -> n8;
+	n6 -> n9;
+	n7 -> n10;
+	n7 -> n11;
+	n8 -> n4;
+	n9 -> n3;
+	n10 -> n8;
+	n10 -> n9;
+	n11 -> n12;
+	n11 -> n13;
+	n12 -> n8;
+	n12 -> n9;
+	n13 -> n8;
+	n13 -> n9;
+}

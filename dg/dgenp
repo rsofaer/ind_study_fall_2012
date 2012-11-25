@@ -1,0 +1,10 @@
+digraph dg_3057 {
+	n0;
+	n1 [label=x,peripheries=2];
+	n1;
+	n1 -> n1;
+	n2 [label=x];
+	n1 -> n2;
+	n2 -> n1;
+	n2 -> n2;
+}

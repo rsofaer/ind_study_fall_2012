@@ -1,0 +1,29 @@
+digraph dg_1485 {
+	graph [center=true,
+		fontsize=18,
+		ordering=out,
+		orientation=landscape,
+		page="8.5,11",
+		ratio=fill,
+		size="10,7.5"
+	];
+	node [shape=circle];
+	subgraph S12341 {
+		graph [label="xxxxxxx #12341"];
+	}
+	subgraph S12340 {
+		graph [label="xxxxxxx #12340"];
+	}
+	subgraph S12342 {
+		graph [label="xxxxxxx #12342"];
+	}
+	n0 [label="xxxx(2): xxxxxxx xxxxxxxx"];
+	n0 -> n1;
+	n0 -> n3;
+	n0 -> n4;
+	n2 [label="xxxxxx(2):"];
+	n2 -> n4;
+	n5 -> n1;
+	n5 -> n3;
+	n5 -> n4;
+}

@@ -1,0 +1,9 @@
+digraph dg_4341 {
+	graph [size="6,6"];
+	n0 -> n1;
+	n0 -> n2;
+	n0 -> n3;
+	n1 -> n2;
+	n2 -> n3;
+	n3 -> n1;
+}

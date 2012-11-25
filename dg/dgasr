@@ -1,0 +1,67 @@
+digraph dg_485 {
+	graph [ratio=fill,
+		size="8,8"
+	];
+	subgraph cluster_risc_os {
+		graph [label="xxxx xx xxxxxxx"];
+	}
+	subgraph cluster_ansi_lib {
+		graph [label="xxxx x xxxxxxx"];
+	}
+	n0 -> n3;
+	n0 -> n9;
+	n2 -> n3;
+	n3 -> n10;
+	n3 -> n11;
+	n5 -> n12;
+	n6 -> n10;
+	n7 -> n3;
+	n8 -> n3;
+	n8 -> n11;
+	n10 -> n11;
+	n18 -> n0;
+	n18 -> n1;
+	n18 -> n2;
+	n18 -> n12;
+	n18 -> n13;
+	n18 -> n19;
+	n18 -> n20;
+	n18 -> n21;
+	n18 -> n22;
+	n20 -> n2;
+	n20 -> n4;
+	n20 -> n5;
+	n20 -> n6;
+	n20 -> n7;
+	n20 -> n8;
+	n20 -> n13;
+	n20 -> n23;
+	n21 -> n2;
+	n21 -> n19;
+	n21 -> n24;
+	n21 -> n25;
+	n21 -> n26;
+	n22 -> n1;
+	n22 -> n12;
+	n22 -> n13;
+	n22 -> n14;
+	n23 -> n3;
+	n23 -> n12;
+	n23 -> n13;
+	n23 -> n15;
+	n23 -> n17;
+	n24 -> n3;
+	n25 -> n3;
+	n25 -> n12;
+	n25 -> n22;
+	n25 -> n23;
+	n25 -> n24;
+	n26 -> n1;
+	n26 -> n3;
+	n26 -> n12;
+	n26 -> n15;
+	n26 -> n16;
+	n26 -> n22;
+	n26 -> n23;
+	n26 -> n24;
+}

@@ -1,0 +1,138 @@
+digraph dg_4739 {
+	graph [label="xxx ",
+		orientation=landscape,
+		size="10, 7.5"
+	];
+	node [ranksep="1.25",
+		shape=box
+	];
+	subgraph clustersdfgx1192x {
+		graph [label="xxx "];
+		node [shape="1.25"];
+		subgraph clusterschemax1202x {
+			graph [label="1202:xx_1202"];
+			node [shape=""];
+			subgraph clustersdfgx1204x {
+				graph [label="1202:xx_1202"];
+			}
+			subgraph clustersdfgx1206x {
+				graph [label="1202:xx_1202"];
+			}
+		}
+	}
+	n0 [label="xxxx_1207.0 xx0",shape=diamond];
+	n1 [label="xxxx_1210.0 xx0",shape=diamond];
+	n2 [label="{{<1716> XX|<1719> XX}|XXX_XXXX|{<1713> XX}}",shape=record];
+	n1 -> n2:1716;
+	n6 [label="xxxx_1213.0 xx0",shape=diamond];
+	n2:1713 -> n6;
+	n3 [label="xxxx_1260.0 xx1",shape=diamond];
+	n4 [label="x (1258:14)",shape=plaintext];
+	n3 -> n4;
+	n11 [label="{{<1269> XX}|XXXX_XX|{<1255> XX|<1256> XX}}",shape=record];
+	n4 -> n11:1269;
+	n5 [label="xxxx_1524.0 xx2",shape=diamond];
+	n5 -> n2:1719;
+	n38 [label="xxxx_1213 xx0",shape=diamond];
+	n6 -> n38;
+	n7 [label="xxxx_1586.0 xx1",shape=diamond];
+	n39 [label="xxxx_1586 xx1",shape=diamond];
+	n7 -> n39;
+	n8 [label="xxxx_1647.0 xx2",shape=diamond];
+	n40 [label="xxxx_1647 xx2",shape=diamond];
+	n8 -> n40;
+	n9 [style=invis];
+	n10 [style=invis];
+	n9 -> n10;
+	n36 [style=invis];
+	n10 -> n36;
+	n12 [label="{{<1272> XX|<1279> XX}|XXXX_XX|{<1251> XX|<1252> XX}}",shape=record];
+	n11:1255 -> n12:1272;
+	n13 [label="{{<1282> XX|<1289> XX}|XXXXX_XX|{<1248> XX|<1585> XX}}",shape=record];
+	n12:1251 -> n13:1282;
+	n13:1585 -> n7;
+	n14 [label="8 (1276:379)",shape=plaintext];
+	n14 -> n12:1279;
+	n15 [label="0.000000 (1286:42)",shape=plaintext];
+	n15 -> n13:1289;
+	n16 [label="xxxx_1207.1 xx0",shape=diamond];
+	n17 [label="xxxx_1210.1 xx0",shape=diamond];
+	n18 [label="{{<1727> XX}|XXX_XXXX|{<1724> XX}}",shape=record];
+	n17 -> n18:1727;
+	n23 [label="xxxx_1213.1 xx0",shape=diamond];
+	n18:1724 -> n23;
+	n19 [label="xxxx_1260.1 xx1",shape=diamond];
+	n20 [label="x (1308:14)",shape=plaintext];
+	n19 -> n20;
+	n28 [label="{{<1314> XX}|XXXX_XX|{<1305> XX|<1306> XX}}",shape=record];
+	n20 -> n28:1314;
+	n21 [label="xxxx_1524.1 xx2",shape=diamond];
+	n22 [label="{{<1327> XX|<1334> XX|<1523> XX}|XXXXX_XX|{<1298> XX|<1646> XX}}",shape=record];
+	n21 -> n22:1523;
+	n25 [label="xxxx_1647.1 xx2",shape=diamond];
+	n22:1646 -> n25;
+	n23 -> n38;
+	n24 [label="xxxx_1586.1 xx1",shape=diamond];
+	n24 -> n39;
+	n25 -> n40;
+	n26 [style=invis];
+	n27 [style=invis];
+	n26 -> n27;
+	n27 -> n36;
+	n29 [label="{{<1317> XX|<1324> XX}|XXXX_XX|{<1301> XX|<1302> XX}}",shape=record];
+	n28:1305 -> n29:1317;
+	n29:1301 -> n22:1327;
+	n30 [label="16 (1321:380)",shape=plaintext];
+	n30 -> n29:1324;
+	n31 [label="0.000000 (1331:52)",shape=plaintext];
+	n31 -> n22:1334;
+	n32 [label="xxxx_1260 xx1",shape=diamond];
+	n32 -> n3;
+	n32 -> n19;
+	n33 [label="xxxx_1524 xx2",shape=diamond];
+	n33 -> n5;
+	n33 -> n21;
+	n34 [label="xxxx_1207 xx0",shape=diamond];
+	n34 -> n0;
+	n34 -> n16;
+	n35 [style=invis];
+	n35 -> n9;
+	n35 -> n26;
+	n35 -> n36;
+	n37 [label="xxxx_1210 xx0",shape=diamond];
+	n37 -> n1;
+	n37 -> n17;
+	n43 [label="{{<1735> XX|<1738> XX}|XXX_XXXX|{<1732> XX}}",shape=record];
+	n38 -> n43:1735;
+	n49 [label="xxxx_1591.0 xx1",shape=diamond];
+	n39 -> n49;
+	n50 [label="xxxx_1652.0 xx2",shape=diamond];
+	n40 -> n50;
+	n41 [label="xxxx_1345.0 xx0",shape=diamond];
+	n42 [label="xxxx_1193.0 xx0",shape=diamond];
+	n42 -> n43:1738;
+	n48 [label="xxxx_1195.0 xx0",shape=diamond];
+	n43:1732 -> n48;
+	n44 [label="xxxx_1197.0 xx1",shape=diamond];
+	n44 -> n32;
+	n45 [label="xxxx_1199.0 xx2",shape=diamond];
+	n46 [label="xxxx (1225:15)",shape=plaintext];
+	n45 -> n46;
+	n53 [label="{{<1231> XX}|XXXX_XX|{<1222> XX|<1223> XX}}",shape=record];
+	n46 -> n53:1231;
+	n47 [label="xxxx_1529.0 xx3",shape=diamond];
+	n47 -> n33;
+	n51 [style=invis];
+	n52 [style=invis];
+	n51 -> n52;
+	n54 [label="{{<1234> XX|<1241> XX}|XX_XX|{<1218> XX|<1219> XX}}",shape=record];
+	n53:1222 -> n54:1234;
+	n54:1218 -> n34;
+	n55 [label="10 (1238:33)",shape=plaintext];
+	n55 -> n54:1241;
+	n56 [label="0 (1342:54)",shape=plaintext];
+	n56 -> n41;
+	n57 [style=invis];
+	n58 [style=invis];
+	n57 -> n58;
+}

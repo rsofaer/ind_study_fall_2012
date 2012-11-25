@@ -1,0 +1,13 @@
+digraph dg_3005 {
+	graph [rankdir=LR];
+	n0 [shape=plaintext];
+	n1 [shape=circle];
+	n0 -> n1;
+	n2 [shape=doublecircle];
+	n1 -> n2;
+	n3 [shape=doublecircle];
+	n1 -> n3;
+	n2 -> n3;
+	n3 -> n1;
+	n3 -> n2;
+}

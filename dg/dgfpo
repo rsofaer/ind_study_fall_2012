@@ -1,0 +1,36 @@
+digraph dg_3784 {
+	node [fontname=Courier,
+		fontsize=8
+	];
+	n2 [label="x(x,x,x,x)"];
+	n3 [label="x(x,x,x,x) :-\n xxxx([x,x],[x,x]).",shape=box];
+	n2 -> n3;
+	n11 [label="x(x,x,x,x) :-\n xxxx([x,x],[x,x]).",shape=box];
+	n2 -> n11;
+	n4 [label="xxxx([x,x],[x,x])"];
+	n3 -> n4;
+	n12 [label="xxxx([x,x],[x,x])"];
+	n11 -> n12;
+	n5 [label="xxxx(x,x) :-\n x=[x,x],x=[x,x],x<x",shape=box];
+	n4 -> n5;
+	n8 [label="xxxx(x,x) :-\n x=[x,x],x=[x,x],x==x,x<x",shape=box];
+	n4 -> n8;
+	n13 [label="xxxx(x,x) :-\n x=[x,x],x=[x,x],x>x",shape=box];
+	n12 -> n13;
+	n15 [label="xxxx(x,x) :-\n x=[x,x],x=[x,x],x==x,x>x",shape=box];
+	n12 -> n15;
+	n6 [label="x=[x,x]"];
+	n5 -> n6;
+	n7 [label="x<x"];
+	n5 -> n7;
+	n8 -> n6;
+	n8 -> n7;
+	n9 [label="x==x"];
+	n8 -> n9;
+	n13 -> n6;
+	n14 [label="x>x"];
+	n13 -> n14;
+	n15 -> n6;
+	n15 -> n9;
+	n15 -> n14;
+}

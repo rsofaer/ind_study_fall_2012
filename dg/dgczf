@@ -1,0 +1,214 @@
+digraph dg_2007 {
+	graph [center=TRUE,
+		color=Gray,
+		fontsize=28,
+		label="./xxxx/xxx.xx xx xxxxxx xx xxxxxxxxxxxx xxxx xxxxxx xxxx = 6",
+		margin=".25,.25",
+		page="8.5,11",
+		ratio=auto
+	];
+	node [shape=ellipse];
+	subgraph cluster0 {
+		graph [fontsize=14,
+			label="xxxxxx 0"
+		];
+	}
+	subgraph cluster1 {
+		graph [fontsize=14,
+			label="xxxxxx 1"
+		];
+	}
+	subgraph cluster2 {
+		graph [fontsize=14,
+			label="xxxxxx 2"
+		];
+	}
+	subgraph cluster3 {
+		graph [fontsize=14,
+			label="xxxxxx 3"
+		];
+	}
+	subgraph cluster4 {
+		graph [fontsize=14,
+			label="xxxxxx 4"
+		];
+	}
+	subgraph cluster5 {
+		graph [fontsize=14,
+			label="xxxxxx 5"
+		];
+	}
+	subgraph cluster6 {
+		graph [fontsize=14,
+			label="xxxxxx 6"
+		];
+	}
+	subgraph cluster7 {
+		graph [fontsize=14,
+			label="xxxxxx 7"
+		];
+	}
+	subgraph cluster8 {
+		graph [fontsize=14,
+			label="xxxxxx 8"
+		];
+	}
+	subgraph cluster9 {
+		graph [fontsize=14,
+			label="xxxxxx 9"
+		];
+	}
+	subgraph cluster10 {
+		graph [fontsize=14,
+			label="xxxxxx 10"
+		];
+	}
+	subgraph cluster11 {
+		graph [fontsize=14,
+			label="xxxxxx 11"
+		];
+	}
+	subgraph cluster12 {
+		graph [fontsize=14,
+			label="xxxxxx 12"
+		];
+	}
+	subgraph cluster13 {
+		graph [fontsize=14,
+			label="xxxxxx 13"
+		];
+	}
+	subgraph cluster14 {
+		graph [fontsize=14,
+			label="xxxxxx 14"
+		];
+	}
+	subgraph cluster15 {
+		graph [fontsize=14,
+			label="xxxxxx 15"
+		];
+	}
+	subgraph cluster16 {
+		graph [fontsize=14,
+			label="xxxxxx 16"
+		];
+	}
+	subgraph cluster17 {
+		graph [fontsize=14,
+			label="xxxxxx 17"
+		];
+	}
+	subgraph cluster18 {
+		graph [fontsize=14,
+			label="xxxxxx 18"
+		];
+	}
+	subgraph cluster19 {
+		graph [fontsize=14,
+			label="xxxxxx 19"
+		];
+	}
+	subgraph cluster20 {
+		graph [fontsize=14,
+			label="xxxxxx 20"
+		];
+	}
+	subgraph cluster21 {
+		graph [fontsize=14,
+			label="xxxxxx 21"
+		];
+	}
+	subgraph cluster22 {
+		graph [fontsize=14,
+			label="xxxxxx 22"
+		];
+	}
+	subgraph cluster23 {
+		graph [fontsize=14,
+			label="xxxxxx 23"
+		];
+	}
+	subgraph cluster24 {
+		graph [fontsize=14,
+			label="xxxxxx 24"
+		];
+	}
+	subgraph cluster25 {
+		graph [fontsize=14,
+			label="xxxxxx 25"
+		];
+	}
+	subgraph cluster26 {
+		graph [fontsize=14,
+			label="xxxxxx 26"
+		];
+	}
+	n0 -> n1;
+	n0 -> n2;
+	n0 -> n3;
+	n0 -> n4;
+	n0 -> n5;
+	n0 -> n6;
+	n0 -> n7;
+	n0 -> n9;
+	n0 -> n10;
+	n0 -> n14;
+	n0 -> n15;
+	n0 -> n16;
+	n0 -> n17;
+	n0 -> n19;
+	n0 -> n20;
+	n0 -> n21;
+	n0 -> n22;
+	n0 -> n23;
+	n0 -> n24;
+	n0 -> n26;
+	n0 -> n27;
+	n0 -> n28;
+	n0 -> n29;
+	n0 -> n30;
+	n0 -> n31;
+	n0 -> n32;
+	n4 -> n28;
+	n6 -> n27;
+	n6 -> n28;
+	n10 -> n8;
+	n10 -> n11;
+	n10 -> n12;
+	n10 -> n25;
+	n10 -> n27;
+	n10 -> n30;
+	n14 -> n8;
+	n14 -> n13;
+	n14 -> n25;
+	n14 -> n26;
+	n14 -> n30;
+	n14 -> n32;
+	n15 -> n8;
+	n15 -> n12;
+	n15 -> n25;
+	n15 -> n30;
+	n16 -> n8;
+	n16 -> n12;
+	n16 -> n25;
+	n16 -> n27;
+	n17 -> n8;
+	n17 -> n12;
+	n17 -> n18;
+	n17 -> n25;
+	n17 -> n27;
+	n19 -> n13;
+	n19 -> n27;
+	n20 -> n13;
+	n20 -> n27;
+	n21 -> n13;
+	n21 -> n27;
+	n22 -> n13;
+	n22 -> n31;
+	n23 -> n13;
+	n23 -> n27;
+	n29 -> n33;
+	n30 -> n33;
+	n31 -> n33;
+	n32 -> n33;
+}

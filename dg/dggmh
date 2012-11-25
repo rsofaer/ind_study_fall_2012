@@ -1,0 +1,7 @@
+digraph dg_4375 {
+	subgraph cluster0 {
+		n0 [height=".2",label="{{<i1> |<i2> }|XXXX|{<o1> }}",shape=record];
+	}
+	n1 [height=".1",label="<e1> |<e2> ",shape=record];
+	n2 [height=".1",label="<e1> ",shape=record];
+}

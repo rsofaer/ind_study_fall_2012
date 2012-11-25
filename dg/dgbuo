@@ -1,0 +1,54 @@
+digraph dg_1210 {
+	graph [center=true,
+		fontsize=18,
+		ordering=out,
+		orientation=landscape,
+		page="8.5,11",
+		ratio=fill,
+		size="10,7.5"
+	];
+	node [shape=circle];
+	n0 [label="2260:\n/xxx/xxxxxx/xxxx/xx/xxx/xxxx",shape=ellipse];
+	n1 [label="/xxx/xxxxxx/xxxx/xx/xxx/xxxx",shape=box];
+	n0 -> n1;
+	n2 [label="2261:\n/xxx/xxx/xxxxx",shape=ellipse];
+	n0 -> n2;
+	n3 [label="2262:\n/xxx/xxx/xx",shape=ellipse];
+	n0 -> n3;
+	n4 [shape=box,sides=6];
+	n0 -> n4;
+	n1 -> n2;
+	n2 -> n4;
+	n7 [label="/xxx/xxx/xxxxx",shape=box];
+	n2 -> n7;
+	n8 [shape=polygon,sides=6];
+	n2 -> n8;
+	n9 [label="/xxx/xxx/xx",shape=box];
+	n3 -> n9;
+	n10 [label="2263:\n/xxx/xxx/xx",shape=ellipse];
+	n3 -> n10;
+	n11 [label="/xxx/xxx/xx",shape=box];
+	n4 -> n11;
+	n5 -> n0;
+	n6 [label="2264:\n/xxx/xxx/xx",shape=ellipse];
+	n5 -> n6;
+	n6 -> n9;
+	n13 [label="2265:\n/xxx/xxx/xxxxxx",shape=ellipse];
+	n6 -> n13;
+	n14 [label="2268:\n/xxx/xxx/xxxxx",shape=ellipse];
+	n6 -> n14;
+	n7 -> n3;
+	n8 -> n6;
+	n9 -> n4;
+	n10 -> n11;
+	n12 [shape=box];
+	n11 -> n12;
+	n12 -> n4;
+	n12 -> n8;
+	n15 [label="/xxx/xxx/xxxxxx",shape=box];
+	n13 -> n15;
+	n14 -> n8;
+	n16 [label="/xxx/xxx/xxxxx",shape=box];
+	n14 -> n16;
+	n15 -> n16;
+}

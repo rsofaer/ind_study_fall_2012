@@ -1,0 +1,29 @@
+digraph dg_1977 {
+	graph [center=TRUE,
+		fontsize=10,
+		margin=".25,.25",
+		orientation=landscape,
+		page="8.5,11"
+	];
+	n0 [shape=box];
+	n1 [label="xxxxx\nxxxx"];
+	n0 -> n1;
+	n2 [label="xxxx\nxxxx"];
+	n0 -> n2;
+	n0 -> n3;
+	n0 -> n4;
+	n0 -> n5;
+	n0 -> n6;
+	n7 [label="xxxxx\nxxxxx"];
+	n0 -> n7;
+	n8 [label="xxxxxxx\nxxxxx\n(xxx)"];
+	n0 -> n8;
+	n0 -> n9;
+	n10 [label="xxxxxxxx\nxxxxx"];
+	n0 -> n10;
+	n11 [style=dotted];
+	n0 -> n11;
+	n0 -> n12;
+	n13 [label="xxxxx xxx"];
+	n0 -> n13;
+}

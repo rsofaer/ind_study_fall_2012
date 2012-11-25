@@ -1,0 +1,5 @@
+digraph dg_3801 {
+	n0 [peripheries=2,shape=circle];
+	n0;
+	n0 -> n0;
+}

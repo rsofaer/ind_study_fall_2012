@@ -1,0 +1,55 @@
+digraph dg_4035 {
+	graph [orientation=landscape];
+	subgraph cluster_remote {
+		graph [label=xxxxxx];
+		node [color=red,
+			fontsize=10,
+			style=filled
+		];
+	}
+	subgraph cluster_nearby {
+		graph [label=xxxxxx];
+		node [color=blue,
+			fontsize=10,
+			style=filled
+		];
+	}
+	subgraph cluster_binary {
+		graph [label=xxxxxx];
+		node [color=pink,
+			fontsize=10,
+			style=filled
+		];
+	}
+	subgraph cluster_local_links {
+		graph [label=xxxxx];
+		node [color=green,
+			fontsize=10,
+			style=filled
+		];
+	}
+	n0 -> n3;
+	n11 [color=green,fontsize=10,style=filled];
+	n1 -> n11;
+	n12 [color=green,fontsize=10,style=filled];
+	n1 -> n12;
+	n13 [color=green,fontsize=10,style=filled];
+	n1 -> n13;
+	n14 [color=green,fontsize=10,style=filled];
+	n1 -> n14;
+	n2;
+	n3 -> n5;
+	n8 [color=blue,fontsize=10,style=filled];
+	n4 -> n8;
+	n9 [color=blue,fontsize=10,style=filled];
+	n4 -> n9;
+	n10 [color=blue,fontsize=10,style=filled];
+	n4 -> n10;
+	n7 [color=red,fontsize=10,style=filled];
+	n6 -> n7;
+	n15 -> n0;
+	n16 -> n1;
+	n16 -> n4;
+	n16 -> n6;
+	n16 -> n17;
+}

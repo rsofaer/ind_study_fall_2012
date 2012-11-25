@@ -1,0 +1,33 @@
+digraph dg_1851 {
+	graph [orientation=landscape,
+		ratio="1.0",
+		size="22.22,22.22"
+	];
+	node [fontsize=10,
+		height=".556"
+	];
+	n0 [shape=diamond,width="1.250"];
+	n1 [shape=box,width="1.667"];
+	n0 -> n1;
+	n2 [shape=diamond,width="1.250"];
+	n3 [shape=box,width="1.667"];
+	n2 -> n3;
+	n5 [shape=diamond,width="1.250"];
+	n3 -> n5;
+	n4 [shape=diamond,width="1.250"];
+	n4 -> n1;
+	n5 -> n1;
+	n6 [shape=diamond,width="1.250"];
+	n7 [shape=box,width="1.667"];
+	n6 -> n7;
+	n8 [shape=diamond,width="1.250"];
+	n8 -> n1;
+	n9 [shape=box,width="1.667"];
+	n9 -> n0;
+	n10 [shape=box,width="1.667"];
+	n10 -> n2;
+	n10 -> n4;
+	n11 [shape=box,width="1.667"];
+	n11 -> n6;
+	n11 -> n8;
+}

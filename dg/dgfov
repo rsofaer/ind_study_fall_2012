@@ -1,0 +1,37 @@
+digraph dg_3765 {
+	graph [label="\n\nxxxxxxxxxx'x xxxxxxxxx xxxxxxx",
+		orientation=landscape,
+		rankdir=LR
+	];
+	n0 [label="xxxx xx\nxx xxxx",shape=box];
+	n1 [label=xxxx,style=bold];
+	n0 -> n1;
+	n2 [label="xxx\nxxxx",shape=box];
+	n0 -> n2;
+	n11 [height=".75",label=xxxxx,peripheries=2,shape=polygon,sides=8,width=".75"];
+	n1 -> n11;
+	n2 -> n1;
+	n7 [label=xxxxxxx,style=bold];
+	n2 -> n7;
+	n3 [label="xxxxx\nxxx",shape=box];
+	n3 -> n1;
+	n3 -> n2;
+	n4 [label="xxxxx\nxxxxx",shape=box];
+	n4 -> n1;
+	n4 -> n2;
+	n5 [label="xxxx\nxxxxxxx"];
+	n5 -> n4;
+	n6 [label="\"xxx\"\nxx\n\"xxx\""];
+	n5 -> n6;
+	n6 -> n7;
+	n7 -> n11;
+	n8 [label="xxxxxxx\nxxxx"];
+	n8 -> n2;
+	n8 -> n7;
+	n9 [label="xxxxxxx\nxxxx"];
+	n9 -> n2;
+	n9 -> n7;
+	n10 [label="xxxxxx\nxxxxx"];
+	n10 -> n2;
+	n10 -> n7;
+}
