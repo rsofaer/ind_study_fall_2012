@@ -1,0 +1,14 @@
+Let G be the input graph, G=(V,e,w)
+
+Construct G', G' has rounded edge weights, as follows:
+  Sort the edges of G by corresponding weight.
+  then use algorithm implemented in roundlengths to reduce the number of distict lengths
+    start at the smallest length, set the current target to that,
+    for each subsequent length,
+      if it is greater than the twice the target,
+        set the target to that length
+      set the current length to the target
+
+Now we know from their proof that a low-stretch tree in G' is low-stretch in G
+
+
