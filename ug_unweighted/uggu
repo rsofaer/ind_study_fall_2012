@@ -1,0 +1,20 @@
+graph ug_176 {
+	graph [fontsize=8,
+		start=1
+	];
+	node [style=filled];
+	n0 [color=green,label="xxxxx xx xxxxxxx"];
+	n0 -- n1;
+	n2 [color=green,label="xxxxxxxxxx xxx xxxxx-xxxxxxxx"];
+	n0 -- n2;
+	n3 [color=green,label="xxxxxxxxxxx xx xxxxxxx xxxxxxxxxxxxxx"];
+	n0 -- n3;
+	n4 [color=green,label="xxxxxxxxx xxxxxxxxxxx xxxx xxxx"];
+	n0 -- n4;
+	n4 -- n5;
+	n4 -- n6;
+	n4 -- n7;
+	n4 -- n8;
+	n4 -- n9;
+	n4 -- n10;
+}

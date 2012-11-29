@@ -1,0 +1,20 @@
+graph ug_163 {
+	graph [fontsize=8,
+		start=1
+	];
+	node [style=filled];
+	edge [len=1];
+	n0 [color=gold,label="xxx-xxxxx/xxx-xxxxxxx",shape=diamond];
+	n1 [color=red,label="xxxxxxx.xxx.xxx"];
+	n0 -- n1 [len="1.5",weight=".5"];
+	n2 [color=red,label="xxx xxxxxxxx "];
+	n0 -- n2 [len="1.5",weight=".5"];
+	n3 [color=red,label=" xxxx "];
+	n0 -- n3 [len="1.5",weight=".5"];
+	n4 [color=red,label="xxx.xxx.xxx"];
+	n0 -- n4 [len="1.5",weight=".5"];
+	n5 [color=red,label=" xxxx "];
+	n0 -- n5 [len="1.5",weight=".5"];
+	n6 [color=red,label=" xxxxxxxxx"];
+	n0 -- n6 [len="1.5",weight=".5"];
+}

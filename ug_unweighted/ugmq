@@ -1,0 +1,38 @@
+graph ug_328 {
+	graph [center=TRUE,
+		fontsize=12,
+		orientation=landscape,
+		page="8.5,11",
+		ratio=compress,
+		size="8,10.5"
+	];
+	n0 [shape=box];
+	n0 -- n1 [dir=none];
+	n0 -- n2 [dir=none];
+	n0 -- n3 [dir=none];
+	n0 -- n4 [dir=none];
+	n5 [label="xxxxxxxxxxx xxxx"];
+	n0 -- n5 [dir=none];
+	n6 [label="xxxxxxxx\nxxxxxx"];
+	n0 -- n6;
+	n0 -- n7 [dir=none];
+	n0 -- n8 [dir=none];
+	n0 -- n9 [dir=none];
+	n0 -- n10 [dir=none];
+	n0 -- n11 [dir=none];
+	n12 [label="xxxxx xxxxx"];
+	n0 -- n12 [dir=none];
+	n13 [label="xxxxx xxxxx"];
+	n0 -- n13 [dir=none];
+	n14 [shape=invtriangle];
+	n0 -- n14 [dir=none];
+	n16 [shape=box];
+	n14 -- n16;
+	n17 [label="xxxxx xxxx",shape=box];
+	n14 -- n17;
+	n15 [label="xxxxxxxxx\nxxxxxxxx"];
+	n18 [label="xxxx\n(xxx)"];
+	n16 -- n18 [dir=none];
+	n19 [label="xxx xxxxxx\n(xxx)"];
+	n17 -- n19 [dir=none];
+}

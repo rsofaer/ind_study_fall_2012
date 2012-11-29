@@ -1,0 +1,21 @@
+graph ug_329 {
+	graph [center=TRUE,
+		fontsize=12,
+		orientation=landscape,
+		page="8.5,11",
+		ratio=compress
+	];
+	n0 [shape=box];
+	n1 [label="xxxxx xxxxxx\n(xxx)"];
+	n0 -- n1 [dir=none];
+	n2 [label=xxxxxx];
+	n0 -- n2 [dir=none];
+	n3 [label=xxxx];
+	n0 -- n3 [dir=none];
+	n4 [label=xxxxx];
+	n0 -- n4 [dir=none];
+	n5 [label=xxx];
+	n0 -- n5 [dir=none];
+	n6 [label="xxxxxx xx\nxxxxxxxxx",style=dotted];
+	n0 -- n6 [dir=none];
+}

@@ -1,0 +1,57 @@
+graph ug_301 {
+	node [fontsize=8,
+		height="0.25",
+		width="0.5"
+	];
+	n0 [label=xxxxxxxxx,shape=box,style=bold];
+	n1 [label=xxxxxxxxx,shape=box,style=bold];
+	n0 -- n1 [len="1.0",style=bold,weight=3];
+	n2 [label=xxxxxxxxx,shape=box,style=bold];
+	n0 -- n2 [len="1.0",style=bold,weight=3];
+	n3 [label=xxxxxxxxx,shape=box,style=bold];
+	n0 -- n3 [len="1.0",style=bold,weight=3];
+	n4 [label=xxxxxxxxxx,shape=box,style=bold];
+	n0 -- n4 [len="1.2",weight=3];
+	n5 [label=xxxxxxxxxx,shape=box];
+	n0 -- n5 [len="1.2",weight="0.001"];
+	n6 [label=xxxx,shape=octagon];
+	n0 -- n6 [len="1.2",weight="0.001"];
+	n7 [label=xxxxxx];
+	n0 -- n7 [len="1.2",weight="0.001"];
+	n8 [label=xxx];
+	n0 -- n8 [len="1.2",weight="0.001"];
+	n9 [label=xxxx];
+	n0 -- n9 [len="1.2",weight="0.001"];
+	n1 -- n2 [len="1.0",style=bold,weight=3];
+	n1 -- n6 [len="1.2",weight="0.001"];
+	n10 [label=xxxxxxxxxx,shape=box,style=bold];
+	n1 -- n10 [len="1.0",style=bold,weight=3];
+	n11 [label="xxx xxxx",shape=box,style=bold];
+	n1 -- n11 [len="1.0",style=bold,weight=3];
+	n12 [label=xxxxx,shape=box,style=bold];
+	n1 -- n12 [len="1.0",style=bold,weight=3];
+	n13 [label=xxxxxxx,shape=box];
+	n1 -- n13 [len="1.2",weight="0.001"];
+	n14 [label=xxxxx];
+	n1 -- n14 [len="1.2",weight="0.001"];
+	n15 [label=xxxxxxx];
+	n1 -- n15 [len="1.2",weight="0.001"];
+	n16 [label=xxxxx];
+	n1 -- n16 [len="1.2",weight="0.001"];
+	n17 [label=xxxxxxx];
+	n1 -- n17 [len="1.2",weight="0.001"];
+	n18 [label=xxxxxxxxx,shape=box,style=bold];
+	n2 -- n18 [len="1.2",weight=3];
+	n3 -- n10 [len="1.0",style=bold,weight=3];
+	n19 [label=xxxxxxx];
+	n3 -- n19 [len="1.2",weight="0.001"];
+	n4 -- n11 [len="1.0",style=bold,weight=3];
+	n20 [label="xxxxxxxxxx\nxxx",shape=octagon];
+	n4 -- n20 [len="1.2",weight="0.001"];
+	n22 [label="xxx xxxx\Nxx",shape=octagon];
+	n11 -- n22 [len="1.2",weight="0.001"];
+	n23 [label="xxxxx\nxxx",shape=octagon];
+	n12 -- n23 [len="1.2",weight="0.001"];
+	n21 [label="xxxxxxxxx\nxxx",shape=octagon];
+	n18 -- n21 [len="1.2",weight="0.001"];
+}

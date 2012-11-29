@@ -1,0 +1,27 @@
+graph ug_186 {
+	graph [fontsize=8,
+		start=1
+	];
+	node [style=filled];
+	edge [len=1];
+	n0 [color=green,label="xxxx xxxxxxxxxx'x xxxx"];
+	n1 [color=green,label="xxxxxxxxx xxxxxxxxxxx xxxx xxxx"];
+	n0 -- n1;
+	n2 [color=blue,label="xxxxxxxxxx xxxxx xxxxxxxx."];
+	n0 -- n2;
+	n3 [color=blue,label="xxxxxx xxxxxx"];
+	n1 -- n3;
+	n4 [color=blue,label="xxxx xxxxxxxxxx"];
+	n1 -- n4;
+	n5 [color=blue,label="xxxxxx xxxxxx"];
+	n1 -- n5;
+	n6 [color=blue,label="xxxxx xxxxxxx"];
+	n1 -- n6;
+	n7 [color=green,label="xxxx xxxxxxxxxx xxxxxxxxxxx"];
+	n1 -- n7;
+	n8 [color=blue,label="xxxxxxxxxxx xxxxxxxxx"];
+	n1 -- n8;
+	n3 -- n8;
+	n9 [color=blue,label="xxx xxxxxxxxxxx xxxxxxxxx"];
+	n7 -- n9;
+}

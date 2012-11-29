@@ -1,0 +1,24 @@
+graph ug_375 {
+	graph [nodesep=".05",
+		rankdir=LR
+	];
+	node [height=".1",
+		shape=record,
+		width="1.5"
+	];
+	n0 [height="2.5",label="<f0> |<f1> |<f2> |<f3> |<f4> |<f5> |<f6> |",width=".1"];
+	n1 [label="{<n> XXX | XXX |<p> }"];
+	n0:f0 -- n1:n;
+	n2 [label="{<n> XX | XXX |<p> }"];
+	n0:f1 -- n2:n;
+	n3 [label="{<n> XX | XXX |<p> }"];
+	n0:f2 -- n3:n;
+	n4 [label="{<n> XX | XXX |<p> }"];
+	n0:f5 -- n4:n;
+	n5 [label="{<n> XXX | XXX |<p> }"];
+	n0:f6 -- n5:n;
+	n6 [label="{<n> XXX | XXX |<p> }"];
+	n2:p -- n6:n;
+	n7 [label="{<n> XXX | XXX |<p> }"];
+	n4:p -- n7:n;
+}

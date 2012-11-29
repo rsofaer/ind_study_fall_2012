@@ -1,0 +1,27 @@
+graph ug_78 {
+	graph [fontsize=10,
+		orientation=landscape
+	];
+	edge [len="1.5"];
+	n0 [style=filled];
+	n1 [color=green];
+	n0 -- n1;
+	n2 [color=green];
+	n0 -- n2;
+	n3 [color=green];
+	n0 -- n3;
+	n4 [color=green];
+	n0 -- n4;
+	n5 [color=blue];
+	n0 -- n5 [len=2,weight=".5"];
+	n6 [color=green];
+	n0 -- n6;
+	n7 [color=green];
+	n0 -- n7;
+	n8 [color=green];
+	n0 -- n8;
+	n9 [color=green];
+	n0 -- n9;
+	n10 [color=green];
+	n0 -- n10;
+}

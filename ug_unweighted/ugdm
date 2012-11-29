@@ -1,0 +1,25 @@
+graph ug_90 {
+	graph [fontsize=8,
+		orientation=landscape
+	];
+	edge [len="1.5"];
+	n0 [style=filled];
+	n1 [color=green,label="xxx xxxxxxxxx"];
+	n0 -- n1;
+	n2 [color=green,label="xxxxxx xxx xxxxxxx"];
+	n0 -- n2;
+	n3 [color=green,label="xxxxxxxx xxxxxxxx"];
+	n0 -- n3;
+	n4 [color=green,label=xxxxxxxxx];
+	n0 -- n4;
+	n5 [color=green,label=xxxx];
+	n0 -- n5;
+	n6 [color=blue,label="xxxxxxx xxxxxxxxx xxxxxxxxx"];
+	n0 -- n6 [len=2,weight=".5"];
+	n7 [color=green,label="xxxxxx xxxxxxx"];
+	n0 -- n7;
+	n8 [color=green,label="xxx xx xxxxxxx"];
+	n0 -- n8;
+	n9 [color=green,label="xxxxxxxx xxxxxxxx"];
+	n0 -- n9;
+}

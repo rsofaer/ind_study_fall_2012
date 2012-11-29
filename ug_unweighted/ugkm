@@ -1,0 +1,22 @@
+graph ug_272 {
+	graph [size="8,8"];
+	node [style=filled];
+	n111 -- n113 [label=xx5];
+	n113 -- n117 [label=xx1];
+	n113 -- n117 [label=xx3];
+	n113 -- n114 [label=xx7];
+	n117 -- n114 [label=xx6];
+	n117 -- n110 [label=xx1];
+	n117 -- n0 [label=xx5];
+	n117 -- n244 [label=xx8];
+	n114 -- n0 [label=xx4];
+	n110 -- n243 [label=xx12];
+	n243 -- n0 [label=xx4];
+	n243 -- n241 [label=xx2];
+	n0 -- n244 [label=xx6];
+	n0 -- n244 [label=xx9];
+	n0 -- n241 [label=xx2];
+	n0 -- n242 [label=xx3];
+	n90 -- n91 [label=xx10];
+	n90 -- n91 [label=xx11];
+}

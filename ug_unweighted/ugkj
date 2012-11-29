@@ -1,0 +1,47 @@
+graph ug_269 {
+	node [fontsize=8,
+		height="0.25",
+		width="0.5"
+	];
+	edge [len="1.8"];
+	n0 [style=box];
+	n1 [style=box];
+	n0 -- n1 [len=3,style=bold];
+	n2 [style=box];
+	n0 -- n2 [len=3,style=bold];
+	n3 [style=box];
+	n0 -- n3;
+	n4 [style=box];
+	n0 -- n4;
+	n5 [style=box];
+	n0 -- n5;
+	n0 -- n6;
+	n0 -- n7;
+	n0 -- n8;
+	n0 -- n9;
+	n0 -- n10;
+	n1 -- n2 [len=3,style=bold];
+	n11 [style=box];
+	n1 -- n11;
+	n1 -- n12;
+	n1 -- n13;
+	n1 -- n14;
+	n1 -- n15;
+	n1 -- n16;
+	n1 -- n17;
+	n2 -- n18;
+	n2 -- n19;
+	n2 -- n20;
+	n3 -- n8 [len="0.6",style=invis,weight="0.1"];
+	n3 -- n9 [len="0.6",style=invis,weight="0.1"];
+	n3 -- n21;
+	n6 -- n7 [len="0.6",style=invis,weight="0.1"];
+	n7 -- n8 [len="0.6",style=invis,weight="0.1"];
+	n11 -- n12 [len="0.6",style=invis,weight="0.1"];
+	n12 -- n13 [len="0.6",style=invis,weight="0.1"];
+	n13 -- n14 [len="0.6",style=invis,weight="0.1"];
+	n14 -- n15 [len="0.6",style=invis,weight="0.1"];
+	n15 -- n16 [len="0.6",style=invis,weight="0.1"];
+	n16 -- n17 [len="0.6",style=invis,weight="0.1"];
+	n18 -- n19 [len="0.6",style=invis,weight="0.1"];
+}

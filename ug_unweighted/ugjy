@@ -1,0 +1,22 @@
+graph ug_258 {
+	n1 -- n5 [label="xx!"];
+	n1 -- n13 [label="xx*"];
+	n1 -- n11 [label="xx!"];
+	n1 -- n3 [label="xx*"];
+	n5 -- n9 [label="xx*"];
+	n5 -- n8 [label="xx*"];
+	n5 -- n15 [label="xx!"];
+	n13 -- n9 [label="xx!"];
+	n13 -- n19 [label="xx!"];
+	n11 -- n15 [label="xx!"];
+	n11 -- n19 [label="xx*"];
+	n11 -- n7 [label="xx*"];
+	n3 -- n8 [label="xx!"];
+	n3 -- n7 [label="xx!"];
+	n9 -- n17 [label="xx!"];
+	n8 -- n12 [label="xx!"];
+	n15 -- n17 [label="xx*"];
+	n15 -- n12 [label="xx*"];
+	n17 -- n19 [label="xx!"];
+	n12 -- n7 [label="xx!"];
+}
