@@ -6,8 +6,7 @@ SET(HEADERS
     )
 
 
-ADD_LIBRARY(myappLib ${SOURCES} ${HEADERS})
 
-ADD_EXECUTABLE(MyApp.exe main.cpp)
+ADD_EXECUTABLE(run main.cpp)
+TARGET_LINK_LIBRARIES(run teuchos)
 
-TARGET_LINK_LIBRARIES(MyApp.exe  myappLib  ${Trilinos_LIBRARIES} ${Trilinos_TPL_LIBRARIES} ${MPI_LIBRARIES}) 
