@@ -1,0 +1,2 @@
+/Users/raphael/workspace/ind_study_fall_2012/trilinosExample/build/src/CMakeFiles/MyApp.exe.dir
+/Users/raphael/workspace/ind_study_fall_2012/trilinosExample/build/src/CMakeFiles/myappLib.dir

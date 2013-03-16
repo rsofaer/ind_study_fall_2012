@@ -1,8 +1,0 @@
-graph ug_368 {
-	graph [rankdir=LR];
-	node [shape=box];
-	n0 -- n1 [label="xxxxxxxxx xxxxx 1:x"];
-	n0 -- n1 [label="xxxxxxx xxxxxxxxxxx 1:x"];
-	n2 -- n3 [label="xxxxxxxxxx xxx xxxxxxxx x:1"];
-	n2 -- n3 [label="xxxxxxxx xxxxxxxxxx 1:x"];
-}
