@@ -3,6 +3,7 @@ SET(SOURCES
     )
 
 SET(HEADERS
+  stretch.hpp
     )
 SET(_GLIBCXX_FULLY_DYNAMIC_STRING 1)
 
