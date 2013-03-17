@@ -8,6 +8,7 @@
 #include <ctime>
 #include <string>
 #include <boost/random/linear_congruential.hpp>
+#include <boost/graph/prim_minimum_spanning_tree.hpp>
 #include "stretch.hpp"
 using namespace boost;
 
@@ -15,12 +16,12 @@ using namespace boost;
 int main(int argc, char* argv[])
 {
   typedef adjacency_list<vecS, vecS, undirectedS, 
-            no_property, property<edge_weight_t, int>, listS> Graph;
+            no_property, property<edge_weight_t, double>, listS> Graph;
 
   int numV = 20;
   int numE = 182;
   Graph g;
-  random::minstd_rand gen;
+  std::minstd_rand gen;
   gen.seed(time(0));
   generate_random_graph(g, numV, numE, gen, false);
   randomize_property<edge_weight_t>(g, gen);
@@ -32,9 +33,13 @@ int main(int argc, char* argv[])
 
   for(auto edgePair = edges(g); edgePair.first != edgePair.second; ++edgePair.first)
   {
-      weights[*edgePair.first] = weights[*edgePair.first] % 1000;
+      weights[*edgePair.first] = fmod(weights[*edgePair.first],1000);
   }
   
+  std::vector < graph_traits < Graph >::vertex_descriptor >
+    t(num_vertices(g));
+  prim_minimum_spanning_tree(g,t);
+
   std::cout << "Stretch: " << stretch(g,g) << std::endl;
 
   return 0;

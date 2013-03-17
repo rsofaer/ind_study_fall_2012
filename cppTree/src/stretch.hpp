@@ -7,7 +7,7 @@
 
 using namespace std;
 using namespace boost;
-  typedef vector<vector<int> > Matrix;
+  typedef vector<vector<double> > Matrix;
   
 void printM(Matrix& m){
   
@@ -33,18 +33,29 @@ double stretch(Graph& g, Graph& t){
   }
 
   //// Get all pairs shortest path for the graph.
-  //Matrix gPaths(nvg, vector<int>(nvg,0));
-  //johnson_all_pairs_shortest_paths(g, gPaths);
+  Matrix gPaths(nvg, vector<double>(nvg,0));
+  johnson_all_pairs_shortest_paths(g, gPaths);
 
   //// Get all pairs shortest path for the Tree.
-  //Matrix tPaths(nvt, vector<int>(nvt,0));
-  //johnson_all_pairs_shortest_paths(t,tPaths);
+  Matrix tPaths(nvt, vector<double>(nvt,0));
+  johnson_all_pairs_shortest_paths(t,tPaths);
 
+  auto weights = get(edge_weight, g);
+  double totalWeight;
   // For each edge in G's edges, 
   for(auto edge = edges(g); edge.first != edge.second; ++edge.first)
   {
-    std::cout << *edge.first;
+    //Get the edge weight in G.
+    auto weight = weights[*(edge.first)];
+    totalWeight += weight;
+    std::cout << "Original weight: " << weight << std::endl;
+    std::cout << "Original shortest path: " <<  gPaths[source(*(edge.first),g)][target(*(edge.first),g)] << std::endl;
+    double newWeight = tPaths[source(*(edge.first),g)][target(*(edge.first),g)];
+    std::cout << "New Shortest Path: " << newWeight << std::endl;
+
+    // new path length is the sum of lengths along the tree
+    // stretch for this edge is new_path_length*weight
   }
-  
+  std::cout << "Total weight: " << totalWeight << std::endl;
   return 0.0;
 }

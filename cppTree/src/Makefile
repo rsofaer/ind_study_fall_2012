@@ -30,27 +30,24 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/Cellar/cmake/2.8.7/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/Cellar/cmake/2.8.7/bin/cmake -E remove -f
-
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = /usr/local/Cellar/cmake/2.8.7/bin/ccmake
+RM = /usr/bin/cmake -E remove -f
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/raphael/workspace/ind_study_fall_2012/cppTree
+CMAKE_SOURCE_DIR = /home/raphael/workspace/ind_study_fall_2012/cppTree
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/raphael/workspace/ind_study_fall_2012/cppTree
+CMAKE_BINARY_DIR = /home/raphael/workspace/ind_study_fall_2012/cppTree
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/local/Cellar/cmake/2.8.7/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
+	/usr/bin/cmake -i .
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -60,7 +57,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/Cellar/cmake/2.8.7/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -69,14 +66,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/raphael/workspace/ind_study_fall_2012/cppTree && $(CMAKE_COMMAND) -E cmake_progress_start /Users/raphael/workspace/ind_study_fall_2012/cppTree/CMakeFiles /Users/raphael/workspace/ind_study_fall_2012/cppTree/src/CMakeFiles/progress.marks
-	cd /Users/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/raphael/workspace/ind_study_fall_2012/cppTree/CMakeFiles 0
+	cd /home/raphael/workspace/ind_study_fall_2012/cppTree && $(CMAKE_COMMAND) -E cmake_progress_start /home/raphael/workspace/ind_study_fall_2012/cppTree/CMakeFiles /home/raphael/workspace/ind_study_fall_2012/cppTree/src/CMakeFiles/progress.marks
+	cd /home/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/raphael/workspace/ind_study_fall_2012/cppTree/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f CMakeFiles/Makefile2 src/clean
+	cd /home/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -85,22 +82,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/raphael/workspace/ind_study_fall_2012/cppTree && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/raphael/workspace/ind_study_fall_2012/cppTree && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/CMakeFiles/run.dir/rule:
-	cd /Users/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/run.dir/rule
+	cd /home/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/run.dir/rule
 .PHONY : src/CMakeFiles/run.dir/rule
 
 # Convenience name for target.
@@ -109,7 +106,7 @@ run: src/CMakeFiles/run.dir/rule
 
 # fast build rule for target.
 run/fast:
-	cd /Users/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f src/CMakeFiles/run.dir/build.make src/CMakeFiles/run.dir/build
+	cd /home/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f src/CMakeFiles/run.dir/build.make src/CMakeFiles/run.dir/build
 .PHONY : run/fast
 
 main.o: main.cpp.o
@@ -117,7 +114,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	cd /Users/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f src/CMakeFiles/run.dir/build.make src/CMakeFiles/run.dir/main.cpp.o
+	cd /home/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f src/CMakeFiles/run.dir/build.make src/CMakeFiles/run.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -125,7 +122,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /Users/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f src/CMakeFiles/run.dir/build.make src/CMakeFiles/run.dir/main.cpp.i
+	cd /home/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f src/CMakeFiles/run.dir/build.make src/CMakeFiles/run.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -133,7 +130,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /Users/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f src/CMakeFiles/run.dir/build.make src/CMakeFiles/run.dir/main.cpp.s
+	cd /home/raphael/workspace/ind_study_fall_2012/cppTree && $(MAKE) -f src/CMakeFiles/run.dir/build.make src/CMakeFiles/run.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -159,6 +156,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/raphael/workspace/ind_study_fall_2012/cppTree && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/raphael/workspace/ind_study_fall_2012/cppTree && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
