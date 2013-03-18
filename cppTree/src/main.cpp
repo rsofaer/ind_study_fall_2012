@@ -8,7 +8,7 @@
 #include <ctime>
 #include <string>
 #include <boost/random/linear_congruential.hpp>
-#include <boost/graph/prim_minimum_spanning_tree.hpp>
+#include <boost/graph/kruskal_min_spanning_tree.hpp>
 #include "stretch.hpp"
 using namespace boost;
 
@@ -36,11 +36,11 @@ int main(int argc, char* argv[])
       weights[*edgePair.first] = fmod(weights[*edgePair.first],1000);
   }
   
-  std::vector < graph_traits < Graph >::vertex_descriptor >
-    t(num_vertices(g));
-  prim_minimum_spanning_tree(g,t);
+  typedef std::vector<graph_traits<Graph>::edge_descriptor> EdgeList;
+  EdgeList t(num_vertices(g));
+  kruskal_minimum_spanning_tree(g,std::back_inserter(t));
 
-  std::cout << "Stretch: " << stretch(g,g) << std::endl;
+  std::cout << "Stretch: " << stretchCalculator<Graph, EdgeList>::stretch(g,t) << std::endl;
 
   return 0;
 }
