@@ -1,7 +1,9 @@
 .DS_Store
 octave-core
 cppTree/build/
+cppTree/Debug/
 cppTree/CMakeFiles/
 cppTree/CMakeCache.txt
 cppTree/src/CMakeFiles/
 cppTree/src/CMakeCache.txt
+cppTree/cppTree.*
