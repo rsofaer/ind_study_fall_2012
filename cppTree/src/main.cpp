@@ -1,6 +1,6 @@
 #include <utility>                   // for std::pair
 #include <algorithm>                 // for std::for_each
-#include <unordered_set>
+#include <boost/unordered/unordered_set.hpp>
 #include <boost/graph/graph_traits.hpp>
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/random.hpp>
@@ -20,7 +20,7 @@ using namespace boost;
 	typedef graph_traits<Graph>::vertex_descriptor Vertex;
 
    struct EdgeHasher{
-	   std::size_t operator ()(Edge const& e){
+	   std::size_t operator ()(Edge const& e) const{
 	    std::size_t hash = 0;
 		boost::hash_combine(hash, e.m_source);
 		boost::hash_combine(hash, e.m_target);
@@ -28,11 +28,19 @@ using namespace boost;
    }
   };
    struct EdgeEqual{
-	bool operator()(Edge const& a, Edge const& b){
+	bool operator()(Edge const& a, Edge const& b) const{
 		return a.m_source == b.m_source && a.m_target == b.m_target;
 	}
    };
- 
+   typedef boost::unordered_set<Edge, EdgeHasher, EdgeEqual> EdgeSet;
+ struct EdgeSetFilter{
+	 EdgeSetFilter(const EdgeSet& s) : s(s) {}
+  bool operator()(const Edge& edge_id) const {
+    return s.find(edge_id) != s.end();
+  }
+	private:
+  const EdgeSet& s;
+ };
 
 
 int main(int argc, char* argv[])
@@ -58,15 +66,13 @@ int main(int argc, char* argv[])
   }
 
   
-  typedef std::unordered_set<Edge, EdgeHasher, EdgeEqual> EdgeSet;
+  
   EdgeSet t;
-  auto includedPred = [&t](graph_traits<Graph>::edge_descriptor e) -> bool { 
-	  return (t.find(e) != t.end());
-  };
+  auto includedPred = boost::is_in_subset<EdgeSet>(t);
     kruskal_minimum_spanning_tree(g, std::insert_iterator<EdgeSet>(t,t.begin()));
 
   std::cout << "Edges in spanning tree: " << t.size() << std::endl;
-  std::cout << "Stretch: " << stretchCalculator<Graph>::stretch(g,includedPred) << std::endl;
+  std::cout << "Stretch: " << stretchCalculator<Graph, boost::is_in_subset<EdgeSet> >::stretch(g,includedPred) << std::endl;
 
   return 0;
 }

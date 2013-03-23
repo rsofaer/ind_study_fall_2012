@@ -1,5 +1,6 @@
 #include <boost/graph/graph_traits.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/utility/result_of.hpp>
 #include <utility>                   // for std::pair
 #include <algorithm>                 // for std::for_each
 
@@ -8,17 +9,38 @@
 #include <boost/graph/johnson_all_pairs_shortest.hpp>
 #include <boost/property_map/property_map.hpp>
 
-
 using namespace std;
 using namespace boost;
-template<class Graph>
+template<class Graph, typename EdgePredicate>
 struct stretchCalculator{
 
 typedef vector<vector<double> > Matrix;
+typedef typename graph_traits<Graph>::edge_descriptor Edge;
+typedef typename property_map<Graph, edge_weight_t>::type WeightMap; // A weightmap is drawn from a specific graph with get.
 
-static void printEdge(typename graph_traits<Graph>::edge_descriptor i){std::cout << ' ' << i;}
-template<typename Param>
-static bool trueF(Param p){return true}
+
+struct edgeReciprocalFunctor{
+	const WeightMap& w;
+	typedef typename WeightMap::value_type Value;
+	typedef typename WeightMap::key_type Key;
+	explicit edgeReciprocalFunctor(const WeightMap& w): w(w) {}
+	const typename Value operator[] (const Key& e) { 
+		return 1/w[e];
+		
+	}
+	// Boilerplate to make this a boost property_map.
+	typedef Value value_type;
+	typedef Key key_type;
+	typedef typename WeightMap::reference reference;
+	typedef Value result_type;
+	typedef boost::readable_property_map_tag category; 
+	
+};
+  inline typename edgeReciprocalFunctor::value_type get(
+	  const typename edgeReciprocalFunctor& ef, const typename edgeReciprocalFunctor::key_type& k) const 
+    {return ef[k];}
+
+static void printEdge(Edge i){std::cout << ' ' << i;}
 
 static void printM(Matrix& m){
   
@@ -33,8 +55,8 @@ static void printM(Matrix& m){
 // Given a spanning tree T, and a graph G with edges E.
 // avg_stretchT(G) = (1/|E|)*(the sum over all edges in E of
 //                             the new distance/the old distance)
-template<class Callable>
-static double stretch(Graph& g, Callable& edgeIncludedPred){
+
+static double stretch(Graph& g, EdgePredicate& edgeIncludedPred){
   int nvg = num_vertices(g);
 
   // Get all pairs shortest path for the graph.
@@ -44,22 +66,33 @@ static double stretch(Graph& g, Callable& edgeIncludedPred){
   // Get all pairs shortest path for the Tree.
   //Matrix tPaths(nvt, vector<double>(nvt,0));
   //johnson_all_pairs_shortest_paths(t,tPaths);
-  auto t = filtered_graph<Graph, Callable>(g, edgeIncludedPred);
 
-  auto weights = get(edge_weight, g);
-  auto weightsT = get(edge_weight, t);
+   // Filter the graph by the edge set.
+  auto t = filtered_graph<Graph, EdgePredicate>(g, edgeIncludedPred);
+
+  auto weights = boost::get(edge_weight, g); // Get the weight map from the full graph.
+  WeightMap weightsT = boost::get(edge_weight, t);  // Get the weight map from the tree.
+
+  // Invert the weights to get the sum of the reciprocal along the shortest path.
+  // Since there is a unique shortest path in a tree for all positive weight functions,
+  // we can find the path using the reciprocal weights. 
+  auto reciprocal_map = edgeReciprocalFunctor(weightsT);
+  Matrix tReciprocalPaths(nvg,vector<double>(nvg, 0));
+  johnson_all_pairs_shortest_paths(g, tReciprocalPaths,  weight_map(reciprocal_map));
+  
+  
   double totalWeight = 0.0;
 
   // For each edge in G's edges, 
   for(auto edge = edges(g); edge.first != edge.second; ++edge.first)
   {
     //Get the edge weight in G.
-    auto weight = weights[*(edge.first)];
-    totalWeight += weight;
 	Edge e = *(edge.first);
+    auto weight = weights[e];
+    totalWeight += weight;
 	std::cout << "Edge: " << e << std::endl;
     std::cout << "Original weight: " << weight << std::endl;
-
+	std::cout << "Reciprocal weight: " << reciprocal_map[e] << std::endl;
     //std::cout << "Original shortest path: " <<  gPaths[source(*(edge.first),g)][target(*(edge.first),g)] << std::endl;
     //double newWeight = tPaths[source(*(edge.first),g)][target(*(edge.first),g)];
     //std::cout << "New Shortest Path: " << newWeight << std::endl;
