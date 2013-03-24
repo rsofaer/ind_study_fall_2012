@@ -8,6 +8,7 @@
 #include <boost/graph/filtered_graph.hpp>
 #include <boost/graph/johnson_all_pairs_shortest.hpp>
 #include <boost/property_map/property_map.hpp>
+#include <boost/property_map/function_property_map.hpp>
 
 using namespace std;
 using namespace boost;
@@ -21,24 +22,18 @@ typedef typename property_map<Graph, edge_weight_t>::type WeightMap; // A weight
 
 struct edgeReciprocalFunctor{
 	const WeightMap& w;
-	typedef typename WeightMap::value_type Value;
-	typedef typename WeightMap::key_type Key;
+	typedef typename WeightMap::value_type value_type;
+	typedef typename WeightMap::value_type result;
+	typedef typename WeightMap::key_type key_type;
+
 	explicit edgeReciprocalFunctor(const WeightMap& w): w(w) {}
-	const typename Value operator[] (const Key& e) { 
+	const typename value_type operator[] (const key_type& e) const{ 
 		return 1/w[e];
-		
 	}
-	// Boilerplate to make this a boost property_map.
-	typedef Value value_type;
-	typedef Key key_type;
-	typedef typename WeightMap::reference reference;
-	typedef Value result_type;
-	typedef boost::readable_property_map_tag category; 
-	
+	const typename value_type operator() (const key_type& e) const{ 
+		return 1/w[e];
+	}
 };
-  inline typename edgeReciprocalFunctor::value_type get(
-	  const typename edgeReciprocalFunctor& ef, const typename edgeReciprocalFunctor::key_type& k) const 
-    {return ef[k];}
 
 static void printEdge(Edge i){std::cout << ' ' << i;}
 
@@ -78,10 +73,13 @@ static double stretch(Graph& g, EdgePredicate& edgeIncludedPred){
   // we can find the path using the reciprocal weights. 
   auto reciprocal_map = edgeReciprocalFunctor(weightsT);
   Matrix tReciprocalPaths(nvg,vector<double>(nvg, 0));
-  johnson_all_pairs_shortest_paths(g, tReciprocalPaths,  weight_map(reciprocal_map));
+  auto pmapr = make_function_property_map<edgeReciprocalFunctor::key_type, edgeReciprocalFunctor::value_type,
+	  edgeReciprocalFunctor>(reciprocal_map);
+  johnson_all_pairs_shortest_paths(t, tReciprocalPaths,  weight_map(pmapr));
   
   
   double totalWeight = 0.0;
+  double totalStretch = 0.0;
 
   // For each edge in G's edges, 
   for(auto edge = edges(g); edge.first != edge.second; ++edge.first)
@@ -99,9 +97,10 @@ static double stretch(Graph& g, EdgePredicate& edgeIncludedPred){
 
     // new path length is the sum of lengths along the tree
     // stretch for this edge is new_path_length*weight
+	totalStretch += (tReciprocalPaths[source(e, t)][target(e, t)])*weight;
   }
   std::cout << "Total weight: " << totalWeight << std::endl;
-  return 0.0;
+  return totalStretch/totalWeight;
 }
 
 };

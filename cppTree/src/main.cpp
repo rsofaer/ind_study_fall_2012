@@ -33,15 +33,6 @@ using namespace boost;
 	}
    };
    typedef boost::unordered_set<Edge, EdgeHasher, EdgeEqual> EdgeSet;
- struct EdgeSetFilter{
-	 EdgeSetFilter(const EdgeSet& s) : s(s) {}
-  bool operator()(const Edge& edge_id) const {
-    return s.find(edge_id) != s.end();
-  }
-	private:
-  const EdgeSet& s;
- };
-
 
 int main(int argc, char* argv[])
 {
