@@ -11,7 +11,11 @@
 #include <boost/property_map/function_property_map.hpp>
 
 using namespace std;
+#ifndef _IND_STUDY_CPPTREE_STRETCH_CALCULATOR_H
+#define _IND_STUDY_CPPTREE_STRETCH_CALCULATOR_H
+
 using namespace boost;
+namespace cpptree{
 template<class Graph, typename EdgePredicate>
 struct stretchCalculator{
 
@@ -104,3 +108,5 @@ static double stretch(Graph& g, EdgePredicate& edgeIncludedPred){
 }
 
 };
+}
+#endif

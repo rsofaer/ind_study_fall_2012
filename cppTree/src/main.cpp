@@ -12,27 +12,15 @@
 //#include <boost/random/linear_congruential.hpp>
 #include <boost/graph/kruskal_min_spanning_tree.hpp>
 #include "stretch.hpp"
+#include "stprimitives.hpp"
+#include "graph_typedefs.hpp"
 using namespace boost;
+using namespace cpptree;
 
   typedef adjacency_list<vecS, vecS, undirectedS, 
             no_property, property<edge_weight_t, double >, listS> Graph;
-    typedef graph_traits<Graph>::edge_descriptor Edge;
-	typedef graph_traits<Graph>::vertex_descriptor Vertex;
 
-   struct EdgeHasher{
-	   std::size_t operator ()(Edge const& e) const{
-	    std::size_t hash = 0;
-		boost::hash_combine(hash, e.m_source);
-		boost::hash_combine(hash, e.m_target);
-        return hash;
-   }
-  };
-   struct EdgeEqual{
-	bool operator()(Edge const& a, Edge const& b) const{
-		return a.m_source == b.m_source && a.m_target == b.m_target;
-	}
-   };
-   typedef boost::unordered_set<Edge, EdgeHasher, EdgeEqual> EdgeSet;
+   typedef gt<Graph>::EdgeSet EdgeSet;
 
 int main(int argc, char* argv[])
 {
@@ -67,5 +55,3 @@ int main(int argc, char* argv[])
 
   return 0;
 }
-
-
