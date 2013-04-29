@@ -1,0 +1,29 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{lastpage}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\newcommand{\cAuthor}{Raphael Sofaer}
+\newcommand{\cTitle}{Implementing Low-Stretch Spanning Trees}
+\pagestyle{fancy}
+\lhead{\cAuthor}                                                 %
+\rhead{\cTitle}  %
+\lfoot{\lastxmark}                                                      %
+\cfoot{}                                                                %
+\rfoot{Page\ \thepage\ of\ \pageref{LastPage}}                          %
+\renewcommand\headrulewidth{0.4pt}                                      %
+\renewcommand\footrulewidth{0.4pt}        
+
+\title{\cTitle}
+\author{\cAuthor}
+\begin{document}
+\maketitle
+
+\section*{Abstract}
+\section*{Introduction}
+\section*{Conclusion}
+\end{document}
