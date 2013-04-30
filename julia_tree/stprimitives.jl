@@ -49,3 +49,42 @@ function ballshell{V,E}(v::Vertex, r::Real, g::AbstractGraph{V,E})
 
 end
 
+# the smallest rho st dist(x,y) < rho for all y
+function radius{V,E}(g::AbstractGraph{V,E}, x::V)
+
+end
+
+# Contract any edge with a length less than l
+function contract(g::AbstractGraph, l::Real)
+
+end
+
+function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V)
+	beta = 1/(2*log(4/3,original_num_vertices(g) + 32))
+
+	if(num_vertices(g) <= 2)
+		return g
+	end
+
+	rho = radius(g,x) 
+
+	contracted_g, vertex_preimages = contract(g,beta*rho/original_num_vertices(g))
+
+	c_vertex_sets, c_edges = star_decomp(contracted_g, x, 1/3, beta)
+
+	# For each i, let Vi be the preimage under the contraction of vertices in Vi,
+	# (xi , yi ) ∈ V0 × Vi be the edge of shortest length for which xi is a preimage of xi and yi
+	# is a preimage of yi
+	full_vertex_sets = []
+	full_edges = []
+	trees = []
+	for i in length(c_vertex_sets)
+		add!(full_vertex_sets,[])
+		for j in length(c_vertex_sets[i])
+			add!(full_vertex_sets[i], vertex_preimages[c_vertex_sets[i][j]])
+		end
+		# TODO add to full_edges
+		trees[i] = LowStretchTree(subgraph(g,full_vertex_sets[i]), full_edges[i])
+	end
+	return union(trees,full_x)
+end
