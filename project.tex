@@ -12,7 +12,7 @@
 \pagestyle{fancy}
 \lhead{\cAuthor}                                                 %
 \rhead{\cTitle}  %
-\lfoot{\lastxmark}                                                      %
+%\lfoot{\lastxmark}                                                      %
 \cfoot{}                                                                %
 \rfoot{Page\ \thepage\ of\ \pageref{LastPage}}                          %
 \renewcommand\headrulewidth{0.4pt}                                      %
@@ -26,19 +26,33 @@
 \section*{Abstract}
 We implement an algorithm found in "Lower Stretch Spanning Trees", by Spielman et al., and evaluate its stretch performance on a variety of graphs.
 \section*{Introduction}
-\subsection{Approximating with Trees}
+\subsection*{Approximating with Trees}
 In the last twenty years, there has been a growing effort to simplify graphs with trees - usually spanning trees - of low 'stretch', in order to simplify corresponding laplacian matricies and thereby rapidly solve linear problems involving symmetric and diagonally dominant matricies.
 In 1995, Alon, Karp, Peleg and West\cite{AKPG} built a zero sum game in order to investigate the k-server problem\cite{k-server}, and the payoff in their game was adapted by Spielman et al.\cite{lower-stretch} into a more pure measure of how closely a spanning subtree approximates a graph.
 
 \begin{table}
-    \begin{tabular}{|l|l|l|l|}
+    \begin{tabular}{|p{3cm}|l|p{5cm}|l|}
     \hline
-    Author                      & Year & Stretch Metric                                                                              & Average Stretch Upper Bound                             \\ \hline
-    Alon, Karp, Peleg, West     & 1995 & cost(e) = {0 if e \in T, the weight of the unique cycle formed by adding e to T otherwise.} &                         exp(O(sqrt(log(n)*log(log(n)))) \\ \hline
-    Elkin, Emek, Spielman, Teng & 2005 & For each edge e=(u,v) in G, stretch(e) = TreeDist(u,v)/length(e)                            & O(log(n)*log(n)*log(log(n)))                            \\ \hline
+    Author                      &         Year &                Stretch Metric                                                                              & Average Stretch Upper Bound                             \\ \hline
+    Alon, Karp, Peleg, West     & 1995 &           cost(e) = 0 if $e \in T$, otherwise the weight of the unique cycle formed by adding e to T  &                         $exp(O(sqrt(log(n)*log(log(n))))$ \\ \hline
+    Elkin, Emek, Spielman, Teng & 2005 & For each edge e=(u,v) in G, $stretch(e) = \frac{TreeDist(u,v)}{length(e)}$                            & O(log(n)*log(n)*log(log(n)))                            \\ \hline
     \end{tabular}
 \end{table}
-\subsection{Solving with Approximate Trees}
+\subsection*{Solving with Approximate Trees}
 In parallel to the improving tightness of graph-driven approximations to matricies, the solvers that use these approximations have also been getting faster and in some cases, simpler.
+In 1991, P.M. Vaidya presented an unpublished manuscript\cite{vaidya} on constructing preconditioners using approximate subgraphs, which is widely referenced as seminal work\footnote{Unfortunately, we could not find this paper online, only many references to it.}.  This work was extended throughout the 1990s, and by 2004, the combination of recursively building these preconditioners, using inexact Chebyshev methods, and using more sophisticated graph simplification techniques reduced Vaidya's bound of $O((dn)^{1.75}log(κf(A)/\epsilon))$ for a SDD system of degree d with non-positive off diagonals to $mlog^{O(1)}(m)+O(log(cond(A)/\epsilon))(m+n2^{O(sqrt{lognlog logn})})$\cite{nearly-linear-sparse}.
+In 2011, Blelloch et al designed an SDD solver meant to work in parallel which approximately solves an SDD system in 
+$O(mlog^{O(1)}nlog\frac{1}{\epsilon})$ work and $O(m^{1/3 + \theta}log\frac{1}{\epsilon})$, for any fixed $\theta>0$\\
+
+
+The latest advance in using approximate trees for solvers is Kelner et al\cite{comb-sdd}, who replace preconditioning with a direct solution.  They use an electric circuit metaphor, and optimize an electric flow by a stochastic gradient descent-like process within the spanning tree to get an approximate solution to the SDD linear system.
+
+\subsection*{Implementations}
+Since Vaidya proposed these preconditioners, several relevant solvers have been written:\\
+From 2001 to 2003, Sivan Toledo, Doron Chen, and Vladimir Rotkin developed TAUCS\cite{taucs}, a library of sparse linear solvers. 
+It is implemented in C, and includes a variety of algorithms including Vaidya's preconditioners.\\
+Yiannis Koutis wrote CMG\cite{CMG}, a solver which uses multigrid methods and combinatorial preconditioning to solve SDD matricies with non-positive off-diagonal elements.  It is written in C with a MATLAB interface.\\
+Erik Boman working on graph preconditioners for Trilinos (Take this out before release if there's no public word)\\
+Zhuo Feng and Zhiyu Zeng have implemented a solver which uses related methods in CUDA for the purpose of power grid analysis.\\
 \section*{Conclusion}
 \end{document}
