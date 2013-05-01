@@ -26,8 +26,19 @@
 \section*{Abstract}
 We implement an algorithm found in "Lower Stretch Spanning Trees", by Spielman et al., and evaluate its stretch performance on a variety of graphs.
 \section*{Introduction}
+\subsection{Approximating with Trees}
 In the last twenty years, there has been a growing effort to simplify graphs with trees - usually spanning trees - of low 'stretch', in order to simplify corresponding laplacian matricies and thereby rapidly solve linear problems involving symmetric and diagonally dominant matricies.
-In 1995, Alon, Karp, Peleg and West\cite{AKPG} built a zero sum game in order to investigate the k-server problem\cite{k-server}, and the payoff in their game was generalized by [3] into 
+In 1995, Alon, Karp, Peleg and West\cite{AKPG} built a zero sum game in order to investigate the k-server problem\cite{k-server}, and the payoff in their game was adapted by Spielman et al.\cite{lower-stretch} into a more pure measure of how closely a spanning subtree approximates a graph.
 
+\begin{table}
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    Author                      & Year & Stretch Metric                                                                              & Average Stretch Upper Bound                             \\ \hline
+    Alon, Karp, Peleg, West     & 1995 & cost(e) = {0 if e \in T, the weight of the unique cycle formed by adding e to T otherwise.} &                         exp(O(sqrt(log(n)*log(log(n)))) \\ \hline
+    Elkin, Emek, Spielman, Teng & 2005 & For each edge e=(u,v) in G, stretch(e) = TreeDist(u,v)/length(e)                            & O(log(n)*log(n)*log(log(n)))                            \\ \hline
+    \end{tabular}
+\end{table}
+\subsection{Solving with Approximate Trees}
+In parallel to the improving tightness of graph-driven approximations to matricies, the solvers that use these approximations have also been getting faster and in some cases, simpler.
 \section*{Conclusion}
 \end{document}
