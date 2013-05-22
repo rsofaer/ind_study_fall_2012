@@ -4,8 +4,8 @@ using Graphs
 
 import Base.length
 
-function length(e::Edge)
-	1/weight(e)
+function resistance{E}(e::E)
+	1/conductance(e)
 end
 
 # A convenience function for applying an attribute to a 
@@ -30,11 +30,12 @@ end
 
 # The edges with exactly one end in s.
 function boundary{V,E}(s::Set{V}, g::AbstractGraph{V,E})
+
 	return filter(e -> length(intersect(ends(e),s)) == 1,edges(g))
 end
 
 # The sum of the weights in s
-cost(s::Set{Edge}) = reduce(+,map(x -> weight(x), s))
+cost(s::Set{Edge}) = reduce(+,map(x -> conductance(x), s))
 
 vol(s::Union(Set{Edge},Set{Vertex})) = length(s)
 
