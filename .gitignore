@@ -7,3 +7,7 @@ cppTree/CMakeCache.txt
 cppTree/src/CMakeFiles/
 cppTree/src/CMakeCache.txt
 cppTree/cppTree.*
+*.swp
+*.aux
+*.log
+project.pdf
