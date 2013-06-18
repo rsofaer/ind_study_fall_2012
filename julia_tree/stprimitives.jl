@@ -5,7 +5,11 @@ using Graphs
 import Base.length
 
 function resistance{E}(e::E)
-	1/conductance(e)
+  e.resistance
+end
+
+function conductance{E}(e::E)
+  1/e.resistance
 end
 
 # A convenience function for applying an attribute to a 
