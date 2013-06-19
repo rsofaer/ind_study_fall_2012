@@ -1,9 +1,0 @@
-digraph dg_4734 {
-	graph [orientation=landscape,
-		page="8.0, 10.5",
-		rankstep="1.5",
-		ratio=auto,
-		size="7.5, 10.0"
-	];
-	n0 [shape=box];
-}

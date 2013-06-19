@@ -1,4 +1,0 @@
-digraph dg_1750 {
-	graph [concentrate=true];
-	n0 -> n1;
-}

@@ -1,9 +1,0 @@
-digraph dg_3521 {
-	n0 [color=indigo,peripheries=3,shape=polygon,sides=5,style=filled];
-	n0 -> n1;
-	n2 [shape=polygon,sides=4,skew=".4"];
-	n1 -> n2;
-	n3 [shape=invtriangle];
-	n1 -> n3;
-	n4 [distortion=".7",shape=polygon,sides=4];
-}

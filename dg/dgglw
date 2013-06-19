@@ -1,9 +1,0 @@
-digraph dg_4364 {
-	subgraph cluster0 {
-	}
-	n0 [height=".1",label="<e1> X|<e2> X|<e3> X|<e4> X",shape=record];
-	n1 [height=".2",label="{{<i1> |<i2> }|X XXXX|XX}",shape=record];
-	n0:e2 -> n1:i2;
-	n2 [height=".1",label="<e1> X|<e2> X|<e3> X",shape=record];
-	n1:o1 -> n2:e1;
-}

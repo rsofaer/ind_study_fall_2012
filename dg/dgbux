@@ -1,7 +1,0 @@
-digraph dg_1219 {
-	graph [rankdir=LR];
-	node [shape=record];
-	n0 [label="{{XXX | XXX X\n}}"];
-	n1 [label="{{XXX | XXX XXX()\nXXXX *XXXXXX_XXX()\n}}"];
-	n0 -> n1;
-}

@@ -1,6 +1,0 @@
-digraph dg_1761 {
-	node [shape=record];
-	n0 [label="<f0> XXXX|<f1> XXXXXX|<f2> XXXXX"];
-	n1 [label="<f0> XXX|<f1> XXX"];
-	n0:f1 -> n1:f0;
-}

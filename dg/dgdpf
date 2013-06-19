@@ -1,6 +1,0 @@
-digraph dg_2423 {
-	graph [size="7.5,10"];
-	n0 [shape=box];
-	n1 [shape=box];
-	n2 [shape=box];
-}

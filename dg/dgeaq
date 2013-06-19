@@ -1,7 +1,0 @@
-digraph dg_2720 {
-	graph [nodesep=".75",
-		rankdir=LR,
-		size="5,5"
-	];
-	n0 [shape=circle];
-}

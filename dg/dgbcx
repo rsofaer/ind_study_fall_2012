@@ -1,9 +1,0 @@
-digraph dg_751 {
-	n0 [height=".1",label=xx,shape=box];
-	n2 [height=".1",label=xx,shape=box];
-	n0 -> n2;
-	n3 [height=".1",label=xxxxx,shape=box];
-	n0 -> n3;
-	n1 -> n0;
-	n2 -> n0;
-}

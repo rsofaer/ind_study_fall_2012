@@ -1,8 +1,0 @@
-digraph dg_1108 {
-	graph [center=true,
-		orientation=landscape,
-		size="7.5,10"
-	];
-	node [shape=circle];
-	n0 [fontsize=12,label=766288773,shape=plaintext];
-}

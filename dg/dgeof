@@ -1,6 +1,0 @@
-digraph dg_3073 {
-	graph [size="7.5,10"];
-	n0 [label=x,peripheries=2];
-	n0;
-	n0 -> n0;
-}

@@ -1,9 +1,0 @@
-digraph dg_3947 {
-	n0 -> n2;
-	n1 -> n3;
-	n2 -> n3;
-	n4 -> n5;
-	n5 -> n6;
-	n7 [color=ligth_gray,style=filled];
-	n6 -> n7;
-}

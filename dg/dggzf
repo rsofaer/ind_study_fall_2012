@@ -1,9 +1,0 @@
-digraph dg_4711 {
-	n0 [label="x2\nx:=x"];
-	n0 -> n3;
-	n1 -> n0;
-	n2 [label="x3\nx:=x+x"];
-	n1 -> n2;
-	n2 -> n4;
-	n4 -> n3;
-}

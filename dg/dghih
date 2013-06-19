@@ -1,9 +1,0 @@
-digraph dg_4947 {
-	graph [rankdir=LR,
-		ratio=auto
-	];
-	node [shape=box];
-	n0 [label="xxxxxxxxx\n27.7.1993",peripheries=2];
-	n1 [label="x\n3.8.1993",peripheries=1];
-	n1 -> n0;
-}

@@ -1,6 +1,0 @@
-digraph dg_1499 {
-	graph [layers="1:2"];
-	n0 [layer=1];
-	n1 [layer=2];
-	n0 -> n1;
-}

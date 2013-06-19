@@ -1,6 +1,0 @@
-digraph dg_1548 {
-	graph [comment="graph comment"];
-	n0 [comment="node comment"];
-	n1 [comment="no comment"];
-	n0 -> n1;
-}

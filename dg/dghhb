@@ -1,8 +1,0 @@
-digraph dg_4915 {
-	graph [ratio=auto,
-		rotate=90
-	];
-	n0 -> n1;
-	n0 -> n2;
-	n3 -> n0;
-}
