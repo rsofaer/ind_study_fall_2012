@@ -32,7 +32,8 @@ function loadcalmap()
 end
 
 function loadlesmis()
-    struct = matread("../data/lesmis.mat")["Problem"]
+    struct = matread("../data/lesmis.mat")
+    struct = struct["Problem"]
     # The struct has kind, date, id, notes, title, author, ed, aux, A, and name
     # aux has character names
     # A is the actual sparse matrix.
@@ -42,7 +43,9 @@ function loadlesmis()
     graph = weightedinclist()
     
     for name in struct["aux"]["nodename"]
-        add_vertex!(graph, ["name" => name])
+        d = AttrDict()
+        d["name"] = name
+        add_vertex!(graph, d)
     end
 
     # Get a list of the non zero values, the edges, in:

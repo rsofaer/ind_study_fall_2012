@@ -64,7 +64,8 @@ end
 # Contract any edge with a length less than l
 function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 	vertexsets = DisjointSets{V}(vertices(g))
-	for e in edges(g)
+	es = edges(g)
+	for e in es
 		if resistance(e) < l
 			union!(vertexsets, e.source, e.target)
 		end
@@ -72,17 +73,43 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 	vertexsets
 
 	c_g = weightedinclist()
+	ng = num_groups(vertexsets)
+	for n in 1:ng
+		d = AttrDict()
+		d["preimage"] = Array(V,0)
+		add_vertex!(c_g, d)
+	end
 	# groupnumbers is an array,
 	# groupnumbers[i] is the index of the image of vertex i in contracted g
 	groupnumbers = vertexsets.internal.parents
 
+	#image = (v::V) -> vertices(c_g)[groupnumbers[vertex_index(v)]]
 
-	preimages = Dict{V,Vector{V}}()
+	println(num_vertices(c_g))
 	for n in 1:num_vertices(g)
-	
+		# Push the current vertex into the preimage array of its image.
+		contracted_v = vertices(c_g)
+		println("$n , $(groupnumbers[n])")
+		image_ind = groupnumbers[n]
+
+		image = contracted_v[image_ind]
+		preimage_array = attrs(image)["preimage"]
+		push!(preimage_array, vertices(g)[n])
 	end
 
-	
+	conductance_matrix = spzeros(ng,ng)
+	for e in es
+		# Now we want resistance from one node to another to be min(resistance)
+		si =  vertex_index(e.source)
+		ti = vertex_index(e.target)
+		conductance_matrix[si, ti] = max(conductance_matrix[si,ti], conductance(e)) 
+	end
+
+	for t in zip(findnz(conductance_matrix))
+		add_edge!(c_g, t[1], t[2], 1/t[3])
+	end
+
+	return c_g
 
 end
 
@@ -96,7 +123,7 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices)
 
 	rho = radius(g,x) 
 
-	contracted_g, vertex_preimages = contract(g,beta*rho/original_num_vertices)
+	contracted_g = contract(g,beta*rho/original_num_vertices)
 
 	c_vertex_sets, c_edges = star_decomp(contracted_g, x, 1/3, beta)
 

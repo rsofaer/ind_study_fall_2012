@@ -12,12 +12,16 @@ target(e::WeightedEdge ) = e.target
 source(e::WeightedEdge ) = e.source
 target(e::WeightedEdge,g ) = e.target
 source(e::WeightedEdge,g ) = e.source
+
+typealias AttrDict Dict{UTF8String, Any}
 immutable AttrNode
     index::Int
-    attrs::Dict
+    attrs::AttrDict
 end
 import Graphs.vertex_index
 vertex_index(v::AttrNode) = v.index
+
+attrs(v::AttrNode) = v.attrs
 
 show(v::AttrNode) = "Node $(vertex_index(v))"
 typealias WIncidenceList{V} GenericIncidenceList{V, WeightedEdge{V}, Vector{V}, Vector{Vector{WeightedEdge{V}}}}
@@ -40,7 +44,8 @@ function add_vertex!{V}(g::WIncidenceList{V}, v::V)
     push!(g.inclist, Array(edge_type(g),0))
     v
 end
-function add_vertex!{V}(g::WIncidenceList{V}, d::Dict)
+
+function add_vertex!{V}(g::WIncidenceList{V}, d::AttrDict)
     nv::Int = num_vertices(g)
     v = AttrNode(nv + 1, d)
     add_vertex!(g, v)
@@ -62,6 +67,16 @@ function add_edge!(g::MyIncList, i::Integer, r::Float64, u::Integer, v::Integer)
         throw(ArgumentError("u or v is not a valid vertex."))
     end
     edge = WeightedEdge(i, r, g.vertices[u], g.vertices[v])
+    add_edge!(g, edge)
+end
+
+function add_edge!(g::MyIncList, u::Integer, v::Integer, r::Float64)
+    nv::Int = num_vertices(g)
+
+    if !(u >= 1 && u <= nv && v >= 1 && v <= nv)
+        throw(ArgumentError("u or v is not a valid vertex."))
+    end
+    edge = WeightedEdge(num_edges(g) + 1, r, g.vertices[u], g.vertices[v])
     add_edge!(g, edge)
 end
 
