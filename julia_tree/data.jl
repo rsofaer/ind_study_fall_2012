@@ -11,7 +11,10 @@ function loadcgraph(basename)
     open(nodesname) do f
         for l in eachline(f)
             caps = match(noderegex, l).captures
-            node = AttrNode(int(caps[1]) + 1, ["lat" => caps[2], "long" => caps[3]])
+            d = AttrDict()
+            d["lat"] = caps[2]
+            d["long"] = caps[3]
+            node = AttrNode(int(caps[1]) + 1, d)
             add_vertex!(graph, node)
         end
     end

@@ -61,7 +61,7 @@ function radius{V,E}(g::AbstractGraph{V,E}, x::V)
 	max(dijkstra_shortest_paths(g, ed, x).dists)
 end
 
-# Contract any edge with a length less than l
+# Contract any edge with a resistance less than l
 function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 	vertexsets = DisjointSets{V}(vertices(g))
 	es = edges(g)
