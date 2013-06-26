@@ -48,6 +48,7 @@ function loadlesmis()
     for name in struct["aux"]["nodename"]
         d = AttrDict()
         d["name"] = name
+        
         add_vertex!(graph, d)
     end
 
