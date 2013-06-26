@@ -79,33 +79,34 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 		d["preimage"] = Array(V,0)
 		add_vertex!(c_g, d)
 	end
-	# groupnumbers is an array,
-	# groupnumbers[i] is the index of the image of vertex i in contracted g
-	groupnumbers = vertexsets.internal.parents
 
 	#image = (v::V) -> vertices(c_g)[groupnumbers[vertex_index(v)]]
-
-	println(num_vertices(c_g))
-	for n in 1:num_vertices(g)
+	contracted_v = vertices(c_g)
+	image_map = Dict{Int,Int}()
+	next_vertex = 1
+	for v in vertices(g)
 		# Push the current vertex into the preimage array of its image.
-		contracted_v = vertices(c_g)
-		println("$n , $(groupnumbers[n])")
-		image_ind = groupnumbers[n]
+		root = find_root(vertexsets,v)
+		if !haskey(image_map, root)
+			image = contracted_v[next_vertex]
+			image_map[root] = vertex_index(image)
+		end
 
-		image = contracted_v[image_ind]
+		image = contracted_v[image_map[root]]
 		preimage_array = attrs(image)["preimage"]
-		push!(preimage_array, vertices(g)[n])
+		push!(preimage_array, v)
 	end
 
 	conductance_matrix = spzeros(ng,ng)
 	for e in es
 		# Now we want resistance from one node to another to be min(resistance)
-		si =  vertex_index(e.source)
-		ti = vertex_index(e.target)
+		si = image_map[vertex_index(find_root(vertexsets,e.source))]
+		ti = image_map[vertex_index(find_root(vertexsets,e.target))]
 		conductance_matrix[si, ti] = max(conductance_matrix[si,ti], conductance(e)) 
 	end
-
+	println(conductance_matrix)
 	for t in zip(findnz(conductance_matrix))
+		println(t)
 		add_edge!(c_g, t[1], t[2], 1/t[3])
 	end
 
