@@ -13,15 +13,6 @@ function conductance{E}(e::E)
   1/e.resistance
 end
 
-# A convenience function for applying an attribute to a 
-# group of edges and/or vertices.
-# Why can't I map a Set?
-function apply_attribute(c, d::Dict)
-	for target = c
-		merge!(attributes(target),d)
-	end
-end
-
 # Shortest path in LENGTH
 function dist{V}(a::V, b::V)
 	Inf
@@ -45,8 +36,8 @@ cost(s::Set{Edge}) = reduce(+,map(x -> conductance(x), s))
 vol{E,V}(s::Union(Set{E},Set{V})) = length(s)
 
 # The vertices of distance at most r from v (in LENGTH)
-function ball{V,E}(v::V, r::Real, g::AbstractGraph{V,E}, weights)
-	shortest = dijkstra_shortest_paths(g,weights, v)
+function ball{V,E}( g::AbstractGraph{V,E}, v::V, r::Real)
+	shortest = dijkstra_shortest_paths(g,edgedists(g), v)
 end
 
 # every vertex u not in B(v,r) with a neighbor w in B(v,r)
@@ -59,6 +50,9 @@ end
 function radius{V,E}(g::AbstractGraph{V,E}, x::V)
 	ed = edgedists(g)
 	max(dijkstra_shortest_paths(g, ed, x).dists)
+end
+
+function induced_subgraph{V,E}(g::AbstractGraph{V,E}, vertices)
 end
 
 # Contract any edge with a resistance less than l
@@ -118,7 +112,7 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 end
 
 
-function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices)
+function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices::Int)
 	beta = 1/(2*log(4/3,original_num_vertices + 32))
 
 	if(num_vertices(g) <= 2)
@@ -149,3 +143,47 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices)
 end
 
 LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V) = LowStretchTree(g,x, num_vertices(g))
+
+# ({V0, ..., Vk, x, y}), 
+function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta, epsilon)
+	rho = radius(g, x)
+	central_radius = BallCut(g, x, rho, delta)
+	center_ball = ball(g, x, r)
+	center_shell = ballshell(g, x, r)
+	cored_g = induced_subgraph(g, vertices(g) - center_ball)
+	# cone_side_links[i] is the vertex in cones[i]
+	# which will link to center_ball in the spanning tree
+	cones, cone_side_links = ConeDecomp(g, center_shell, epsilon*rho/2)
+
+	# There will be a link from core_side_links[i] to cone_side_links[i] in the tree
+	core_side_links = Array(V, 0)
+	for i in 1:length(cones)
+		# set yk to be a vertex in center_ball
+		# such that (xk, yk) ∈ E and yk is on a
+		# shortest path from x0 to xk.
+		#push!(core_side_links, yk)
+	end
+
+	return (cones, cone_side_links, core_side_links)
+end
+
+function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell, delta)
+	prev_shell = shell
+	k = 0
+	prev_g = g
+	cone_side_links = Array(V,0)
+	cones = Array(Vector{V}, 0)
+	while !isempty(prev_shell)
+		k += 1
+		push!(cones, Array(V, 0))
+		x = prev_shell[1]
+		push!(cone_side_links, x)
+		r = ConeCut(prev_g, x, 0, delta, prev_shell)
+		push!(cones, concentric_system(prev_shell, r, x))
+		prev_g = induced_subgraph(prev_g, vertices(prev_g) - cones[end])
+		prev_shell = prev_shell - cones[end]
+	end
+	return (cones, cone_side_links)
+end
+
+
