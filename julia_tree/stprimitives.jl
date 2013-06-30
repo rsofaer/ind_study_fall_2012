@@ -26,14 +26,13 @@ end
 
 # The edges with exactly one end in s.
 function boundary{V,E}(s::Set{V}, g::AbstractGraph{V,E})
-
 	return filter(e -> length(intersect(ends(e),s)) == 1,edges(g))
 end
 
-# The sum of the weights in s
+# The sum of the weights (conductances) in s
 cost(s::Set{Edge}) = reduce(+,map(x -> conductance(x), s))
 
-vol{E,V}(s::Union(Set{E},Set{V})) = length(s)
+vol{T}(s::Set{T}) = length(s)
 
 # The vertices of distance at most r from v (in LENGTH)
 function ball{V,E}( g::AbstractGraph{V,E}, v::V, r::Real)
@@ -112,7 +111,7 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 end
 
 
-function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices::Int)
+function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices::Int, original_num_edges::Int)
 	beta = 1/(2*log(4/3,original_num_vertices + 32))
 
 	if(num_vertices(g) <= 2)
@@ -137,15 +136,15 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 			add!(full_vertex_sets[i], vertex_preimages[c_vertex_sets[i][j]])
 		end
 		# TODO add to full_edges
-		trees[i] = LowStretchTree(subgraph(g,full_vertex_sets[i]), full_edges[i], original_num_vertices)
+		trees[i] = LowStretchTree(subgraph(g,full_vertex_sets[i]), full_edges[i], original_num_vertices, original_num_edges)
 	end
 	return union(trees,full_x)
 end
 
-LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V) = LowStretchTree(g,x, num_vertices(g))
+LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V) = LowStretchTree(g,x, num_vertices(g), num_edges(g))
 
 # ({V0, ..., Vk, x, y}), 
-function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta, epsilon)
+function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::Float64, original_num_edges::Int)
 	rho = radius(g, x)
 	central_radius = BallCut(g, x, rho, delta)
 	center_ball = ball(g, x, r)
@@ -155,13 +154,22 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta, epsilon)
 	# which will link to center_ball in the spanning tree
 	cones, cone_side_links = ConeDecomp(g, center_shell, epsilon*rho/2)
 
+	dijkstra = dijkstra_shortest_paths(g, edgedists(g), x)
+
 	# There will be a link from core_side_links[i] to cone_side_links[i] in the tree
 	core_side_links = Array(V, 0)
 	for i in 1:length(cones)
-		# set yk to be a vertex in center_ball
-		# such that (xk, yk) ∈ E and yk is on a
-		# shortest path from x0 to xk.
-		#push!(core_side_links, yk)
+		path = extract_path(dijkstra, cone_side_links[i])
+		found_link = false
+		for v in path
+			if !contains(center_ball, v) && contains(center_shell, v)
+				push!(core_side_links, yk)
+				break
+			end
+		end
+		if !found_link
+			error("Cound not find a link from center $center_ball to cone $cones[i]")
+		end
 	end
 
 	return (cones, cone_side_links, core_side_links)
@@ -186,4 +194,30 @@ function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell, delta)
 	return (cones, cone_side_links)
 end
 
-
+function BallCut{V,E}(g::AbstractGraph{V,E}, center::V, rho::Float64, delta::Float64, original_num_edges::Int)
+	r = rho*delta
+	ds = dijkstra_shortest_paths(g, edgedists(g), center)
+	cur_ind = 1 # 1 is center.  We need to find the biggest distance smaller than r
+	vertex_indices_ascending_by_distance = sortperm(ds.dists)
+	v_next = vertex_indices_ascending_by_distance[cur_ind]
+	while cost(boundary(ball(r, center))) > ((vol(ball(r,center)) + 1)/((1-2*delta)*rho))*log2(original_num_edges+1)
+		#find v_next not in ball(r, center) that minimizes dist(center, v_next) and set r = dist(center, v_next)
+		while ds.dists[v_next] <= r
+			cur_ind += 1
+			v_next = vertex_indices_ascending_by_distance[cur_ind]
+		end
+		r = ds.dists[v_next]
+	end
+	return r
+end
+# The dijkstraStates data contains all the paths from the source it was generated with.
+# This function returns an array with the path from the source to v
+function extract_path{V}(ds::DijkstraStates, v::V)
+	path = Array(V, 0)
+	last_vertex = v
+	while last_vertex != ds.parents[vertex_index(last_vertex)]
+		unshift!(path, last_vertex)
+		last_vertex  = ds.parents[vertex_index(last_vertex)]
+	end
+	return path
+end
