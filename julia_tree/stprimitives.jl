@@ -20,9 +20,14 @@ end
 
 # The subgraph induced by s.
 # edges(subgraph(g,s)) is the set of edges with both endpoints in s.
-# function subgraph{V, E}(g::AbstractGraph, s::Set{V})
-#  	return typeof(g)(s, filter(e -> length(intersect(ends(e),s)) == 2, edges(g)))
-# end
+function subgraph{V, E}(g::AbstractGraph, s::Set{V})
+	for v in vertices(g)
+		if contains(s, v)
+
+			for e in out_edges(v)
+
+ 	return typeof(g)(s, filter(e -> length(intersect(ends(e),s)) == 2, edges(g)))
+end
 
 # The edges with exactly one end in s.
 function boundary{V,E}(s::Set{V}, g::AbstractGraph{V,E})
@@ -35,23 +40,35 @@ cost(s::Set{Edge}) = reduce(+,map(x -> conductance(x), s))
 vol{T}(s::Set{T}) = length(s)
 
 # The vertices of distance at most r from v (in LENGTH)
-function ball{V,E}( g::AbstractGraph{V,E}, v::V, r::Real)
-	shortest = dijkstra_shortest_paths(g,edgedists(g), v)
+function ball{V,E}( g::AbstractGraph{V,E}, center::V, r::Real)
+	ds = dijkstra_shortest_paths(g,edgedists(g), center)
+	result = Array(V, 0)
+	vlist = vertices(g)
+	for i in 1:length(ds.dists)
+		if ds.dists[i] < r
+			push!(result, vlist[i])
+		end
+	end
+	return result
 end
 
 # every vertex u not in B(v,r) with a neighbor w in B(v,r)
 # such that dist(v,u) = dist(v,w) + the length of the edge from w to u
-function ballshell{V,E}(v::V, r::Real, g::AbstractGraph{V,E})
-
+function ballshell{V,E}(g::AbstractGraph{V,E}, center::V, r::Real)
+	# TODO directed graphs
+	result = Array(V, 0)
+	for v in ball(g, v, r)
+		for neighbor in out_neighbors(v)
+			push!(result, vlist[i])
+		end
+	end
+	return result
 end
 
 # the smallest rho st dist(x,y) < rho for all y
 function radius{V,E}(g::AbstractGraph{V,E}, x::V)
 	ed = edgedists(g)
 	max(dijkstra_shortest_paths(g, ed, x).dists)
-end
-
-function induced_subgraph{V,E}(g::AbstractGraph{V,E}, vertices)
 end
 
 # Contract any edge with a resistance less than l
@@ -149,7 +166,7 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::F
 	central_radius = BallCut(g, x, rho, delta)
 	center_ball = ball(g, x, r)
 	center_shell = ballshell(g, x, r)
-	cored_g = induced_subgraph(g, vertices(g) - center_ball)
+	cored_g = subgraph(g, vertices(g) - center_ball)
 	# cone_side_links[i] is the vertex in cones[i]
 	# which will link to center_ball in the spanning tree
 	cones, cone_side_links = ConeDecomp(g, center_shell, epsilon*rho/2)
@@ -188,7 +205,7 @@ function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell, delta)
 		push!(cone_side_links, x)
 		r = ConeCut(prev_g, x, 0, delta, prev_shell)
 		push!(cones, concentric_system(prev_shell, r, x))
-		prev_g = induced_subgraph(prev_g, vertices(prev_g) - cones[end])
+		prev_g = subgraph(prev_g, vertices(prev_g) - cones[end])
 		prev_shell = prev_shell - cones[end]
 	end
 	return (cones, cone_side_links)
