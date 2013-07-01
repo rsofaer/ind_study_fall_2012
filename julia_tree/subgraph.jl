@@ -23,7 +23,7 @@ function subgraph{V,E}(g::AbstractGraph{V, E}, s)
   Subgraph{V,E}(g, i)
 end
 
-Graphs.num_vertices(g::Subgraph) = num_vertices(g.full_graph)
+Graphs.num_vertices(g::Subgraph) = length(g.vertex_set)
 Graphs.num_edges(g::Subgraph) = num_vertices(g.full_graph)
 Graphs.is_directed(g::Subgraph) = is_directed(g.full_graph)
 Graphs.out_edges{V, E}(v::V, g::Subgraph{V, E}) = filter(x -> valid_edge(g, x), out_edges(v, g.full_graph))

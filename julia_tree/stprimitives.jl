@@ -144,26 +144,50 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 
 	contracted_g = contract(g,beta*rho/original_num_vertices)
 	println("Doing StarDecomp")
-	c_vertex_sets, c_edges = StarDecomp(contracted_g, x, 1/3, beta, original_num_edges)
+	c_vertex_sets, c_cone_side_links, c_core_side_links = StarDecomp(contracted_g, x, 1/3, beta, original_num_edges)
 	println("Done StarDecomp")
 	# For each i, let Vi be the preimage under the contraction of vertices in Vi,
 	# (xi , yi ) ∈ V0 × Vi be the edge of shortest length for which xi is a preimage of xi and yi
 	# is a preimage of yi
+	# Here yi is a core side vertex and xi is a cone side vertex
 	full_vertex_sets = Vector{V}[]
-	full_edges = Vector{E}[]
+	full_cone_side_links = V[]
+	full_core_side_links = V[]
 	trees = AbstractGraph{V,E}[]
 	for i in 1:length(c_vertex_sets)
 		println("i: $i, fvs: $full_vertex_sets, cvs: $c_vertex_sets")
 		push!(full_vertex_sets,V[])
+		# Get the preimages of the vertex sets
 		for j in 1:length(c_vertex_sets[i])
 			println("i: $i, j: $j, fvs: $full_vertex_sets, cvs: $c_vertex_sets")
 			println(typeof(full_vertex_sets[i]))
 			println(typeof(attrs(c_vertex_sets[i][j])["preimage"]))
 			append!(full_vertex_sets[i], attrs(c_vertex_sets[i][j])["preimage"])
+
+			# Get the minimal link from the preimage of cone to the preimage of the core
+			cone_side_preimage = attrs(c_cone_side_links[i])["preimage"]
+			core_side_preimage = attrs(c_core_side_links[i])["preimage"]
+			minimal_link = nothing
+			for v in cone_side_preimage
+				for e in out_edges(v, g)
+					if (contains(core_side_preimage, source(e)) || contains(core_side_preimage, target(e))) &&
+					   ( minimal_link == nothing || resistance(e) < resistance(minimal_link))
+					  minimal_link = e
+					end
+				end
+			end
+
+			if contains(cone_side_preimage, source(minimal_link))
+				push!(full_cone_side_links, source(minimal_link))
+				push!(full_core_side_links, target(minimal_link))
+			else
+				push!(full_cone_side_links, target(minimal_link))
+				push!(full_core_side_links, source(minimal_link))
+			end
 		end
-		# TODO add to full_edges
+
 		println("Recursing LowStretchTree")
-		push!(trees, LowStretchTree(subgraph(g,full_vertex_sets[i]), full_edges[i], original_num_vertices, original_num_edges))
+		push!(trees, LowStretchTree(subgraph(g,full_vertex_sets[i]), full_cone_side_links[i], original_num_vertices, original_num_edges))
 	end
 	return union(trees,full_x)
 end
@@ -188,8 +212,6 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::F
 	core_side_links = Array(V, 0)
 	for i in 1:length(cones)
 		path = extract_path(dijkstra, cone_side_links[i])
-		println("path $path")
-		println("shell $center_shell")
 		found_link = false
 		for v in path
 			if !contains(center_ball, v) && contains(center_shell, v)
