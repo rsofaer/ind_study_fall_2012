@@ -8,6 +8,7 @@ immutable WeightedEdge{V}
 end
 import Graphs.edge_index, Graphs.target, Graphs.source
 edge_index(e::WeightedEdge) = e.index
+Base.isless(v1::WeightedEdge, v2::WeightedEdge) = isless(edge_index(v1), edge_index(v2))
 target(e::WeightedEdge ) = e.target
 source(e::WeightedEdge ) = e.source
 target(e::WeightedEdge,g ) = e.target
@@ -18,6 +19,8 @@ immutable AttrNode
     index::Int
     attrs::AttrDict
 end
+
+Base.isless(v1::AttrNode, v2::AttrNode) = isless(vertex_index(v1), vertex_index(v2))
 import Graphs.vertex_index
 vertex_index(v::AttrNode) = v.index
 
@@ -105,8 +108,12 @@ function edges(graph::MyIncList)
 end
 
 
-function edgedists(g::MyIncList)
-    map((e)->resistance(e), edges(g))
+function edgedists(g)
+    result = Array(Float64, 0)
+    for e in edges(g)
+        push!(result, resistance(e))
+    end
+    return result
 end
 import Base.show
 show(io::IO, v::AttrNode) = print(io, "Vertex($(vertex_index(v)))")

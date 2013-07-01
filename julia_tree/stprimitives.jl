@@ -3,6 +3,9 @@
 using Graphs
 using DataStructures
 
+require("subgraph.jl")
+
+
 import Base.length
 
 function resistance{E}(e::E)
@@ -16,25 +19,6 @@ end
 # Shortest path in LENGTH
 function dist{V}(a::V, b::V)
 	Inf
-end
-
-# The subgraph induced by s.
-# edges(subgraph(g,s)) is the set of edges with both endpoints in s.
-function subgraph{V, E}(g::AbstractGraph{V, E}, s)
-	sg = weightedinclist()
-	image_map = Dict{Int, Int}()
-	for v in s
-		add_vertex!(sg, attrs(v))
-		image_map[vertex_index(v)] = num_vertices(sg)
-	end
-	for v in s
-		for e in out_edges(v, g)
-			if contains(s, target(e)) && contains(s, source(e)) && (is_directed(g) || v == source(e))
-				add_edge!(sg, image_map[vertex_index(v)], image_map[vertex_index(target(e))], resistance(e))
-			end
-		end
-	end
-	return sg
 end
 
 # The edges with exactly one end in s.
@@ -165,13 +149,14 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 	# For each i, let Vi be the preimage under the contraction of vertices in Vi,
 	# (xi , yi ) ∈ V0 × Vi be the edge of shortest length for which xi is a preimage of xi and yi
 	# is a preimage of yi
-	full_vertex_sets = []
-	full_edges = []
-	trees = []
+	full_vertex_sets = Any[]
+	full_edges = Any[]
+	trees = Any[]
 	for i in length(c_vertex_sets)
-		add!(full_vertex_sets,[])
+		push!(full_vertex_sets,Any[])
 		for j in length(c_vertex_sets[i])
-			add!(full_vertex_sets[i], vertex_preimages[c_vertex_sets[i][j]])
+			println("i: $i, j: $j, fvs: $full_vertex_sets, cvs: $c_vertex_sets")
+			push!(full_vertex_sets[i], vertex_preimages[c_vertex_sets[i][j]])
 		end
 		# TODO add to full_edges
 		println("Recursing LowStretchTree")
@@ -200,10 +185,13 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::F
 	core_side_links = Array(V, 0)
 	for i in 1:length(cones)
 		path = extract_path(dijkstra, cone_side_links[i])
+		println("path $path")
+		println("shell $center_shell")
 		found_link = false
 		for v in path
 			if !contains(center_ball, v) && contains(center_shell, v)
 				push!(core_side_links, v)
+				found_link = true
 				break
 			end
 		end
@@ -254,11 +242,7 @@ end
 # F (S) = {(u → v) : (u, v) ∈ E, dist(u, S) + d(u, v) = dist(v, S )}
 function forward_edges{V,E}(g::AbstractGraph{V,E}, inducing_set::Vector{V})
 	result = Array(E, 0)
-	println("Getting forward edges:")
 	for v in inducing_set
-		println(v)
-		println(out_edges(v, g))
-
 		for e in out_edges(v, g)
 			if !contains(inducing_set, target(e))
 				push!(result, e)
@@ -273,12 +257,9 @@ end
 # is the cone of width l around center induced by S
 # c = build_cone(g, v, S, l)
 function build_cone{V,E}(g::AbstractGraph{V,E}, S::Vector{V},  l::Real, center::V)
-	println("building cone of l $l")
-	println("inducing set $S")
-	println("Forward edges $(forward_edges(g, S))")
 	ed = edgedists(g)
 
-	indices = map(x -> vertex_index(x), forward_edges(g, S))
+	indices = map(x -> edge_index(x, g), forward_edges(g, S))
 	for i in 1:length(ed)
 		if contains(indices, i)
 			ed[i] = 0
@@ -295,9 +276,6 @@ function build_cone{V,E}(g::AbstractGraph{V,E}, S::Vector{V},  l::Real, center::
 			push!(result, vlist[i])
 		end
 	end
-
-	println("New cone contents distance $l")
-	println(result)
 	return subgraph(g, result)
 end
 
