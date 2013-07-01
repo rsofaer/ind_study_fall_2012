@@ -233,8 +233,8 @@ function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell::Vector{V}, delta, origina
 		push!(cone_side_links, x)
 		r = ConeCut(prev_g, x, 0, delta, prev_shell, original_num_edges)
 		push!(cones, vertices(build_cone(g, prev_shell, r, x)))
-		prev_g = subgraph(prev_g, vertices(prev_g) - cones[end])
-		prev_shell = prev_shell - cones[end]
+		prev_g = subgraph(prev_g, filter(x -> !contains(cones[end], x), vertices(prev_g)))
+		prev_shell = filter(x -> !contains(cones[end], x), prev_shell)
 	end
 	return (cones, cone_side_links)
 end
