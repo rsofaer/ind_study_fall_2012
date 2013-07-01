@@ -149,18 +149,21 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 	# For each i, let Vi be the preimage under the contraction of vertices in Vi,
 	# (xi , yi ) ∈ V0 × Vi be the edge of shortest length for which xi is a preimage of xi and yi
 	# is a preimage of yi
-	full_vertex_sets = Any[]
-	full_edges = Any[]
-	trees = Any[]
-	for i in length(c_vertex_sets)
-		push!(full_vertex_sets,Any[])
-		for j in length(c_vertex_sets[i])
+	full_vertex_sets = Vector{V}[]
+	full_edges = Vector{E}[]
+	trees = AbstractGraph{V,E}[]
+	for i in 1:length(c_vertex_sets)
+		println("i: $i, fvs: $full_vertex_sets, cvs: $c_vertex_sets")
+		push!(full_vertex_sets,V[])
+		for j in 1:length(c_vertex_sets[i])
 			println("i: $i, j: $j, fvs: $full_vertex_sets, cvs: $c_vertex_sets")
-			push!(full_vertex_sets[i], vertex_preimages[c_vertex_sets[i][j]])
+			println(typeof(full_vertex_sets[i]))
+			println(typeof(attrs(c_vertex_sets[i][j])["preimage"]))
+			append!(full_vertex_sets[i], attrs(c_vertex_sets[i][j])["preimage"])
 		end
 		# TODO add to full_edges
 		println("Recursing LowStretchTree")
-		trees[i] = LowStretchTree(subgraph(g,full_vertex_sets[i]), full_edges[i], original_num_vertices, original_num_edges)
+		push!(trees, LowStretchTree(subgraph(g,full_vertex_sets[i]), full_edges[i], original_num_vertices, original_num_edges))
 	end
 	return union(trees,full_x)
 end
