@@ -21,12 +21,23 @@ end
 # The subgraph induced by s.
 # edges(subgraph(g,s)) is the set of edges with both endpoints in s.
 function subgraph{V, E}(g::AbstractGraph, s::Set{V})
-	for v in vertices(g)
-		if contains(s, v)
+	sg = weightedinclist()
+	image_map = Dict{Int, Int}()
 
-			for e in out_edges(v, g)
+	for v in s
+		add_vertex!(sg, attrs(v))
+		image_map[vertex_index(v)] = num_vertices(sg)
+	end
 
- 	return typeof(g)(s, filter(e -> length(intersect(ends(e),s)) == 2, edges(g)))
+	for v in s
+		for e in out_edges(v, g)
+			if contains(s, target(e))
+				add_edge!(sg, vertex_index(v), vertex_index(target(e)), resistance(e))
+			end
+		end
+	end
+
+	return sg
 end
 
 # The edges with exactly one end in s.
