@@ -23,20 +23,17 @@ end
 function subgraph{V, E}(g::AbstractGraph{V, E}, s)
 	sg = weightedinclist()
 	image_map = Dict{Int, Int}()
-
 	for v in s
 		add_vertex!(sg, attrs(v))
 		image_map[vertex_index(v)] = num_vertices(sg)
 	end
-
 	for v in s
 		for e in out_edges(v, g)
-			if contains(s, target(e))
+			if contains(s, target(e)) && contains(s, source(e)) && (is_directed(g) || v == source(e))
 				add_edge!(sg, image_map[vertex_index(v)], image_map[vertex_index(target(e))], resistance(e))
 			end
 		end
 	end
-
 	return sg
 end
 
@@ -147,7 +144,6 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 	for i in 1:length(nzv[1])
 		add_edge!(c_g, nzv[1][i], nzv[2][i], 1/nzv[3][i])
 	end
-
 	return c_g
 
 end
@@ -195,8 +191,8 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::F
 	cored_g = subgraph(g, filter(x -> !contains(center_ball, x), vertices(g)))
 	# cone_side_links[i] is the vertex in cones[i]
 	# which will link to center_ball in the spanning tree
-	println("Doing ConeDecomp")
-	cones, cone_side_links = ConeDecomp(g, center_shell, epsilon*rho/2, original_num_edges)
+	println("Doing ConeDecomp with $cored_g")
+	cones, cone_side_links = ConeDecomp(cored_g, center_shell, epsilon*rho/2, original_num_edges)
 	println("Done")
 	dijkstra = dijkstra_shortest_paths(g, edgedists(g), x)
 
@@ -207,12 +203,12 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::F
 		found_link = false
 		for v in path
 			if !contains(center_ball, v) && contains(center_shell, v)
-				push!(core_side_links, yk)
+				push!(core_side_links, v)
 				break
 			end
 		end
 		if !found_link
-			error("Cound not find a link from center $center_ball to cone $cones[i]")
+			error("Cound not find a link from center $center_ball to cone $(cones[i])")
 		end
 	end
 
@@ -226,9 +222,7 @@ function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell::Vector{V}, delta, origina
 	cone_side_links = Array(V,0)
 	cones = Array(Vector{V}, 0)
 	while !isempty(prev_shell)
-		println("Making a new cone")
 		k += 1
-		push!(cones, Array(V, 0))
 		x = prev_shell[1]
 		push!(cone_side_links, x)
 		r = ConeCut(prev_g, x, 0, delta, prev_shell, original_num_edges)
@@ -260,7 +254,11 @@ end
 # F (S) = {(u → v) : (u, v) ∈ E, dist(u, S) + d(u, v) = dist(v, S )}
 function forward_edges{V,E}(g::AbstractGraph{V,E}, inducing_set::Vector{V})
 	result = Array(E, 0)
+	println("Getting forward edges:")
 	for v in inducing_set
+		println(v)
+		println(out_edges(v, g))
+
 		for e in out_edges(v, g)
 			if !contains(inducing_set, target(e))
 				push!(result, e)
@@ -275,22 +273,31 @@ end
 # is the cone of width l around center induced by S
 # c = build_cone(g, v, S, l)
 function build_cone{V,E}(g::AbstractGraph{V,E}, S::Vector{V},  l::Real, center::V)
+	println("building cone of l $l")
+	println("inducing set $S")
+	println("Forward edges $(forward_edges(g, S))")
 	ed = edgedists(g)
-	indices = map(x -> vertex_index(x), S)
+
+	indices = map(x -> vertex_index(x), forward_edges(g, S))
 	for i in 1:length(ed)
 		if contains(indices, i)
 			ed[i] = 0
 		end
 	end
 
-	ds = dijkstra_shortest_paths(g, edgedists(g), center)
+	ds = dijkstra_shortest_paths(g, ed, center)
 	result = Array(V, 0)
+	push!(result, center)
+
 	vlist = vertices(g)
 	for i in 1:length(ds.dists)
 		if ds.dists[i] < l
 			push!(result, vlist[i])
 		end
 	end
+
+	println("New cone contents distance $l")
+	println(result)
 	return subgraph(g, result)
 end
 
@@ -304,6 +311,7 @@ function ConeCut{V,E}(g::AbstractGraph{V,E}, center::V, lambda::Real, lambda_pri
 	else
 		mu = vol(vertices(cur_cone))*log2(original_num_edges/vol(edges(cur_cone)))
 	end
+
 
 	while cost(boundary(g, cur_cone)) > mu/(lambda_prime - lambda)
 		# find w::V not in cur_cone closest to cur_cone and increase r so cur_cone encompasses w

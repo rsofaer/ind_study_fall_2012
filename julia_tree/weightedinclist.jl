@@ -106,5 +106,7 @@ end
 
 
 function edgedists(g::MyIncList)
-    map((e)->e.resistance, edges(g))
+    map((e)->resistance(e), edges(g))
 end
+import Base.show
+show(io::IO, v::AttrNode) = print(io, "Vertex($(vertex_index(v)))")
