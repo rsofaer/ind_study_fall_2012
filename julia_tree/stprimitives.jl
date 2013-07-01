@@ -24,7 +24,7 @@ function subgraph{V, E}(g::AbstractGraph, s::Set{V})
 	for v in vertices(g)
 		if contains(s, v)
 
-			for e in out_edges(v)
+			for e in out_edges(v, g)
 
  	return typeof(g)(s, filter(e -> length(intersect(ends(e),s)) == 2, edges(g)))
 end
@@ -58,7 +58,7 @@ function ballshell{V,E}(g::AbstractGraph{V,E}, center::V, r::Real)
 	# TODO directed graphs
 	result = Array(V, 0)
 	for v in ball(g, v, r)
-		for neighbor in out_neighbors(v)
+		for neighbor in out_neighbors(v, g)
 			push!(result, vlist[i])
 		end
 	end
@@ -203,7 +203,7 @@ function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell, delta)
 		push!(cones, Array(V, 0))
 		x = prev_shell[1]
 		push!(cone_side_links, x)
-		r = ConeCut(prev_g, x, 0, delta, prev_shell)
+		r = ConeCut(prev_g, x, 0, delta, prev_shell, original_num_edges)
 		push!(cones, concentric_system(prev_shell, r, x))
 		prev_g = subgraph(prev_g, vertices(prev_g) - cones[end])
 		prev_shell = prev_shell - cones[end]
@@ -227,6 +227,67 @@ function BallCut{V,E}(g::AbstractGraph{V,E}, center::V, rho::Float64, delta::Flo
 	end
 	return r
 end
+
+# Set of forward edges induced by the set s
+# F (S) = {(u → v) : (u, v) ∈ E, dist(u, S) + d(u, v) = dist(v, S )}
+function forward_edges{V,E}(g::AbstractGraph{V,E}, inducing_set::Vector{V})
+	result = Array(E, 0)
+	for v in inducing_set
+		for e in out_edges(v, g)
+			if !contains(inducing_set, target(e))
+				push!(result, e)
+			end
+		end
+	end
+	return result
+end
+
+# the Set of vertices in V that can be reached from v by a path,
+# the sum of the lengths of whose edges e that do not belong to F (S) is at most l
+# is the cone of width l around center induced by S
+# c = build_cone(g, v, S, l)
+function build_cone{V,E}(g::AbstractGraph{V,E}, S::Vector{V},  l::Real, center::V)
+	ed = edgedists(g)
+	indices = map(x -> vertex_index(x), S)
+	for i in 1:length(ed)
+		if contains(indices, i)
+			ed[i] = 0
+		end
+	end
+
+	ds = dijkstra_shortest_paths(g, edgedists(g), center)
+	result = Array(V, 0)
+	vlist = vertices(g)
+	for i in 1:length(ds.dists)
+		if ds.dists[i] < r
+			push!(result, vlist[i])
+		end
+	end
+	return result
+end
+
+#r = ConeCut(G, v, λ, λ′, S) 
+function ConeCut{V,E}(g::AbstractGraph{V,E}, center::V, lambda::Real, lambda_prime::Real, inducing_set::Array{V}, original_num_edges::Int)
+	r = lambda
+	mu = NaN
+	cur_cone = build_cone(g, inducing_set, r, center)
+	if vol(edges(cur_cone)) == 0
+		mu = (vol(vertices(cur_cone))+ 1)*log2(original_num_edges + 1)
+	else
+		mu = vol(vertices(cur_cone))*log2(original_num_edges/vol(edges(cur_cone)))
+	end
+
+	while cost(boundary(cur_cone)) > mu/(lambda_prime - lambda)
+		# find w::V not in cur_cone closest to cur_cone and increase r so cur_cone encompasses w
+		ds = dijkstra_shortest_paths(g, edgedists(g), vertices(cur_cone))
+		w_ind = min_ind_with_filter(ds.dists, x -> x > 0)
+		r += ds.dists[w_ind]
+		cur_cone = build_cone(g, inducing_set, r, center)
+	end
+	return r
+end
+
+
 # The dijkstraStates data contains all the paths from the source it was generated with.
 # This function returns an array with the path from the source to v
 function extract_path{V}(ds::DijkstraStates, v::V)
@@ -237,4 +298,17 @@ function extract_path{V}(ds::DijkstraStates, v::V)
 		last_vertex  = ds.parents[vertex_index(last_vertex)]
 	end
 	return path
+end
+
+function min_ind_with_filter(iterable, filter = x -> true)
+	cur_min = nothing
+	cur_min_ind = -1
+	for i in 1:length(iterable)
+		a = iterable[i]
+		if filter(a) && (cur_min == nothing || a < cur_min)
+			cur_min = a
+			cur_min_ind = i
+		end
+	end
+	return cur_min_ind
 end
