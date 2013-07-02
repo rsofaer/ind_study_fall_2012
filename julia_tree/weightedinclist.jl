@@ -96,8 +96,8 @@ function resistance_matrix(g::MyIncList)
     end    
     return a
 end
-import Graphs.edges
-function edges(graph::MyIncList)
+
+function Graphs.edges(graph::MyIncList)
     es = Array(edge_type(graph),num_edges(graph))
     for vertex in vertices(graph)
         for e in out_edges(vertex, graph)
@@ -117,3 +117,5 @@ function edgedists(g)
 end
 import Base.show
 show(io::IO, v::AttrNode) = print(io, "Vertex($(vertex_index(v)))")
+show(io::IO, e::WeightedEdge) = print(io, 
+    "Edge($(edge_index(e)), $(vertex_index(source(e))) -> $(vertex_index(target(e))))")

@@ -2,6 +2,7 @@
 #
 using Graphs
 using DataStructures
+using Debug
 
 require("subgraph.jl")
 
@@ -114,6 +115,10 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 		image = contracted_v[image_map[root]]
 		preimage_array = attrs(image)["preimage"]
 		push!(preimage_array, v)
+		if vertex_index(v) == 47
+			println("47 went into vertex $image")
+			println("there are $ng groups")
+		end
 	end
 
 	conductance_matrix = spzeros(ng,ng)
@@ -143,9 +148,7 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 	rho = radius(g,x) 
 
 	contracted_g = contract(g,beta*rho/original_num_vertices)
-	println("Doing StarDecomp")
-	c_vertex_sets, c_cone_side_links, c_core_side_links = StarDecomp(contracted_g, x, 1/3, beta, original_num_edges)
-	println("Done StarDecomp")
+	c_center_ball, c_vertex_sets, c_cone_side_links, c_core_side_links = StarDecomp(contracted_g, x, 1/3, beta, original_num_edges)
 	# For each i, let Vi be the preimage under the contraction of vertices in Vi,
 	# (xi , yi ) ∈ V0 × Vi be the edge of shortest length for which xi is a preimage of xi and yi
 	# is a preimage of yi
@@ -153,15 +156,16 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 	full_vertex_sets = Vector{V}[]
 	full_cone_side_links = V[]
 	full_core_side_links = V[]
+	cone_core_links = E[]
 	trees = AbstractGraph{V,E}[]
+
 	for i in 1:length(c_vertex_sets)
-		println("i: $i, fvs: $full_vertex_sets, cvs: $c_vertex_sets")
 		push!(full_vertex_sets,V[])
 		# Get the preimages of the vertex sets
 		for j in 1:length(c_vertex_sets[i])
-			println("i: $i, j: $j, fvs: $full_vertex_sets, cvs: $c_vertex_sets")
-			println(typeof(full_vertex_sets[i]))
-			println(typeof(attrs(c_vertex_sets[i][j])["preimage"]))
+			if c_vertex_sets[i][j] == 47
+				println("47 going into $i from $i $j")
+			end
 			append!(full_vertex_sets[i], attrs(c_vertex_sets[i][j])["preimage"])
 
 			# Get the minimal link from the preimage of cone to the preimage of the core
@@ -177,6 +181,7 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 				end
 			end
 
+			push!(cone_core_links, minimal_link)
 			if contains(cone_side_preimage, source(minimal_link))
 				push!(full_cone_side_links, source(minimal_link))
 				push!(full_core_side_links, target(minimal_link))
@@ -186,10 +191,23 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 			end
 		end
 
-		println("Recursing LowStretchTree")
 		push!(trees, LowStretchTree(subgraph(g,full_vertex_sets[i]), full_cone_side_links[i], original_num_vertices, original_num_edges))
 	end
-	return union(trees,full_x)
+
+	center_ball = V[]
+	for v in c_center_ball
+		append!(center_ball, attrs(v)["preimage"])
+	end
+
+	push!(trees, LowStretchTree(subgraph(g,center_ball), x, original_num_vertices, original_num_edges))
+	for i in 1:length(trees)
+		if any(x -> vertex_index(x) == 68, vertices(trees[i]))
+			println("68 is going into subtree $i")
+		end
+	end
+	tree = reduce(combine, trees)
+	
+	return add_edges(tree, cone_core_links)
 end
 
 LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V) = LowStretchTree(g,x, num_vertices(g), num_edges(g))
@@ -199,19 +217,20 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::F
 	rho = radius(g, x)
 	central_radius = BallCut(g, x, rho, delta, original_num_edges)
 	center_ball = ball(g, x, central_radius)
+
 	center_shell = ballshell(g, x, central_radius)
 	cored_g = subgraph(g, filter(x -> !contains(center_ball, x), vertices(g)))
-	# cone_side_links[i] is the vertex in cones[i]
+	# cone_side_terminals[i] is the vertex in cones[i]
 	# which will link to center_ball in the spanning tree
 	println("Doing ConeDecomp with $cored_g")
-	cones, cone_side_links = ConeDecomp(cored_g, center_shell, epsilon*rho/2, original_num_edges)
+	cones, cone_side_terminals = ConeDecomp(cored_g, center_shell, epsilon*rho/2, original_num_edges)
 	println("Done")
 	dijkstra = dijkstra_shortest_paths(g, edgedists(g), x)
 
-	# There will be a link from core_side_links[i] to cone_side_links[i] in the tree
+	# There will be a link from core_side_links[i] to cone_side_terminals[i] in the tree
 	core_side_links = Array(V, 0)
 	for i in 1:length(cones)
-		path = extract_path(dijkstra, cone_side_links[i])
+		path = extract_path(dijkstra, cone_side_terminals[i])
 		found_link = false
 		for v in path
 			if !contains(center_ball, v) && contains(center_shell, v)
@@ -225,25 +244,50 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::F
 		end
 	end
 
-	return (cones, cone_side_links, core_side_links)
+
+
+	return (center_ball, cones, cone_side_terminals, core_side_links)
 end
 
 function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell::Vector{V}, delta, original_num_edges)
 	prev_shell = shell
 	k = 0
 	prev_g = g
-	cone_side_links = Array(V,0)
+	cone_side_terminals = Array(V,0)
 	cones = Array(Vector{V}, 0)
 	while !isempty(prev_shell)
+		println("vertices of g: $(vertices(prev_g))")
+		println("prev shell: $prev_shell")
 		k += 1
 		x = prev_shell[1]
-		push!(cone_side_links, x)
+		push!(cone_side_terminals, x)
 		r = ConeCut(prev_g, x, 0, delta, prev_shell, original_num_edges)
 		push!(cones, vertices(build_cone(g, prev_shell, r, x)))
 		prev_g = subgraph(prev_g, filter(x -> !contains(cones[end], x), vertices(prev_g)))
 		prev_shell = filter(x -> !contains(cones[end], x), prev_shell)
 	end
-	return (cones, cone_side_links)
+
+	#Debug code
+	for v in vertices(g)
+		foundit = false
+		for c in cones
+			for v2 in c
+				if v == v2
+					foundit = true
+					break
+				end
+			end
+		end
+		if !foundit
+			println(g)
+			plot(g)
+			println(vertices(g))
+			error("lost vertex $v")
+		end
+	end
+
+
+	return (cones, cone_side_terminals)
 end
 
 function BallCut{V,E}(g::AbstractGraph{V,E}, center::V, rho::Float64, delta::Float64, original_num_edges::Int)
