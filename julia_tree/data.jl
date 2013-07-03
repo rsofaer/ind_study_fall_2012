@@ -54,9 +54,14 @@ function loadlesmis()
 
     # Get a list of the non zero values, the edges, in:
     # (list of rows, list of cols, list of conductances) format
+    done = Dict()
     nzs = findnz(mat)
+    n = 1
     for i in 1:length(nzs[1])
-        add_edge!(graph, i, 1/nzs[3][i], nzs[1][i], nzs[2][i])
+        if nzs[1][i] < nzs[2][i]
+            add_edge!(graph, n, 1/nzs[3][i], nzs[1][i], nzs[2][i])
+            n += 1
+        end
     end
     graph
 end

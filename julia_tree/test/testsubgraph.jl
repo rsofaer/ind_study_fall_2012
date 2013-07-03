@@ -26,3 +26,16 @@ let g=loadcgraph("../data/tiny")
   og = simple_inclist(5)
   @graph_requires og incidence_list
 end
+
+let g=loadcgraph("../data/med")
+  sg = subgraph(g, vertices(g)[2:8])
+  @test vertices(sg) == vertices(g)[2:8]
+  @test length(edges(sg)) == 7
+  @test length(edges(sg)) == 36
+  @test num_edges(sg) == length(edges(sg))
+  @test length(edgedists(sg)) == 36
+  ds = dijkstra_shortest_paths(sg, edgedists(sg), vertices(sg)[1])
+  @test length(ds.dists) == num_edges(sg)
+end
+
+
