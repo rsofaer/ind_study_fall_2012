@@ -2,7 +2,6 @@
 #
 using Graphs
 using DataStructures
-using Debug
 
 require("subgraph.jl")
 
@@ -25,7 +24,7 @@ end
 # The edges with exactly one end in s.
 function boundary{V,E}(g::AbstractGraph{V,E}, s)
 	result = E[]
-	for v in s
+	for v::V in s
 		for e in out_edges(v, g)
 			neighbor = begin 
 				if is_directed(g)
@@ -71,9 +70,17 @@ end
 # such that dist(v,u) = dist(v,w) + the length of the edge from w to u
 function ballshell{V,E}(g::AbstractGraph{V,E}, center::V, r::Real)
 	# TODO directed graphs
-	result = Array(V, 0)
+	
+	ds = dijkstra_shortest_paths(g,edgedists(g), center)
+	center_ball = Array(V, 0)
+	vlist = vertices(g)
+	for i in 1:length(ds.dists)
+		if ds.dists[i] < r
+			push!(center_ball, vlist[i])
+		end
+	end
 
-	center_ball = ball(g, center, r)
+	result = Array(V, 0)
 	for v in center_ball
 		for e in out_edges(v, g)
 			neighbor = begin 
@@ -93,6 +100,7 @@ function ballshell{V,E}(g::AbstractGraph{V,E}, center::V, r::Real)
 			end
 		end
 	end
+	sort!(result, (a, b) -> ds.dists[vertex_index(a,g)] < ds.dists[vertex_index(b,g)])
 	return result
 end
 
@@ -176,7 +184,8 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 	rho = radius(g,x) 
 	contracted_g, image_map = contract(g,beta*rho/original_num_vertices)
 
-	c_center_ball, c_vertex_sets, c_cone_side_links, c_core_side_links = StarDecomp(contracted_g, image_map[x], 1/3, beta, original_num_edges)
+	c_center_ball, c_vertex_sets, c_cone_side_links, c_core_side_links = StarDecomp(
+		contracted_g, image_map[x], 1/3, beta, original_num_edges)
 	# For each i, let Vi be the preimage under the contraction of vertices in Vi,
 	# (xi , yi ) ∈ V0 × Vi be the edge of shortest length for which xi is a preimage of xi and yi
 	# is a preimage of yi
@@ -197,6 +206,7 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 		# Get the minimal link from the preimage of cone to the preimage of the core
 		cone_side_preimage = attrs(c_cone_side_links[i])["preimage"]
 		core_side_preimage = attrs(c_core_side_links[i])["preimage"]
+
 		minimal_link = nothing
 		for v in cone_side_preimage
 			for e in out_edges(v, g)
@@ -207,6 +217,14 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 			end
 		end
 
+		if minimal_link == nothing
+			
+			global nol
+			nol = (g, cone_side_preimage[i], core_side_preimage[i], c_center_ball, full_vertex_sets[i], x, image_map)
+			global deb, con
+			con = (contracted_g, c_center_ball, c_vertex_sets[i], c_cone_side_links[i], c_core_side_links[i])
+			error("Could not find a link from $core_side_preimage to $cone_side_preimage")
+		end
 		push!(cone_core_links, minimal_link)
 
 		if contains(cone_side_preimage, source(minimal_link))
@@ -228,21 +246,13 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 	push!(trees, LowStretchTree(subgraph(g,center_ball), x, original_num_vertices, original_num_edges))
 
 	tree = reduce(combine, trees)
-
-	#debug
-	if any(x -> vertex_index(x) == 17, vertices(g)) && !any(x -> vertex_index(x) == 17, vertices(tree))
-		println("We lost vertex 17.
-			$g
-			$(vertices(g))
-			$(vertices(tree))")
-		plot(g)
-		plot(add_edges(tree, cone_core_links))
-		println("center ball $center_ball")
-		global globalshit
-		globalshit = (g, trees, tree, cone_core_links, c_vertex_sets, full_vertex_sets, image_map)
-		error("lost vertex 17")
+	tree = add_edges(tree, cone_core_links)
+	
+	if num_edges(tree) != num_vertices(tree) -1
+		error("Trying to return a non-tree")
 	end
-	return add_edges(tree, cone_core_links)
+
+	return tree
 end
 
 LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V) = LowStretchTree(g,x, num_vertices(g), num_edges(g))
@@ -253,10 +263,10 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::F
 	central_radius = BallCut(g, x, rho, delta, original_num_edges)
 	center_ball = ball(g, x, central_radius)
 	center_shell = ballshell(g, x, central_radius)
-
 	cored_g = subgraph(g, filter(x -> !contains(center_ball, x), vertices(g)))
 	# cone_side_terminals[i] is the vertex in cones[i]
 	# which will link to center_ball in the spanning tree
+
 	cones, cone_side_terminals = ConeDecomp(cored_g, center_shell, epsilon*rho/2, original_num_edges)
 
 	dijkstra = dijkstra_shortest_paths(g, edgedists(g), x)
@@ -266,32 +276,27 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::F
 	for i in 1:length(cones)
 		path = extract_path(dijkstra, cone_side_terminals[i])
 		found_link = false
+
+		# Start by thinking the core_side_link will be the center
+		last_vertex = x
 		for v in path
-			if !contains(center_ball, v) && contains(center_shell, v)
-				push!(core_side_links, v)
+			if contains(center_ball, v)
+				last_vertex = v #If the next vertex in the path is in the center, that might be the link
+			else
+				push!(core_side_links, last_vertex)
 				found_link = true
 				break
 			end
 		end
+		if !contains(out_neighbors(last_vertex, g), cone_side_terminals[i])
+					global center, path, cst, csl, i, dks, curg, cb, lv, shell, cns
+					center, path, cst, csl, i, dks, curg, cb, lv, shell, cns = (x, path, cone_side_terminals, core_side_links, i, dijkstra, g, center_ball, last_vertex, center_shell, cones)
+					error("there's no link: $last_vertex, $(cone_side_terminals[i]) ")
+		end
+
 		if !found_link
 			error("Cound not find a link from center $center_ball to cone $(cones[i])")
 		end
-	end
-	#debug
-	if any(x -> vertex_index(x) == 6, vertices(g)) && !any(x -> vertex_index(x) == 6, center_ball) && !any(c -> contains(map(v -> vertex_index(v), c), 6),cones)
-		println("We lost vertex 6.
-			$g
-			g: $(vertices(g))
-			cones $(cones)
-			cored_g: $(vertices(cored_g))
-			center_shell: $center_shell
-			")
-		plot(g)
-		println("center ball $center_ball")
-
-		global globalshit
-		globalshit = (g, x, delta, epsilon, original_num_edges, central_radius)
-		error("lost vertex 6")
 	end
 
 	return (center_ball, cones, cone_side_terminals, core_side_links)
@@ -307,28 +312,13 @@ function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell::Vector{V}, delta, origina
 		k += 1
 		x = prev_shell[1]
 		push!(cone_side_terminals, x)
+
 		r = ConeCut(prev_g, x, 0, delta, prev_shell, original_num_edges)
 		push!(cones, vertices(build_cone(g, prev_shell, r, x)))
 		prev_g = subgraph(prev_g, filter(x -> !contains(cones[end], x), vertices(prev_g)))
 		prev_shell = filter(x -> !contains(cones[end], x), prev_shell)
-		plot(prev_g)
 	end
 
-	#debug
-	if any(x -> vertex_index(x) == 6, vertices(g)) && !any(c -> contains(map(v -> vertex_index(v), c), 6),cones)
-		println("We lost vertex 6.
-			$g
-			g: $(vertices(g))
-			cones $(cones)
-			center_shell: $shell
-			cts: $cone_side_terminals
-			")
-		plot(g)
-
-		global globalshit
-		globalshit = (g, shell, cones)
-		error("lost vertex 6")
-	end
 	return (cones, cone_side_terminals)
 end
 
@@ -393,16 +383,18 @@ end
 #r = ConeCut(G, v, λ, λ′, S) 
 function ConeCut{V,E}(g::AbstractGraph{V,E}, center::V, lambda::Real, lambda_prime::Real, inducing_set::Array{V}, original_num_edges::Int)
 	r = lambda
-	mu = NaN
+
 	cur_cone = build_cone(g, inducing_set, r, center)
-	if vol(edges(cur_cone)) == 0
-		mu = (vol(vertices(cur_cone))+ 1)*log2(original_num_edges + 1)
-	else
-		mu = vol(vertices(cur_cone))*log2(original_num_edges/vol(edges(cur_cone)))
+	mu = begin 
+		if vol(edges(cur_cone)) == 0
+			(vol(vertices(cur_cone))+ 1)*log2(original_num_edges + 1)
+		else
+			vol(vertices(cur_cone))*log2(original_num_edges/vol(edges(cur_cone)))
+		end
 	end
 
-
-	while cost(boundary(g, cur_cone)) > mu/(lambda_prime - lambda)
+	#putting 1/mu... as an experiment
+	while cost(boundary(g, cur_cone)) > 1/(mu/(lambda_prime - lambda))
 		# find w::V not in cur_cone closest to cur_cone and increase r so cur_cone encompasses w
 		ds = dijkstra_shortest_paths(g, edgedists(g), vertices(cur_cone))
 		w_ind = min_ind_with_filter(ds.dists, x -> x > 0)

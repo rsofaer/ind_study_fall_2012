@@ -1,4 +1,6 @@
 using Graphs
+using Memoize
+
 import  Graphs.implements_vertex_list,
         Graphs.implements_edge_list,
         Graphs.implements_vertex_map,
