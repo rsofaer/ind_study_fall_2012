@@ -73,11 +73,13 @@ included_edge(g::Subgraph, v) = contains(g.edge_set, edge_index(v, g.full_graph)
 full_graph(g::AbstractGraph) = g
 full_graph(g::Subgraph) = g.full_graph
 
-function Graphs.vertices(g::Subgraph)
+Graphs.vertices(g::Subgraph) = subgraph_vertices(g)
+@memoize function subgraph_vertices(g::Subgraph)
   filter(x -> included_vertex(g, x), vertices(g.full_graph))
 end
 
-function Graphs.edges(g::Subgraph)
+Graphs.edges(g::Subgraph) = subgraph_edges(g)
+@memoize function subgraph_edges(g::Subgraph)
   filter(x -> included_edge(g, x), edges(g.full_graph))
 end
 

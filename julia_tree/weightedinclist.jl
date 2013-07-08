@@ -60,7 +60,7 @@ function add_edge!(g::MyIncList, e::WeightedEdge{AttrNode})
     push!(g.inclist[vertex_index(e.source)], e)
 
     if !g.is_directed
-        push!(g.inclist[vertex_index(e.target)], e)
+        push!(g.inclist[vertex_index(e.target)], WeightedEdge{AttrNode}(e.index, e.resistance, e.target, e.source))
     end
 end
 function add_edge!(g::MyIncList, i::Integer, r::Float64, u::Integer, v::Integer)

@@ -26,17 +26,7 @@ function boundary{V,E}(g::AbstractGraph{V,E}, s)
 	result = E[]
 	for v::V in s
 		for e in out_edges(v, g)
-			neighbor = begin 
-				if is_directed(g)
-					target(e, g)
-				else
-					if target(e, g) == v
-						source(e, g)
-					else
-						target(e, g)
-					end
-				end
-			end
+			neighbor = target(e, g)
 
 			if !contains(s, neighbor)
 				push!(result, e)
@@ -69,8 +59,7 @@ end
 # every vertex u not in B(v,r) with a neighbor w in B(v,r)
 # such that dist(v,u) = dist(v,w) + the length of the edge from w to u
 function ballshell{V,E}(g::AbstractGraph{V,E}, center::V, r::Real)
-	# TODO directed graphs
-	
+
 	ds = dijkstra_shortest_paths(g,edgedists(g), center)
 	center_ball = Array(V, 0)
 	vlist = vertices(g)
@@ -83,17 +72,7 @@ function ballshell{V,E}(g::AbstractGraph{V,E}, center::V, r::Real)
 	result = Array(V, 0)
 	for v in center_ball
 		for e in out_edges(v, g)
-			neighbor = begin 
-				if is_directed(g)
-					target(e, g)
-				else
-					if target(e, g) == v
-						source(e, g)
-					else
-						target(e, g)
-					end
-				end
-			end
+			neighbor = target(e, g)
 
 			if !contains(center_ball, neighbor) && !contains(result, neighbor)
 				push!(result, neighbor)
@@ -172,7 +151,7 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 end
 
 
-function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices::Int, original_num_edges::Int)
+function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices::Int)
 	beta = 1/(2*log(4/3,original_num_vertices + 32))
 
 
@@ -184,8 +163,7 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 	rho = radius(g,x) 
 	contracted_g, image_map = contract(g,beta*rho/original_num_vertices)
 
-	c_center_ball, c_vertex_sets, c_cone_side_links, c_core_side_links = StarDecomp(
-		contracted_g, image_map[x], 1/3, beta, original_num_edges)
+	c_center_ball, c_vertex_sets, c_cone_side_links, c_core_side_links = StarDecomp(contracted_g, image_map[x], 1/3, beta)
 	# For each i, let Vi be the preimage under the contraction of vertices in Vi,
 	# (xi , yi ) ∈ V0 × Vi be the edge of shortest length for which xi is a preimage of xi and yi
 	# is a preimage of yi
@@ -217,14 +195,7 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 			end
 		end
 
-		if minimal_link == nothing
-			
-			global nol
-			nol = (g, cone_side_preimage[i], core_side_preimage[i], c_center_ball, full_vertex_sets[i], x, image_map)
-			global deb, con
-			con = (contracted_g, c_center_ball, c_vertex_sets[i], c_cone_side_links[i], c_core_side_links[i])
-			error("Could not find a link from $core_side_preimage to $cone_side_preimage")
-		end
+
 		push!(cone_core_links, minimal_link)
 
 		if contains(cone_side_preimage, source(minimal_link))
@@ -235,7 +206,7 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 			push!(full_core_side_links, source(minimal_link))
 		end
 
-		push!(trees, LowStretchTree(subgraph(g,full_vertex_sets[i]), full_cone_side_links[i], original_num_vertices, original_num_edges))
+		push!(trees, LowStretchTree(subgraph(g,full_vertex_sets[i]), full_cone_side_links[i], original_num_vertices))
 	end
 
 	center_ball = V[]
@@ -243,33 +214,54 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 		append!(center_ball, attrs(v)["preimage"])
 	end
 
-	push!(trees, LowStretchTree(subgraph(g,center_ball), x, original_num_vertices, original_num_edges))
+	push!(trees, LowStretchTree(subgraph(g,center_ball), x, original_num_vertices))
 
 	tree = reduce(combine, trees)
+	try
 	tree = add_edges(tree, cone_core_links)
+	catch
+	println("nope
+		$g
+		$tree
+		$cone_core_links")
+	error("nope")
+end
+
+	if num_vertices(tree) < num_vertices(g)
+
+			global nol
+			nol = (g, full_cone_side_links, full_core_side_links, full_vertex_sets, x, image_map)
+			global deb, con
+			con = (contracted_g, c_center_ball, c_vertex_sets, c_cone_side_links, c_core_side_links)
 	
+		error("lost vertices...
+			$g
+			$tree")
+	end
 	if num_edges(tree) != num_vertices(tree) -1
 		error("Trying to return a non-tree")
 	end
-
+	
 	return tree
 end
 
 LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V) = LowStretchTree(g,x, num_vertices(g), num_edges(g))
 
 # ({V0, ..., Vk, x, y}), 
-function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::Float64, original_num_edges::Int)
-	rho = radius(g, x)
-	central_radius = BallCut(g, x, rho, delta, original_num_edges)
+function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::Float64)
+	dijkstra = dijkstra_shortest_paths(g, edgedists(g), x)
+	rho = max(dijkstra.dists)
+
+	central_radius = BallCut(g, x, rho, delta)
 	center_ball = ball(g, x, central_radius)
 	center_shell = ballshell(g, x, central_radius)
 	cored_g = subgraph(g, filter(x -> !contains(center_ball, x), vertices(g)))
 	# cone_side_terminals[i] is the vertex in cones[i]
 	# which will link to center_ball in the spanning tree
 
-	cones, cone_side_terminals = ConeDecomp(cored_g, center_shell, epsilon*rho/2, original_num_edges)
+	cones, cone_side_terminals = ConeDecomp(cored_g, center_shell, epsilon*rho/2)
 
-	dijkstra = dijkstra_shortest_paths(g, edgedists(g), x)
+	
 
 	# There will be a link from core_side_links[i] to cone_side_terminals[i] in the tree
 	core_side_links = Array(V, 0)
@@ -288,11 +280,6 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::F
 				break
 			end
 		end
-		if !contains(out_neighbors(last_vertex, g), cone_side_terminals[i])
-					global center, path, cst, csl, i, dks, curg, cb, lv, shell, cns
-					center, path, cst, csl, i, dks, curg, cb, lv, shell, cns = (x, path, cone_side_terminals, core_side_links, i, dijkstra, g, center_ball, last_vertex, center_shell, cones)
-					error("there's no link: $last_vertex, $(cone_side_terminals[i]) ")
-		end
 
 		if !found_link
 			error("Cound not find a link from center $center_ball to cone $(cones[i])")
@@ -302,7 +289,7 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::F
 	return (center_ball, cones, cone_side_terminals, core_side_links)
 end
 
-function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell::Vector{V}, delta, original_num_edges)
+function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell::Vector{V}, delta)
 	prev_shell = shell
 	k = 0
 	prev_g = g
@@ -313,22 +300,28 @@ function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell::Vector{V}, delta, origina
 		x = prev_shell[1]
 		push!(cone_side_terminals, x)
 
-		r = ConeCut(prev_g, x, 0, delta, prev_shell, original_num_edges)
+		r = ConeCut(prev_g, x, 0, delta, prev_shell)
 		push!(cones, vertices(build_cone(g, prev_shell, r, x)))
 		prev_g = subgraph(prev_g, filter(x -> !contains(cones[end], x), vertices(prev_g)))
 		prev_shell = filter(x -> !contains(cones[end], x), prev_shell)
 	end
 
+	if num_vertices(prev_g) > 0
+		
+		global g_g, shell_g, prev_g_g, prev_shell_g, cones_g, cone_side_terminals_g, delta_g
+		g_g, shell_g, prev_g_g, prev_shell_g, cones_g, cone_side_terminals_g, delta_g = (g, shell, prev_g, prev_shell, cones, cone_side_terminals, delta)
+		error("vertices left in prev_g")
+	end
 	return (cones, cone_side_terminals)
 end
 
-function BallCut{V,E}(g::AbstractGraph{V,E}, center::V, rho::Float64, delta::Float64, original_num_edges::Int)
+function BallCut{V,E}(g::AbstractGraph{V,E}, center::V, rho::Float64, delta::Float64)
 	r = rho*delta
 	ds = dijkstra_shortest_paths(g, edgedists(g), center)
 	cur_ind = 1 # 1 is center.  We need to find the biggest distance smaller than r
 	vertex_indices_ascending_by_distance = sortperm(ds.dists)
 	v_next = vertex_indices_ascending_by_distance[cur_ind]
-	while cost(boundary(g, ball(g, center, r))) > ((vol(ball(g, center, r)) + 1)/((1-2*delta)*rho))*log2(original_num_edges+1)
+	while cost(boundary(g, ball(g, center, r))) > ((vol(ball(g, center, r)) + 1)/((1-2*delta)*rho))*log2(num_edges(g)+1)
 		#find v_next not in ball(r, center) that minimizes dist(center, v_next) and set r = dist(center, v_next)
 		while ds.dists[v_next] <= r
 			cur_ind += 1
@@ -381,15 +374,15 @@ function build_cone{V,E}(g::AbstractGraph{V,E}, S::Vector{V},  l::Real, center::
 end
 
 #r = ConeCut(G, v, λ, λ′, S) 
-function ConeCut{V,E}(g::AbstractGraph{V,E}, center::V, lambda::Real, lambda_prime::Real, inducing_set::Array{V}, original_num_edges::Int)
+function ConeCut{V,E}(g::AbstractGraph{V,E}, center::V, lambda::Real, lambda_prime::Real, inducing_set::Array{V})
 	r = lambda
 
 	cur_cone = build_cone(g, inducing_set, r, center)
 	mu = begin 
 		if vol(edges(cur_cone)) == 0
-			(vol(vertices(cur_cone))+ 1)*log2(original_num_edges + 1)
+			(vol(vertices(cur_cone))+ 1)*log2(num_edges(g) + 1)
 		else
-			vol(vertices(cur_cone))*log2(original_num_edges/vol(edges(cur_cone)))
+			vol(vertices(cur_cone))*log2(num_edges(g)/vol(edges(cur_cone)))
 		end
 	end
 
