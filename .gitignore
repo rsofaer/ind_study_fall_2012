@@ -10,4 +10,5 @@ cppTree/cppTree.*
 *.swp
 *.aux
 *.log
+*~
 project.pdf
