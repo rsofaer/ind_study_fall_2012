@@ -280,9 +280,9 @@ function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell::Vector{V}, delta)
 		x = prev_shell[1]
 		push!(cone_side_terminals, x)
 
-		r = ConeCut(prev_g, x, 0, delta, prev_shell)
+		r, cone = ConeCut(prev_g, x, 0, delta, prev_shell)
 
-		push!(cones, vertices(build_cone(prev_g, prev_shell, r, x)))
+		push!(cones, cone)
 		prev_g = subgraph(prev_g, filter(x -> !contains(cones[end], x), vertices(prev_g)))
 		prev_shell = filter(x -> !contains(cones[end], x), prev_shell)
 
@@ -360,7 +360,7 @@ function build_cone{V,E}(g::AbstractGraph{V,E}, S::Vector{V},  l::Real, center::
 
 	#invariant: if the shortest path from center to v intersects build_cone(g, S, l, center), v is in the cone.
 
-	return subgraph(g, result)
+	return result
 end
 
 #r = ConeCut(G, v, λ, λ′, S) 
@@ -368,24 +368,25 @@ function ConeCut{V,E}(g::AbstractGraph{V,E}, center::V, lambda::Real, lambda_pri
 	r = lambda
 
 	cur_cone = build_cone(g, inducing_set, r, center)
+	cur_cone_edges = edges(subgraph(g, cur_cone))
 	mu = begin 
-		if vol(edges(cur_cone)) == 0
-			(vol(vertices(cur_cone))+ 1)*log2(num_edges(g) + 1)
+		if vol(cur_cone_edges) == 0
+			(vol(cur_cone)+ 1)*log2(num_edges(g) + 1)
 		else
-			vol(vertices(cur_cone))*log2(num_edges(g)/vol(edges(cur_cone)))
+			vol(cur_cone)*log2(num_edges(g)/vol(cur_cone_edges))
 		end
 	end
 
 	#putting 1/mu... as an experiment
 	while cost(boundary(g, cur_cone)) > 1/(mu/(lambda_prime - lambda))
 		# find w::V not in cur_cone closest to cur_cone and increase r so cur_cone encompasses w
-		ds = dijkstra_shortest_paths(g, edgedists(g), vertices(cur_cone))
+		ds = dijkstra_shortest_paths(g, edgedists(g), cur_cone)
 		w_ind = min_ind_with_filter(ds.dists, x -> x > 0)
 		r += ds.dists[w_ind]
 		cur_cone = build_cone(g, inducing_set, r, center)
 	end
 
-	return r
+	return r, cur_cone
 end
 
 
