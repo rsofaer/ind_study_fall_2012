@@ -1,4 +1,5 @@
 using Graphs
+
 import Base.show
 immutable WeightedEdge{V}
     index::Int
@@ -14,17 +15,16 @@ source(e::WeightedEdge ) = e.source
 target(e::WeightedEdge,g ) = e.target
 source(e::WeightedEdge,g ) = e.source
 
-typealias AttrDict Dict{UTF8String, Any}
 immutable AttrNode
     index::Int
-    attrs::AttrDict
+    attributes::AttributeDict
 end
 
 Base.isless(v1::AttrNode, v2::AttrNode) = isless(vertex_index(v1), vertex_index(v2))
 import Graphs.vertex_index
 vertex_index(v::AttrNode) = v.index
 
-attrs(v::AttrNode) = v.attrs
+attributes(v::AttrNode) = v.attributes
 
 show(v::AttrNode) = "Node $(vertex_index(v))"
 typealias WIncidenceList{V} GenericIncidenceList{V, WeightedEdge{V}, Vector{V}, Vector{Vector{WeightedEdge{V}}}}
@@ -48,7 +48,7 @@ function add_vertex!{V}(g::WIncidenceList{V}, v::V)
     v
 end
 
-function add_vertex!{V}(g::WIncidenceList{V}, d::AttrDict)
+function add_vertex!{V}(g::WIncidenceList{V}, d::AttributeDict)
     nv::Int = num_vertices(g)
     v = AttrNode(nv + 1, d)
     add_vertex!(g, v)
@@ -63,6 +63,7 @@ function add_edge!(g::MyIncList, e::WeightedEdge{AttrNode})
         push!(g.inclist[vertex_index(e.target)], WeightedEdge{AttrNode}(e.index, e.resistance, e.target, e.source))
     end
 end
+
 function add_edge!(g::MyIncList, i::Integer, r::Float64, u::Integer, v::Integer)
     nv::Int = num_vertices(g)
 
@@ -115,6 +116,7 @@ function edgedists(g)
     end
     return result
 end
+
 import Base.show
 show(io::IO, v::AttrNode) = print(io, "Vertex($(vertex_index(v)))")
 show(io::IO, e::WeightedEdge) = print(io, 

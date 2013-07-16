@@ -105,7 +105,7 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 	c_g = weightedinclist()
 	ng = num_groups(vertexsets)
 	for n in 1:ng
-		d = AttrDict()
+		d = AttributeDict()
 		d["preimage"] = Array(V,0)
 		add_vertex!(c_g, d)
 	end
@@ -130,7 +130,7 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 		image = contracted_v[root_to_image_map[root]]
 
 		image_map[v] = image
-		preimage_array = attrs(image)["preimage"]
+		preimage_array = attributes(image)["preimage"]
 		push!(preimage_array, v)
 	end
 
@@ -178,12 +178,12 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 		push!(full_vertex_sets,V[])
 		# Get the preimages of the vertex sets
 		for j in 1:length(c_vertex_sets[i])
-			append!(full_vertex_sets[i], attrs(c_vertex_sets[i][j])["preimage"])			
+			append!(full_vertex_sets[i], attributes(c_vertex_sets[i][j])["preimage"])			
 		end
 
 		# Get the minimal link from the preimage of cone to the preimage of the core
-		cone_side_preimage = attrs(c_cone_side_links[i])["preimage"]
-		core_side_preimage = attrs(c_core_side_links[i])["preimage"]
+		cone_side_preimage = attributes(c_cone_side_links[i])["preimage"]
+		core_side_preimage = attributes(c_core_side_links[i])["preimage"]
 
 		minimal_link = nothing
 		for v in cone_side_preimage
@@ -210,7 +210,7 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 
 	center_ball = V[]
 	for v in c_center_ball
-		append!(center_ball, attrs(v)["preimage"])
+		append!(center_ball, attributes(v)["preimage"])
 	end
 
 	push!(trees, LowStretchTree(subgraph(g,center_ball), x, original_num_vertices))

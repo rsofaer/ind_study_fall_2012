@@ -11,7 +11,7 @@ function loadcgraph(basename)
     open(nodesname) do f
         for l in eachline(f)
             caps = match(noderegex, l).captures
-            d = AttrDict()
+            d = AttributeDict()
             d["lat"] = caps[2]
             d["long"] = caps[3]
             node = AttrNode(int(caps[1]) + 1, d)
@@ -46,7 +46,7 @@ function loadlesmis()
     graph = weightedinclist()
     
     for name in struct["aux"]["nodename"]
-        d = AttrDict()
+        d = AttributeDict()
         d["name"] = name
         
         add_vertex!(graph, d)
