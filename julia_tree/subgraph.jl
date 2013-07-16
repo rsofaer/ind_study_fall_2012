@@ -17,7 +17,7 @@ type Subgraph{V, E} <: AbstractGraph{V, E}
   edge_set::IntSet
 end
 
-@graph_implements Subgraph vertex_list vertex_map edge_list edge_map adjacency_list incidence_list
+@graph_implements Subgraph vertex_list vertex_map edge_map adjacency_list incidence_list
 
 function subgraph{V,E}(g::AbstractGraph{V, E}, vertex_set)
   i = IntSet()

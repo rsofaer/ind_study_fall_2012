@@ -45,9 +45,11 @@ function loadlesmis()
 
     graph = weightedinclist()
     
-    for name in struct["aux"]["nodename"]
+    for i in 1:length(struct["aux"]["nodename"])
+        name = struct["aux"]["nodename"][i]
         d = AttributeDict()
         d["name"] = name
+        d["label"] = "$name: $i"
         
         add_vertex!(graph, d)
     end

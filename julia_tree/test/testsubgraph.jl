@@ -30,12 +30,11 @@ end
 let g=loadcgraph("../data/med")
   sg = subgraph(g, vertices(g)[2:8])
   @test vertices(sg) == vertices(g)[2:8]
-  @test length(edges(sg)) == 7
-  @test length(edges(sg)) == 36
+  @test length(edges(sg)) == 15
   @test num_edges(sg) == length(edges(sg))
-  @test length(edgedists(sg)) == 36
+  @test length(edgedists(sg)) == 15
   ds = dijkstra_shortest_paths(sg, edgedists(sg), vertices(sg)[1])
-  @test length(ds.dists) == num_edges(sg)
+  @test length(ds.dists) == num_vertices(sg)
 end
 
 

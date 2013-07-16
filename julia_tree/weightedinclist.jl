@@ -20,35 +20,23 @@ immutable AttrNode
     attributes::AttributeDict
 end
 
+resistance(e::WeightedEdge) = e.resistance
+conductance(e::WeightedEdge) = 1/e.resistance
+
 Base.isless(v1::AttrNode, v2::AttrNode) = isless(vertex_index(v1), vertex_index(v2))
 import Graphs.vertex_index
 vertex_index(v::AttrNode) = v.index
 
-attributes(v::AttrNode) = v.attributes
+Graphs.attributes(v::AttrNode) = v.attributes
+Graphs.attributes(v::AttrNode, g) = v.attributes
 
 show(v::AttrNode) = "Node $(vertex_index(v))"
-typealias WIncidenceList{V} GenericIncidenceList{V, WeightedEdge{V}, Vector{V}, Vector{Vector{WeightedEdge{V}}}}
 
-typealias MyIncList WIncidenceList{AttrNode}
+typealias MyIncList VectorIncidenceList{AttrNode, WeightedEdge{AttrNode}}
 
-function weightedinclist()
-    MyIncList(false, Array(AttrNode, 0), 0, Array(Vector{WeightedEdge{AttrNode}},0))
-end
+weightedinclist() = inclist(AttrNode, WeightedEdge{AttrNode}, is_directed=false)
 
-import Graphs.add_vertex!
-function add_vertex!{V}(g::WIncidenceList{V}, v::V)
-    nv::Int = num_vertices(g)
-    iv::Int = vertex_index(v)
-    if iv != nv + 1
-        throw(ArgumentError("Invalid vertex index."))
-    end
-
-    push!(g.vertices, v)
-    push!(g.inclist, Array(edge_type(g),0))
-    v
-end
-
-function add_vertex!{V}(g::WIncidenceList{V}, d::AttributeDict)
+function Graphs.add_vertex!(g::MyIncList, d::AttributeDict)
     nv::Int = num_vertices(g)
     v = AttrNode(nv + 1, d)
     add_vertex!(g, v)
