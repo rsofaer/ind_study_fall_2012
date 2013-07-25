@@ -1,6 +1,7 @@
 using Graphs
 
 import Base.show
+
 immutable WeightedEdge{V}
     index::Int
     resistance::Float64

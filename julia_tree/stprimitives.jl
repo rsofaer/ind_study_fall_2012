@@ -52,17 +52,9 @@ end
 
 # every vertex u not in B(v,r) with a neighbor w in B(v,r)
 # such that dist(v,u) = dist(v,w) + the length of the edge from w to u
-function ballshell{V,E}(g::AbstractGraph{V,E}, center::V, r::Real)
+ballshell{V, E}(g::AbstractGraph{V,E}, center::V, r::Real) = ball_and_shell(g, center, r)[2]
 
-	ds = dijkstra_shortest_paths(g,edgedists(g), center)
-	center_ball = Array(V, 0)
-	vlist = vertices(g)
-	for i in 1:length(ds.dists)
-		if ds.dists[i] < r
-			push!(center_ball, vlist[i])
-		end
-	end
-
+function ballshell{V, E}(g::AbstractGraph{V,E}, center_ball::Vector{V}, ds)
 	result = Array(V, 0)
 	for v in center_ball
 		for e in out_edges(v, g)
@@ -74,7 +66,16 @@ function ballshell{V,E}(g::AbstractGraph{V,E}, center::V, r::Real)
 		end
 	end
 	sort!(result, (a, b) -> ds.dists[vertex_index(a,g)] < ds.dists[vertex_index(b,g)])
-	return result
+	result
+end
+
+function ball_and_shell{V,E}(g::AbstractGraph{V,E}, center::V, r::Real)
+
+	ds = dijkstra_shortest_paths(g,edgedists(g), center)
+	center_ball = ball(g, center, r, ds)
+
+	shell = ballshell(g, center_ball, ds)
+	return center_ball, shell
 end
 
 # the smallest rho st dist(x,y) < rho for all y
@@ -228,9 +229,9 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::F
 	dijkstra = dijkstra_shortest_paths(g, edgedists(g), x)
 	rho = max(dijkstra.dists)
 
-	central_radius, central_ball = BallCut(g, x, rho, delta)
+	central_radius, central_ball = BallCut(g, x, rho, delta, dijkstra)
+	central_shell = ballshell(g, central_ball, dijkstra)
 
-	central_shell = ballshell(g, x, central_radius)
 	cored_g = subgraph(g, filter(x -> !contains(central_ball, x), vertices(g)))
 	# cone_side_terminals[i] is the vertex in cones[i]
 	# which will link to central_ball in the spanning tree
@@ -290,9 +291,10 @@ function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell::Vector{V}, delta)
 	return (cones, cone_side_terminals)
 end
 
-function BallCut{V,E}(g::AbstractGraph{V,E}, center::V, rho::Float64, delta::Float64)
+BallCut{V,E}(g::AbstractGraph{V,E}, center::V, rho::Float64, delta::Float64) = BallCut(g, center, rho, delta, dijkstra_shortest_paths(g, edgedists(g), center))
+function BallCut{V,E}(g::AbstractGraph{V,E}, center::V, rho::Float64, delta::Float64, ds)
 	r = rho*delta
-	ds = dijkstra_shortest_paths(g, edgedists(g), center)
+
 	cur_ind = 1 # 1 is center.  We need to find the biggest distance smaller than r
 	vertex_indices_ascending_by_distance = sortperm(ds.dists)
 	v_next = vertex_indices_ascending_by_distance[cur_ind]
@@ -326,13 +328,17 @@ function forward_edges{V,E}(g::AbstractGraph{V,E}, inducing_set::Vector{V})
 end
 
 # Edge distances with forward edges set to 0.
-function carved_edgedists{V,E}(g::AbstractGraph{V,E}, inducing_set::Vector{V})
+carved_edgedists{V,E}(g::AbstractGraph{V,E}, inducing_set::Vector{V}) = 
+	carved_edgedists(g, inducing_set, dijkstra_shortest_paths(g, edgedists(g), inducing_set))
+
+function carved_edgedists{V,E}(g::AbstractGraph{V,E}, inducing_set::Vector{V}, ds)
 	eds = edges(g)
-	dists = edgedists(g)
-	ds = dijkstra_shortest_paths(g, dists, inducing_set)
-	for i in 1:length(eds)
-		t = target(eds[i], g)
-		s = source(eds[i], g)
+	dists = copy(edgedists(g))
+
+	for e in eds
+		i = edge_index(e, g)
+		t = target(e, g)
+		s = source(e, g)
 		if ds.parents[vertex_index(t, g)] == s ||
 				ds.parents[vertex_index(s, g)] == t
 			dists[i] = 0
@@ -344,9 +350,10 @@ end
 # the sum of the lengths of whose edges e that do not belong to F (S) is at most l
 # is the cone of width l around center induced by S
 # c = build_cone(g, v, S, l)
-function build_cone{V,E}(g::AbstractGraph{V,E}, S::Vector{V},  l::Real, center::V)
+build_cone{V,E}(g::AbstractGraph{V,E}, S::Vector{V},  l::Real, center::V) = 
+	build_cone(g, S, l, dijkstra_shortest_paths(g, carved_edgedists(g, S), center))
 
-	ds = dijkstra_shortest_paths(g, carved_edgedists(g, S), center)
+function build_cone{V,E}(g::AbstractGraph{V,E}, S::Vector{V},  l::Real, center::V, ds)
 	result = Array(V, 0)
 
 	vlist = vertices(g)
@@ -364,7 +371,9 @@ end
 function ConeCut{V,E}(g::AbstractGraph{V,E}, center::V, lambda::Real, lambda_prime::Real, inducing_set::Array{V})
 	r = lambda
 
-	cur_cone = build_cone(g, inducing_set, r, center)
+	induced_ds = dijkstra_shortest_paths(g, carved_edgedists(g, inducing_set), center)
+	
+	cur_cone = build_cone(g, inducing_set, r, center, induced_ds)
 	cur_cone_edges = edges(subgraph(g, cur_cone))
 	mu = begin 
 		if vol(cur_cone_edges) == 0
@@ -379,7 +388,7 @@ function ConeCut{V,E}(g::AbstractGraph{V,E}, center::V, lambda::Real, lambda_pri
 		ds = dijkstra_shortest_paths(g, edgedists(g), cur_cone)
 		w_ind = min_ind_with_filter(ds.dists, x -> x > 0)
 		r += ds.dists[w_ind]
-		cur_cone = build_cone(g, inducing_set, r, center)
+		cur_cone = build_cone(g, inducing_set, r, center, induced_ds)
 	end
 
 	return r, cur_cone

@@ -19,11 +19,13 @@ function loadcgraph(basename)
         end
     end
 
+    weights = Array(Float64, 0)
     edgeregex = r"(\d+) (\d+) (\d+) (-?\d+.?\d+)"
     open(edgesname) do f
         for l in eachline(f)
             caps = match(edgeregex, l).captures
             add_edge!(graph, int(caps[1]) + 1, float(caps[4]), int(caps[2]) + 1, int(caps[3]) + 1)
+            push!(weights, float(caps[4]))
         end
     end
     graph
