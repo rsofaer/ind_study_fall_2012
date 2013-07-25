@@ -8,13 +8,7 @@ require("subgraph.jl")
 
 import Base.length
 
-function resistance{E}(e::E)
-  e.resistance
-end
 
-function conductance{E}(e::E)
-  1/e.resistance
-end
 
 # Shortest path in LENGTH
 function dist{V}(a::V, b::V)
@@ -154,7 +148,13 @@ end
 function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices::Int)
 	beta = 1/(2*log(4/3,original_num_vertices + 32))
 
-
+	let interests = [17,18,19,20,21,22,23,24]
+		vinds = map(v -> vertex_index(v), vertices(g))
+		if all(x -> contains(vinds, x),interests)
+			global hmm
+			hmm = (g, x)
+		end
+	end
 
 	if(num_vertices(g) <= 2)
 		return g
@@ -287,7 +287,6 @@ function ConeDecomp{V,E}(g::AbstractGraph{V,E}, shell::Vector{V}, delta)
 		prev_shell = filter(x -> !contains(cones[end], x), prev_shell)
 
 	end
-
 	return (cones, cone_side_terminals)
 end
 
@@ -335,8 +334,7 @@ function carved_edgedists{V,E}(g::AbstractGraph{V,E}, inducing_set::Vector{V})
 		t = target(eds[i], g)
 		s = source(eds[i], g)
 		if ds.parents[vertex_index(t, g)] == s ||
-				ds.parents[vertex_index(s, g)] == t ||
-				(contains(inducing_set, t) && contains(inducing_set, s))
+				ds.parents[vertex_index(s, g)] == t
 			dists[i] = 0
 		end
 	end
@@ -347,9 +345,9 @@ end
 # is the cone of width l around center induced by S
 # c = build_cone(g, v, S, l)
 function build_cone{V,E}(g::AbstractGraph{V,E}, S::Vector{V},  l::Real, center::V)
+
 	ds = dijkstra_shortest_paths(g, carved_edgedists(g, S), center)
 	result = Array(V, 0)
-	push!(result, center)
 
 	vlist = vertices(g)
 	for i in 1:length(ds.dists)
@@ -359,7 +357,6 @@ function build_cone{V,E}(g::AbstractGraph{V,E}, S::Vector{V},  l::Real, center::
 	end
 
 	#invariant: if the shortest path from center to v intersects build_cone(g, S, l, center), v is in the cone.
-
 	return result
 end
 
@@ -377,8 +374,7 @@ function ConeCut{V,E}(g::AbstractGraph{V,E}, center::V, lambda::Real, lambda_pri
 		end
 	end
 
-	#putting 1/mu... as an experiment
-	while cost(boundary(g, cur_cone)) > 1/(mu/(lambda_prime - lambda))
+	while cost(boundary(g, cur_cone)) > (mu/(lambda_prime - lambda))
 		# find w::V not in cur_cone closest to cur_cone and increase r so cur_cone encompasses w
 		ds = dijkstra_shortest_paths(g, edgedists(g), cur_cone)
 		w_ind = min_ind_with_filter(ds.dists, x -> x > 0)

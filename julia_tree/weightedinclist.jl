@@ -7,6 +7,7 @@ immutable WeightedEdge{V}
     source::V
     target::V
 end
+
 import Graphs.edge_index, Graphs.target, Graphs.source
 edge_index(e::WeightedEdge) = e.index
 Base.isless(v1::WeightedEdge, v2::WeightedEdge) = isless(edge_index(v1), edge_index(v2))
