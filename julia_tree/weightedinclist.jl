@@ -2,6 +2,8 @@ using Graphs
 
 import Base.show
 
+
+
 immutable WeightedEdge{V}
     index::Int
     resistance::Float64
@@ -21,6 +23,7 @@ immutable AttrNode
     index::Int
     attributes::AttributeDict
 end
+==(i::AttrNode, j::AttrNode) = i.index == j.index
 
 resistance(e::WeightedEdge) = e.resistance
 conductance(e::WeightedEdge) = 1/e.resistance
@@ -29,7 +32,6 @@ Base.isless(v1::AttrNode, v2::AttrNode) = isless(vertex_index(v1), vertex_index(
 import Graphs.vertex_index
 vertex_index(v::AttrNode) = v.index
 
-Graphs.attributes(v::AttrNode) = v.attributes
 Graphs.attributes(v::AttrNode, g) = v.attributes
 
 show(v::AttrNode) = "Node $(vertex_index(v))"

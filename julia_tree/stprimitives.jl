@@ -98,10 +98,13 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 	vertexsets
 
 	c_g = weightedinclist()
+	
 	ng = num_groups(vertexsets)
+
+	preimages = Vector{V}[]
 	for n in 1:ng
 		d = AttributeDict()
-		d["preimage"] = Array(V,0)
+		push!(preimages, V[])
 		add_vertex!(c_g, d)
 	end
 
@@ -112,6 +115,8 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 	root_to_image_map = Dict{Int,Int}()
 	image_map = Dict{V,V}()
 	next_vertex = 1
+
+	
 	for v in vertices(g)
 		
 		root = find_root(vertexsets,v)
@@ -125,7 +130,8 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 		image = contracted_v[root_to_image_map[root]]
 
 		image_map[v] = image
-		preimage_array = attributes(image)["preimage"]
+
+		preimage_array = preimages[vertex_index(image)]
 		push!(preimage_array, v)
 	end
 
@@ -141,7 +147,7 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 	for i in 1:length(nzv[1])
 		add_edge!(c_g, nzv[1][i], nzv[2][i], 1/nzv[3][i])
 	end
-	return c_g, image_map
+	return c_g, image_map, preimages
 
 end
 
@@ -149,77 +155,67 @@ end
 function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices::Int)
 	beta = 1/(2*log(4/3,original_num_vertices + 32))
 
-	let interests = [17,18,19,20,21,22,23,24]
-		vinds = map(v -> vertex_index(v), vertices(g))
-		if all(x -> contains(vinds, x),interests)
-			global hmm
-			hmm = (g, x)
-		end
-	end
-
 	if(num_vertices(g) <= 2)
 		return g
 	end
 
 	rho = radius(g,x) 
-	contracted_g, image_map = contract(g,beta*rho/original_num_vertices)
+	contracted_g, image_map, preimage_arrays = contract(g,beta*rho/original_num_vertices)
 
 	c_center_ball, c_vertex_sets, c_cone_side_links, c_core_side_links = StarDecomp(contracted_g, image_map[x], 1/3, beta)
 	# For each i, let Vi be the preimage under the contraction of vertices in Vi,
 	# (xi , yi ) ∈ V0 × Vi be the edge of shortest length for which xi is a preimage of xi and yi
 	# is a preimage of yi
 	# Here yi is a core side vertex and xi is a cone side vertex
-	full_vertex_sets = Vector{V}[]
-	full_cone_side_links = V[]
-	full_core_side_links = V[]
-	cone_core_links = E[]
+	
 	trees = AbstractGraph{V,E}[]
 
-	for i in 1:length(c_vertex_sets)
-		push!(full_vertex_sets,V[])
-		# Get the preimages of the vertex sets
-		for j in 1:length(c_vertex_sets[i])
-			append!(full_vertex_sets[i], attributes(c_vertex_sets[i][j])["preimage"])			
-		end
-
-		# Get the minimal link from the preimage of cone to the preimage of the core
-		cone_side_preimage = attributes(c_cone_side_links[i])["preimage"]
-		core_side_preimage = attributes(c_core_side_links[i])["preimage"]
-
-		minimal_link = nothing
-		for v in cone_side_preimage
-			for e in out_edges(v, g)
-				if (contains(core_side_preimage, source(e)) || contains(core_side_preimage, target(e))) &&
-				   ( minimal_link == nothing || resistance(e) < resistance(minimal_link))
-				  minimal_link = e
-				end
-			end
-		end
-
-		push!(cone_core_links, minimal_link)
-
-		if contains(cone_side_preimage, source(minimal_link))
-			push!(full_cone_side_links, source(minimal_link))
-			push!(full_core_side_links, target(minimal_link))
-		else
-			push!(full_cone_side_links, target(minimal_link))
-			push!(full_core_side_links, source(minimal_link))
-		end
-
-		push!(trees, LowStretchTree(subgraph(g,full_vertex_sets[i]), full_cone_side_links[i], original_num_vertices))
-	end
+	f = (a, b, c) -> process_star_section(g, a, b, c, preimage_arrays, original_num_vertices)
+	trees_and_links = map(f, c_vertex_sets, c_cone_side_links, c_core_side_links)
 
 	center_ball = V[]
 	for v in c_center_ball
-		append!(center_ball, attributes(v)["preimage"])
+		append!(center_ball, preimage_arrays[vertex_index(v)])
 	end
 
-	push!(trees, LowStretchTree(subgraph(g,center_ball), x, original_num_vertices))
+	result = LowStretchTree(subgraph(g,center_ball), x, original_num_vertices)
+	cone_core_links = sizehint(E[], length(c_vertex_sets))
 
-	tree = reduce(combine, trees)
-	tree = add_edges(tree, cone_core_links)
+	for (tree, link) in trees_and_links
+		result = combine(tree, result)
+		push!(cone_core_links, link)
+	end
 
-	return tree
+	result = add_edges(result, cone_core_links)
+
+	return result
+end
+
+function process_star_section{V,E}(g::AbstractGraph{V,E}, c_vertex_set, c_cone_link, c_core_link, preimage_arrays, original_num_vertices)
+	full_vertex_set = V[]
+
+	# Get the preimages of the vertex sets
+	for j in 1:length(c_vertex_set)
+		append!(full_vertex_set, preimage_arrays[vertex_index(c_vertex_set[j])])
+	end
+
+	# Get the minimal link from the preimage of cone to the preimage of the core
+	cone_side_preimage = preimage_arrays[vertex_index(c_cone_link)]
+	core_side_preimage = preimage_arrays[vertex_index(c_core_link)]
+
+	# source(minimal_link) is the cone side of the link
+
+	minimal_link = nothing
+	for v in cone_side_preimage
+		for e in out_edges(v, g)
+			if contains(==,core_side_preimage, target(e)) &&
+			   (minimal_link == nothing || resistance(e) < resistance(minimal_link))
+			  minimal_link = e
+			end
+		end
+	end
+
+	(LowStretchTree(subgraph(g,full_vertex_set), source(minimal_link), original_num_vertices), minimal_link)
 end
 
 LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V) = LowStretchTree(g,x, num_vertices(g))
@@ -374,12 +370,13 @@ function ConeCut{V,E}(g::AbstractGraph{V,E}, center::V, lambda::Real, lambda_pri
 	induced_ds = dijkstra_shortest_paths(g, carved_edgedists(g, inducing_set), center)
 	
 	cur_cone = build_cone(g, inducing_set, r, center, induced_ds)
-	cur_cone_edges = edges(subgraph(g, cur_cone))
+	
 	mu = begin 
-		if vol(cur_cone_edges) == 0
+		cone_num_edges = num_edges(subgraph(g, cur_cone))
+		if cone_num_edges == 0
 			(vol(cur_cone)+ 1)*log2(num_edges(g) + 1)
 		else
-			vol(cur_cone)*log2(num_edges(g)/vol(cur_cone_edges))
+			vol(cur_cone)*log2(num_edges(g)/cone_num_edges)
 		end
 	end
 
