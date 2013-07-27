@@ -33,14 +33,14 @@ end
 boundary{V, E}(g::AbstractGraph{V,E}, h::AbstractGraph{V,E}) = boundary(g, vertices(h))
 
 # The sum of the weights (conductances) in s
-cost(s) = reduce(+,map(x -> conductance(x), s))
+cost(s, g) = reduce(+,map(x -> conductance(x, g), s))
 
 vol(s) = length(s)
 
 # The vertices of distance at most r from v (in LENGTH)
 ball{V,E}( g::AbstractGraph{V,E}, center::V, r::Real) = ball(g, center, r, dijkstra_shortest_paths(g,edgedists(g), center))
 function ball{V,E}( g::AbstractGraph{V,E}, center::V, r::Real, ds)
-	result = Array(V, 0)
+	result = V[]
 	vlist = vertices(g)
 	for i in 1:length(ds.dists)
 		if ds.dists[i] < r
@@ -55,7 +55,7 @@ end
 ballshell{V, E}(g::AbstractGraph{V,E}, center::V, r::Real) = ball_and_shell(g, center, r)[2]
 
 function ballshell{V, E}(g::AbstractGraph{V,E}, center_ball::Vector{V}, ds)
-	result = Array(V, 0)
+	result = V[]
 	for v in center_ball
 		for e in out_edges(v, g)
 			neighbor = target(e, g)
@@ -91,21 +91,18 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 	vertexsets = DisjointSets{V}(vertices(g))
 	es = edges(g)
 	for e in es
-		if resistance(e) < l
+		if resistance(e, g) < l
 			union!(vertexsets, e.source, e.target)
 		end
 	end
 	vertexsets
 
-	c_g = weightedinclist()
-	
 	ng = num_groups(vertexsets)
+	c_g = weightedinclist(ng, is_directed=false)
 
 	preimages = Vector{V}[]
 	for n in 1:ng
-		d = AttributeDict()
 		push!(preimages, V[])
-		add_vertex!(c_g, d)
 	end
 
 	
@@ -140,7 +137,7 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 		# Now we want resistance from one node to another to be min(resistance)
 		si = root_to_image_map[find_root(vertexsets,e.source)]
 		ti = root_to_image_map[find_root(vertexsets,e.target)]
-		conductance_matrix[si, ti] = max(conductance_matrix[si,ti], conductance(e)) 
+		conductance_matrix[si, ti] = max(conductance_matrix[si,ti], conductance(e, g)) 
 	end
 	
 	nzv = findnz(conductance_matrix)
@@ -167,10 +164,10 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 	# (xi , yi ) ∈ V0 × Vi be the edge of shortest length for which xi is a preimage of xi and yi
 	# is a preimage of yi
 	# Here yi is a core side vertex and xi is a cone side vertex
-	
+
 	trees = AbstractGraph{V,E}[]
 
-	f = (a, b, c) -> process_star_section(g, a, b, c, preimage_arrays, original_num_vertices)
+	f = (a, b, c) -> process_star_section(a, b, c,g,  preimage_arrays, original_num_vertices)
 	trees_and_links = map(f, c_vertex_sets, c_cone_side_links, c_core_side_links)
 
 	center_ball = V[]
@@ -191,7 +188,7 @@ function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices:
 	return result
 end
 
-function process_star_section{V,E}(g::AbstractGraph{V,E}, c_vertex_set, c_cone_link, c_core_link, preimage_arrays, original_num_vertices)
+function process_star_section{V,E}(c_vertex_set, c_cone_link, c_core_link,g::AbstractGraph{V,E},  preimage_arrays, original_num_vertices)
 	full_vertex_set = V[]
 
 	# Get the preimages of the vertex sets
@@ -208,8 +205,8 @@ function process_star_section{V,E}(g::AbstractGraph{V,E}, c_vertex_set, c_cone_l
 	minimal_link = nothing
 	for v in cone_side_preimage
 		for e in out_edges(v, g)
-			if contains(==,core_side_preimage, target(e)) &&
-			   (minimal_link == nothing || resistance(e) < resistance(minimal_link))
+			if contains(core_side_preimage, target(e)) &&
+			   (minimal_link == nothing || resistance(e, g) < resistance(minimal_link, g))
 			  minimal_link = e
 			end
 		end
@@ -228,13 +225,11 @@ function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::F
 	central_radius, central_ball = BallCut(g, x, rho, delta, dijkstra)
 	central_shell = ballshell(g, central_ball, dijkstra)
 
-	cored_g = subgraph(g, filter(x -> !contains(central_ball, x), vertices(g)))
+	cored_g = subgraph(g, filter(x -> !contains(central_ball, x), collect(vertices(g))))
 	# cone_side_terminals[i] is the vertex in cones[i]
 	# which will link to central_ball in the spanning tree
 
-	cones, cone_side_terminals = ConeDecomp(cored_g, central_shell, epsilon*rho/2)
-
-	
+	cones, cone_side_terminals = ConeDecomp(cored_g, central_shell, epsilon*rho/2)	
 
 	# There will be a link from core_side_links[i] to cone_side_terminals[i] in the tree
 	core_side_links = Array(V, 0)
@@ -295,7 +290,7 @@ function BallCut{V,E}(g::AbstractGraph{V,E}, center::V, rho::Float64, delta::Flo
 	vertex_indices_ascending_by_distance = sortperm(ds.dists)
 	v_next = vertex_indices_ascending_by_distance[cur_ind]
 	cur_ball = ball(g, center, r, ds)
-	while cost(boundary(g, cur_ball)) > ((vol(cur_ball) + 1)/((1-2*delta)*rho))*log2(num_edges(g)+1)
+	while cost(boundary(g, cur_ball), g) > ((vol(cur_ball) + 1)/((1-2*delta)*rho))*log2(num_edges(g)+1)
 		#find v_next not in ball(r, center) that minimizes dist(center, v_next) and set r = dist(center, v_next)
 		while ds.dists[v_next] <= r
 			cur_ind += 1
@@ -368,7 +363,7 @@ function ConeCut{V,E}(g::AbstractGraph{V,E}, center::V, lambda::Real, lambda_pri
 	r = lambda
 
 	induced_ds = dijkstra_shortest_paths(g, carved_edgedists(g, inducing_set), center)
-	
+
 	cur_cone = build_cone(g, inducing_set, r, center, induced_ds)
 	
 	mu = begin 
@@ -380,7 +375,7 @@ function ConeCut{V,E}(g::AbstractGraph{V,E}, center::V, lambda::Real, lambda_pri
 		end
 	end
 
-	while cost(boundary(g, cur_cone)) > (mu/(lambda_prime - lambda))
+	while cost(boundary(g, cur_cone), g) > (mu/(lambda_prime - lambda))
 		# find w::V not in cur_cone closest to cur_cone and increase r so cur_cone encompasses w
 		ds = dijkstra_shortest_paths(g, edgedists(g), cur_cone)
 		w_ind = min_ind_with_filter(ds.dists, x -> x > 0)

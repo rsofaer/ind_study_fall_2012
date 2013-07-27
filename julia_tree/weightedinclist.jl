@@ -1,79 +1,96 @@
 using Graphs
 
 import Base.show
+import  Graphs.implements_vertex_list,
+        Graphs.implements_edge_list,
+        Graphs.implements_vertex_map,
+        Graphs.implements_edge_map,
+        Graphs.implements_adjacency_list,
+        Graphs.implements_incidence_list,
+        Graphs.implements_bidirectional_adjacency_list,
+        Graphs.implements_bidirectional_incidence_list,
+        Graphs.implements_adjacency_matrix
 
-
-
-immutable WeightedEdge{V}
-    index::Int
-    resistance::Float64
-    source::V
-    target::V
+type GraphAttributes
+    vertex_attributes::Vector{AttributeDict}
+    edge_attributes::Vector{AttributeDict}
+    graph_attributes::AttributeDict
 end
+GraphAttributes(nv) = GraphAttributes(Array(AttributeDict, nv), AttributeDict[], AttributeDict())
+
+type ExGenericIncidenceList{V, E, VList, IncList} <: AbstractGraph{V, E}
+    is_directed::Bool    
+    vertices::VList
+    nedges::Int
+    inclist::IncList
+    attributes::GraphAttributes
+    edge_resistances
+end
+
+# required interfaces
+@graph_implements ExGenericIncidenceList vertex_list vertex_map edge_map adjacency_list incidence_list
+
+Graphs.is_directed(g::ExGenericIncidenceList) = g.is_directed
+
+Graphs.num_vertices(g::ExGenericIncidenceList) = length(g.vertices)
+Graphs.vertices(g::ExGenericIncidenceList) = g.vertices
+
+Graphs.num_edges(g::ExGenericIncidenceList) = g.nedges
+
+Graphs.vertex_index(v, g::ExGenericIncidenceList) = vertex_index(v)
+Graphs.edge_index(e, g::ExGenericIncidenceList) = edge_index(e)
+
+Graphs.out_degree(v, g::ExGenericIncidenceList) = length(g.inclist[vertex_index(v)])
+Graphs.out_edges(v, g::ExGenericIncidenceList) = g.inclist[vertex_index(v)]
+
+Graphs.out_neighbors(v, g::ExGenericIncidenceList) = out_neighbors_proxy(g.inclist[vertex_index(v)])
+
+typealias ExSimpleIncidenceList ExGenericIncidenceList{Int, Edge{Int}, Range1{Int}, Vector{Vector{Edge{Int}}}}
+typealias MyIncList ExSimpleIncidenceList
+
+function exsimple_inclist(nv::Int; is_directed::Bool = true)
+    inclist = Array(Vector{Edge{Int}}, nv)    
+    for i = 1 : nv
+        inclist[i] = Array(Edge{Int}, 0)
+    end
+    ExSimpleIncidenceList(is_directed, 1:nv, 0, inclist, GraphAttributes(nv), Float64[])
+end
+
+weightedinclist = exsimple_inclist
 
 import Graphs.edge_index, Graphs.target, Graphs.source
-edge_index(e::WeightedEdge) = e.index
-Base.isless(v1::WeightedEdge, v2::WeightedEdge) = isless(edge_index(v1), edge_index(v2))
-target(e::WeightedEdge ) = e.target
-source(e::WeightedEdge ) = e.source
-target(e::WeightedEdge,g ) = e.target
-source(e::WeightedEdge,g ) = e.source
+Base.isless(v1::Edge{Int}, v2::Edge{Int}) = isless(edge_index(v1), edge_index(v2))
 
-immutable AttrNode
-    index::Int
-    attributes::AttributeDict
-end
-==(i::AttrNode, j::AttrNode) = i.index == j.index
+resistance{V,E}(e::E, g::ExGenericIncidenceList{V,E}) = g.edge_resistances[edge_index(e, g)]
+conductance{V,E}(e::E, g::ExGenericIncidenceList{V,E}) = 1/resistance(e, g)
 
-resistance(e::WeightedEdge) = e.resistance
-conductance(e::WeightedEdge) = 1/e.resistance
+Graphs.attributes{V}(v::V, g::ExGenericIncidenceList{V}) = g.vertex_attributes[vertex_index(v, g)]
 
-Base.isless(v1::AttrNode, v2::AttrNode) = isless(vertex_index(v1), vertex_index(v2))
-import Graphs.vertex_index
-vertex_index(v::AttrNode) = v.index
-
-Graphs.attributes(v::AttrNode, g) = v.attributes
-
-show(v::AttrNode) = "Node $(vertex_index(v))"
-
-typealias MyIncList VectorIncidenceList{AttrNode, WeightedEdge{AttrNode}}
-
-weightedinclist() = inclist(AttrNode, WeightedEdge{AttrNode}, is_directed=false)
-
-function Graphs.add_vertex!(g::MyIncList, d::AttributeDict)
-    nv::Int = num_vertices(g)
-    v = AttrNode(nv + 1, d)
-    add_vertex!(g, v)
+function set_attributes!{V}(g::ExSimpleIncidenceList{V},v::V, d::AttributeDict)
+    g.attributes.vertex_attributes[vertex_index(v, g)] = d
 end
 
 import Graphs.add_edge!
-function add_edge!(g::MyIncList, e::WeightedEdge{AttrNode})
-    g.nedges += 1
-    push!(g.inclist[vertex_index(e.source)], e)
+
+add_edge!{V,E}(g::ExGenericIncidenceList{V, E}, u::V, v::V, r::Float64) = add_edge!(g, u, v, r, AttributeDict())
+function add_edge!{V,E}(g::ExGenericIncidenceList{V, E}, u::V, v::V, r::Float64, d::AttributeDict)
+    nv::Int = num_vertices(g)
+    ui::Int = vertex_index(u)
+    vi::Int = vertex_index(v)
+    
+    if !(ui >= 1 && ui <= nv && vi >= 1 && vi <= nv)
+        throw(ArgumentError("u or v is not a valid vertex."))
+    end
+    ei::Int = (g.nedges += 1)
+
+    e = E(ei, u, v)
+    push!(g.edge_resistances, r)
+
+    push!(g.inclist[ui], e)
 
     if !g.is_directed
-        push!(g.inclist[vertex_index(e.target)], WeightedEdge{AttrNode}(e.index, e.resistance, e.target, e.source))
+        push!(g.inclist[vi], revedge(e))
     end
-end
-
-function add_edge!(g::MyIncList, i::Integer, r::Float64, u::Integer, v::Integer)
-    nv::Int = num_vertices(g)
-
-    if !(u >= 1 && u <= nv && v >= 1 && v <= nv)
-        throw(ArgumentError("u or v is not a valid vertex."))
-    end
-    edge = WeightedEdge(i, r, g.vertices[u], g.vertices[v])
-    add_edge!(g, edge)
-end
-
-function add_edge!(g::MyIncList, u::Integer, v::Integer, r::Float64)
-    nv::Int = num_vertices(g)
-
-    if !(u >= 1 && u <= nv && v >= 1 && v <= nv)
-        throw(ArgumentError("u or v is not a valid vertex."))
-    end
-    edge = WeightedEdge(num_edges(g) + 1, r, g.vertices[u], g.vertices[v])
-    add_edge!(g, edge)
 end
 
 function resistance_matrix(g::MyIncList)
@@ -101,15 +118,8 @@ function Graphs.edges(graph::MyIncList)
 end
 
 
-function edgedists(g)
-    result = Array(Float64, 0)
-    for e in edges(g)
-        push!(result, resistance(e))
-    end
-    return result
-end
+edgedists(g) = g.edge_resistances
 
 import Base.show
-show(io::IO, v::AttrNode) = print(io, "Vertex($(vertex_index(v)))")
 show(io::IO, e::WeightedEdge) = print(io, 
     "Edge($(edge_index(e)), $(vertex_index(source(e))) -> $(vertex_index(target(e))))")

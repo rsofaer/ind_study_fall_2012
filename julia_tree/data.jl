@@ -1,31 +1,35 @@
 using MAT
 require("weightedinclist.jl")
 
-function loadcgraph(basename)
+function loadcgraph(basename; get_vertex_attrs=false)
     nodesname = basename * ".cnode"
     edgesname = basename * ".cedge"
-    graph = weightedinclist()
 
-    # Regex for a line of the node file.
-    noderegex = r"(\d+) (-?\d+.?\d+) (-?\d+.?\d+)"
-    open(nodesname) do f
-        for l in eachline(f)
-            caps = match(noderegex, l).captures
-            d = AttributeDict()
-            d["lat"] = caps[2]
-            d["long"] = caps[3]
-            node = AttrNode(int(caps[1]) + 1, d)
-            add_vertex!(graph, node)
+    nv = countlines(nodesname)
+    graph = weightedinclist(nv, is_directed = false)
+
+    if get_vertex_attrs
+        vi = 1
+        # Regex for a line of the node file.
+        noderegex = r"(\d+) (-?\d+.?\d+) (-?\d+.?\d+)"
+        open(nodesname) do f
+            for l in eachline(f)
+                caps = match(noderegex, l).captures
+                d = AttributeDict()
+                d["lat"] = caps[2]
+                d["long"] = caps[3]
+                vertex = vertices(graph)[vi]
+                set_attributes!(graph, vertex, d)
+                vi += 1
+            end
         end
     end
 
-    weights = Array(Float64, 0)
     edgeregex = r"(\d+) (\d+) (\d+) (-?\d+.?\d+)"
     open(edgesname) do f
         for l in eachline(f)
             caps = match(edgeregex, l).captures
-            add_edge!(graph, int(caps[1]) + 1, float(caps[4]), int(caps[2]) + 1, int(caps[3]) + 1)
-            push!(weights, float(caps[4]))
+            add_edge!(graph, int(caps[2]) + 1, int(caps[3]) + 1,  float(caps[4]))
         end
     end
     graph
@@ -45,7 +49,7 @@ function loadlesmis()
 
     mat = struct["A"]
 
-    graph = weightedinclist()
+    graph = weightedinclist(length(struct["aux"]["nodename"]), is_directed=false)
     
     for i in 1:length(struct["aux"]["nodename"])
         name = struct["aux"]["nodename"][i]
@@ -53,7 +57,7 @@ function loadlesmis()
         d["name"] = name
         d["label"] = "$name: $i"
         
-        add_vertex!(graph, d)
+        set_attributes!(graph, vertices(graph)[i], d)
     end
 
     # Get a list of the non zero values, the edges, in:
@@ -63,7 +67,7 @@ function loadlesmis()
     n = 1
     for i in 1:length(nzs[1])
         if nzs[1][i] < nzs[2][i]
-            add_edge!(graph, n, 1/nzs[3][i], nzs[1][i], nzs[2][i])
+            add_edge!(graph, int(nzs[1][i]), int(nzs[2][i]), 1/nzs[3][i])
             n += 1
         end
     end

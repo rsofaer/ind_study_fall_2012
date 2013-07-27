@@ -69,6 +69,8 @@ function subgraph{V, E}(g::Subgraph{V, E}, vertex_set)
 end
 
 edgedists(g::Subgraph) = g.edge_resistances
+resistance(e, g::Subgraph) = resistance(e, g.full_graph)
+conductance(e, g::Subgraph) = conductance(e, g.full_graph)
 
 Graphs.num_vertices(g::Subgraph) = length(g.vertex_set)
 Graphs.num_edges(g::Subgraph) = length(g.edge_set)
