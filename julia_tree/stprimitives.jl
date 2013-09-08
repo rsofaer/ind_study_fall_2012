@@ -8,13 +8,6 @@ require("subgraph.jl")
 
 import Base.length
 
-
-
-# Shortest path in LENGTH
-function dist{V}(a::V, b::V)
-	Inf
-end
-
 # The edges with exactly one end in s.
 function boundary{V,E}(g::AbstractGraph{V,E}, s)
 	result = E[]
@@ -32,12 +25,17 @@ end
 
 boundary{V, E}(g::AbstractGraph{V,E}, h::AbstractGraph{V,E}) = boundary(g, vertices(h))
 
-# The sum of the weights (conductances) in s
-cost(s, g) = reduce(+,map(x -> conductance(x, g), s))
+# The stretch of a tree in the graph
+function stretch(g::AbstractGraph{V,E}, t::AbstractGraph{V,E})
+end
 
+# The sum of the conductances (weights) in s, a set of edges.
+cost(s, g::AbstractGraph) = reduce(+,map(x -> conductance(x, g), s))
+
+# The number of vertices in a ball or other set.
 vol(s) = length(s)
 
-# The vertices of distance at most r from v (in LENGTH)
+# The vertices of distance at most r from v (in resistance).
 ball{V,E}( g::AbstractGraph{V,E}, center::V, r::Real) = ball(g, center, r, dijkstra_shortest_paths(g,edgedists(g), center))
 function ball{V,E}( g::AbstractGraph{V,E}, center::V, r::Real, ds)
 	result = V[]
@@ -87,6 +85,9 @@ function radius{V,E}(g::AbstractGraph{V,E}, x::V)
 end
 
 # Contract any edge with a resistance less than l
+# Returns the contracted graph c_g,
+#   a map from vertices in g to their image in c_g,
+#   a map from vertices in c_g to their preimage in g
 function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 	vertexsets = DisjointSets{V}(vertices(g))
 	es = edges(g)
@@ -148,6 +149,7 @@ function contract{V,E}(g::AbstractGraph{V,E}, l::Real)
 
 end
 
+LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V) = LowStretchTree(g,x, num_vertices(g))
 
 function LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V, original_num_vertices::Int)
 	beta = 1/(2*log(4/3,original_num_vertices + 32))
@@ -214,8 +216,6 @@ function process_star_section{V,E}(c_vertex_set, c_cone_link, c_core_link,g::Abs
 
 	(LowStretchTree(subgraph(g,full_vertex_set), source(minimal_link), original_num_vertices), minimal_link)
 end
-
-LowStretchTree{V,E}(g::AbstractGraph{V,E}, x::V) = LowStretchTree(g,x, num_vertices(g))
 
 # ({V0, ..., Vk, x, y}), 
 function StarDecomp{V,E}(g::AbstractGraph{V,E}, x::V, delta::Float64, epsilon::Float64)
@@ -337,6 +337,7 @@ function carved_edgedists{V,E}(g::AbstractGraph{V,E}, inducing_set::Vector{V}, d
 	end
 	return dists
 end
+
 # the Set of vertices in V that can be reached from v by a path,
 # the sum of the lengths of whose edges e that do not belong to F (S) is at most l
 # is the cone of width l around center induced by S
@@ -385,7 +386,6 @@ function ConeCut{V,E}(g::AbstractGraph{V,E}, center::V, lambda::Real, lambda_pri
 
 	return r, cur_cone
 end
-
 
 # The dijkstraStates data contains all the paths from the source it was generated with.
 # This function returns an array with the path from the source to v

@@ -24,7 +24,7 @@
 \maketitle
 
 \section*{Abstract}
-We implement an algorithm found in \"Lower Stretch Spanning Trees", by Spielman et al., and evaluate its stretch performance on a variety of graphs.
+We implement an algorithm found in `Lower Stretch Spanning Trees', by Spielman et al., and evaluate its stretch performance on a variety of graphs.
 \section*{Introduction}
 \subsection*{Approximating with Trees}
 In the last twenty years, there has been a growing effort to simplify graphs with trees - usually spanning trees - of low `stretch', in order to simplify corresponding Laplacian matrices and thereby rapidly solve linear problems involving symmetric and diagonally dominant matrices.
@@ -54,11 +54,21 @@ It is implemented in C, and includes a variety of algorithms including Vaidya's 
 Yiannis Koutis wrote CMG\cite{CMG}, a solver which uses multigrid methods and combinatorial preconditioning to solve SDD matrices with non-positive off-diagonal elements.  It is written in C with a MATLAB interface.\\
 Erik Boman working on graph preconditioners for Trilinos (Take this out before release if there's no public word)\\
 Zhuo Feng and Zhiyu Zeng have implemented a solver which uses related methods in CUDA for the purpose of power grid analysis.\\
-\section*{Results}
+\section*{Our Work}
 \subsection*{Vocabulary}
-Some of the parts of our low stretch spanning tree algorithm operate on the reciprocals of the weight in a graph, since while a large number in a linear system usually indicates that a row and column are strongly linked, a large weight on a graph edge usually means that edge is less useful.  Spielman et al take $length(e)$ to be $1/weight(e)$, for an edge $e$.  In this paper and in our code, we use Kelner et al's vocabulary for links between graph nodes.  Rather than $weight(e)$, we refer to $resistance(e)$, and let $conductance(e)=1/resistance(e)$.  If `Lower Stretch Spanning Trees' is read in parallel to this, this difference should be kept in mind.  
-\subsection{Implementation}
-We implemented the algorithm of Spielman et al from `Lower Stretch Spanning Trees' in the Julia language\cite{juliawebsite}, a recent language combining dynamic typing with just-in-time compilation via LLVM to get good speed on easily written code.  We chose Julia for the ease of programming it gives without sacrificing good speed on custom datasets and interfaces.  We use the Julia Graphs library\cite{juliagraphs}, which is a port of the Boost Graph Library.  Our algorithm operates on an incidence list type defined in weightedinclist.jl.  The implementation is not aggressively optimized for good running time, and we do not consider the running time to be representative of what a lower level or highly parallelized implementation could reach.  However, the stretch we calculate can be used to estimate how well derived preconditioners or solvers might work on these types of graphs.\\
+Some of the parts of our low stretch spanning tree algorithm operate on the reciprocals of the weight in a graph, since while a large number in a linear system usually indicates that a row and column are strongly linked, a large weight on a graph edge usually means that edge is less useful.  Spielman et al take $length(e)$ to be $1/weight(e)$, for an edge $e$.  In this paper and in our code, we use Kelner et al's vocabulary for links between graph nodes.  Rather than $weight(e)$, we refer to $resistance(e)$, and let $conductance(e)=1/resistance(e)$.  If `Lower Stretch Spanning Trees' is read as well, this difference should be kept in mind.  
+
+\subsection*{Algorithm}
+The LowStretchTree procedure begins with a graph $g$ consisting of edges, vertices, and edge resistances, and a center vertex $x$.
+If $g$ is already a tree, it is returned.
+The graph $g$ is contracted, meaning each pair of vertices less than a certain distance apart are combined, yielding $g'$. This distance is calculated from the number of nodes in the full graph, distinguished from the number of nodes in subgraphs which are recursively processed.  It is: 
+$$((1/(2*log(4/3,n + 32)))*radius(g, x))/n$$\\
+The contracted graph $g'$ is then decomposed by the StarDecomp procedure into a central ball and a set of cones, all disjoint, and for each cone, a link between the cone and the central ball.   First the central ball is grown by the BallCut procedure, then the ConeDecomp procedure is applied to the contracted graph $g'$ with the central ball removed.\\
+After the contracted graph has been separated into the center and cones, we apply the LowStretchTree procedure to the preimage under contraction of each section.  The resulting trees are combined into a spanning tree using the links from StarDecomp and the spanning tree is returned.
+
+\subsection*{Implementation}
+We implemented the algorithm of Spielman et al from `Lower Stretch Spanning Trees' in the Julia language\cite{juliawebsite}, a recent language combining dynamic typing with just-in-time compilation via LLVM to get good speed on easily written code.  We chose Julia for the ease of programming it gives without sacrificing good speed on custom datasets and interfaces.  We use the Julia Graphs library\cite{juliagraphs}, which is a port of the Boost Graph Library.  Our algorithm operates on an incidence list type defined in weightedinclist.jl.  The implementation is not aggressively optimized for good running time, and we do not consider the running time to be representative of what a lower level or highly parallelized implementation could reach.  However, the stretch we calculate can be used to estimate how well preconditioners or solvers which use low strech spanning trees might work on these types of graphs.\\
+\section*{Results}
 
 
 \subsection*{Test Data}
