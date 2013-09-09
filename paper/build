@@ -1,6 +1,3 @@
 #!/bin/bash
 
-pdflatex project
-bibtex project
-pdflatex project
-pdflatex project
+pdflatex project && bibtex project && pdflatex project && pdflatex project
