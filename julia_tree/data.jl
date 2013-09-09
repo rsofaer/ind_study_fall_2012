@@ -26,6 +26,7 @@ function loadcgraph(basename; get_vertex_attrs=false)
     end
 
     edgeregex = r"(\d+) (\d+) (\d+) (-?\d+.?\d+)"
+    
     open(edgesname) do f
         for l in eachline(f)
             caps = match(edgeregex, l).captures

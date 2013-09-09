@@ -81,7 +81,7 @@ Graphs.vertex_index{V}(v::V, g::Subgraph{V}) = searchsortedfirst(vertices(g), v)
 Graphs.edge_index{V, E}(e::E, g::Subgraph{V, E}) = edge_index(e, g.full_graph)
 
 included_vertex(g::Subgraph, v) = contains(g.vertex_set, vertex_index(v, g.full_graph))
-included_edge(g::Subgraph, v) = contains(g.edge_set, edge_index(v, g.full_graph))
+included_edge(g::Subgraph, e) = contains(g.edge_set, edge_index(e, g.full_graph))
 
 full_graph(g::AbstractGraph) = g
 full_graph(g::Subgraph) = g.full_graph

@@ -93,15 +93,28 @@ function add_edge!{V,E}(g::ExGenericIncidenceList{V, E}, u::V, v::V, r::Float64,
     end
 end
 
-function resistance_matrix(g::MyIncList)
+function resistance_matrix(g::AbstractGraph)
     n::Int = num_vertices(g)
-    a = zeros(n, n)
-    a = 1./a
+    a = Array(Float64, n, n)
+    fill!(a,Inf)
     for u in vertices(g)
         ui = vertex_index(u, g)
         for e in out_edges(u, g)
             vi = vertex_index(target(e, g), g)
-            a[ui, vi] = e.resistance
+            a[ui, vi] = resistance(e, g)
+        end
+    end    
+    return a
+end
+
+function sp_conductance_matrix(g::MyIncList)
+    n::Int = num_vertices(g)
+    a = spzeros(n, n)
+    for u in vertices(g)
+        ui = vertex_index(u, g)
+        for e in out_edges(u, g)
+            vi = vertex_index(target(e, g), g)
+            a[ui, vi] = conductance(e,g)
         end
     end    
     return a

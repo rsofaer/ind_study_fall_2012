@@ -26,7 +26,22 @@ end
 boundary{V, E}(g::AbstractGraph{V,E}, h::AbstractGraph{V,E}) = boundary(g, vertices(h))
 
 # The stretch of a tree in the graph
-function stretch(g::AbstractGraph{V,E}, t::AbstractGraph{V,E})
+function avestretch{V,E}(g::AbstractGraph{V,E}, t::AbstractGraph{V,E})
+	total_stretch = 0
+	for v in vertices(g)
+		dijkstra = nothing
+		for e in out_edges(v, g)
+			if included_edge(t, e)
+				total_stretch += 1
+			else
+				if dijkstra == nothing
+					dijkstra = dijkstra_shortest_paths(t, edgedists(t), v)
+				end
+				total_stretch += dijkstra.dists[vertex_index(target(e))]/resistance(e, g)
+			end
+		end
+	end
+	return total_stretch/num_edges(g)
 end
 
 # The sum of the conductances (weights) in s, a set of edges.

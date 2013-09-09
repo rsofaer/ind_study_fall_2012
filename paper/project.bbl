@@ -1,0 +1,61 @@
+\begin{thebibliography}{10}
+
+\bibitem{akpw:game}
+N.~Alon, R.~M. Karp, D.~Peleg, and D.~West, ``A graph-theoretic game and its
+  application to the $k$-server problem,'' {\em SIAM J. Comput.}, vol.~24,
+  pp.~78--100, Feb. 1995.
+
+\bibitem{wiki:kserver}
+Wikipedia, ``K-server problem --- wikipedia{,} the free encyclopedia,'' 2012.
+\newblock [Online; accessed 22-May-2013].
+
+\bibitem{spielman:lower-stretch}
+M.~Elkin, D.~A. Spielman, and S.-H. Teng, ``Lower-stretch spanning trees,''
+  {\em CoRR}, vol.~cs.DS/0411064, 2004.
+
+\bibitem{vaidya}
+P.~M. vaidya, ``Solving linear equations with symmetric diagonally dominant
+  matrices by constructing good preconditioners. unpublished manuscript. a talk
+  based on the manuscript was presented at,'' in {\em the IMA Workshop on Graph
+  Theory and Sparse Matrix Computation}, 1991.
+
+\bibitem{spielman:nearly-linear-sparse}
+D.~A. Spielman and S.~Teng, ``Nearly-linear time algorithms for graph
+  paritioning, graph sparsification, and solving linear systems,'' in {\em In
+  Proceedings of the Thirty-Sixth Annual ACM Symposium on Theory of Computing},
+  pp.~81--90, 2004.
+
+\bibitem{comb-sdd}
+J.~A. Kelner, L.~Orecchia, A.~Sidford, and Z.~A. Zhu, ``A simple, combinatorial
+  algorithm for solving sdd systems in nearly-linear time,'' {\em CoRR},
+  vol.~abs/1301.6628, 2013.
+
+\bibitem{taucs}
+S.~Toledo, D.~Chen, and V.~Rotkin, ``Taucs, a library of sparse linear
+  solvers,'' 2003.
+\newblock [Online; accessed 8-September-2013].
+
+\bibitem{CMG}
+Y.~Koutis, ``Cmg: Combinatorial multigrid,'' 2011.
+\newblock [Online; accessed 8-September-2013].
+
+\bibitem{julia:website}
+``The julia language,'' 2013.
+\newblock [Online; accessed 8-September-2013].
+
+\bibitem{julia:graphs}
+``Julialang/graphs.jl,'' 2013.
+\newblock [Online; accessed 8-September-2013].
+
+\bibitem{feifei-data}
+F.~Li, D.~Cheng, M.~Hadjieleftheriou, G.~Kollios, and S.-H. Teng, ``Real
+  datasets for spatial databases: Road networks and points of interest,'' 2005.
+\newblock [Online; accessed 9-July-2013].
+
+\bibitem{feifei-paper}
+F.~Li, D.~Cheng, M.~Hadjieleftheriou, G.~Kollios, and S.-H. Teng, ``On trip
+  planning queries in spatial databases,'' in {\em Proceedings of the 9th
+  international conference on Advances in Spatial and Temporal Databases},
+  SSTD'05, (Berlin, Heidelberg), pp.~273--290, Springer-Verlag, 2005.
+
+\end{thebibliography}

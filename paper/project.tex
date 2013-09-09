@@ -52,7 +52,6 @@ Since Vaidya proposed these preconditioners, several relevant solvers have been 
 From 2001 to 2003, Sivan Toledo, Doron Chen, and Vladimir Rotkin developed TAUCS\cite{taucs}, a library of sparse linear solvers. 
 It is implemented in C, and includes a variety of algorithms including Vaidya's preconditioners.\\
 Yiannis Koutis wrote CMG\cite{CMG}, a solver which uses multigrid methods and combinatorial preconditioning to solve SDD matrices with non-positive off-diagonal elements.  It is written in C with a MATLAB interface.\\
-Erik Boman working on graph preconditioners for Trilinos (Take this out before release if there's no public word)\\
 Zhuo Feng and Zhiyu Zeng have implemented a solver which uses related methods in CUDA for the purpose of power grid analysis.\\
 \section*{Our Work}
 \subsection*{Vocabulary}
@@ -62,13 +61,60 @@ Some of the parts of our low stretch spanning tree algorithm operate on the reci
 The LowStretchTree procedure begins with a graph $g$ consisting of edges, vertices, and edge resistances, and a center vertex $x$.
 If $g$ is already a tree, it is returned.
 The graph $g$ is contracted, meaning each pair of vertices less than a certain distance apart are combined, yielding $g'$. This distance is calculated from the number of nodes in the full graph, distinguished from the number of nodes in subgraphs which are recursively processed.  It is: 
-$$((1/(2*log(4/3,n + 32)))*radius(g, x))/n$$\\
+$$l=\frac{((1/(2*log(4/3,num\_vertices(g) + 32)))*radius(g, x))}{num\_vertices(g)}$$\\
 The contracted graph $g'$ is then decomposed by the StarDecomp procedure into a central ball and a set of cones, all disjoint, and for each cone, a link between the cone and the central ball.   First the central ball is grown by the BallCut procedure, then the ConeDecomp procedure is applied to the contracted graph $g'$ with the central ball removed.\\
 After the contracted graph has been separated into the center and cones, we apply the LowStretchTree procedure to the preimage under contraction of each section.  The resulting trees are combined into a spanning tree using the links from StarDecomp and the spanning tree is returned.
 
 \subsection*{Implementation}
 We implemented the algorithm of Spielman et al from `Lower Stretch Spanning Trees' in the Julia language\cite{julia:website}, a recent language combining dynamic typing with just-in-time compilation via LLVM to get good speed on easily written code.  We chose Julia for the ease of programming it gives without sacrificing good speed on custom datasets and interfaces.  We use the Julia Graphs library\cite{julia:graphs}, which is a port of the Boost Graph Library.  Our algorithm operates on an incidence list type defined in weightedinclist.jl.  The implementation is not aggressively optimized for good running time, and we do not consider the running time to be representative of what a lower level or highly parallelized implementation could reach.  However, the stretch we calculate can be used to estimate how well preconditioners or solvers which use low strech spanning trees might work on these types of graphs.\\
 
+We use an incidence list data structure for our code, although the algorithm will operate on any graph data structure that allows iteration through vertices and neighbors.  Vertices are integers, edges are pairs of integer vertices with an associated integer index, the vertex list is a vector of integers, and the incidence lists are vectors of edges.  The resistances of edges are stored in a separate vector in the graph instance.  These definitions and functions which are closely tied to the data structure are in weightedinclist.jl.\\
+To represent subgraphs, we combine a graph with a pair of Set data structures, one to mark which edges are included and one to mark which vertices are included.  This structure and its associated functions are in subgraph.jl.\\	
+To explain the implementation of the algorithm, we will consider step by step a call to LowStretchTree:\\
+\begin{verbatim}
+	t = LowStretchTree(g, center_vertex)
+\end{verbatim}
+We begin by returning $g$ if it is a tree.  Then, the first step of the $LowStretchTree$ procedure is to contract the input graph so we can decompose a simpler graph and avoid looking through all the vertices at each iteration.  To do this, we need to know the radius of the graph around our center vertex, which is the maximum distance from the center vertex to any other vertex.  This is accomplished through the $radius$ function, which uses dijkstra's algorithm to find the farthest vertex.  With that information we calculate $l$.
+$$l=\frac{((1/(2*log(4/3,num\_vertices(g) + 32)))*radius(g, x))}{num\_vertices(g)}$$
+ Then we can contract the graph using the $contract$ function to get a simpler approximate version of $g$, which we will call $c\_g$.
+\begin{verbatim}
+	contracted_g, image_map, preimage_arrays = contract(g,l)
+\end{verbatim}
+$contract$ begins by using a disjoint set data structure provided by the Julia DataStructures package to determine the groups of vertices in $g$ which correspond to single vertices in $c\_g$.  For each edge in $g$, if the edge's resistance is less than $l$, the minimum edge length, we combine the sets corresponding to $source(e)$ and $target(e)$.  After this, we have disjoint sets of vertices in $g$, each corresponding to a single vertex in $c\_g$.  For the decomposition step later on, we will need to map back and forth from the contracted vertices to the original vertices, so we create $image\_map$, a map from vertices in $g$ to corresponding image vertices in $c\_g$, and $preimage\_arrays$, a vector of vectors of preimages of vertices in $c\_g$.  For each vertex $v$ in $g$, we mark its image in $image\_map$, and add it to the correct vector in $preimage\_arrays$.  Then $c\_g$, $image\_map$, and $preimage\_arrays$ are returned to $LowStretchTree$.\\
+Once we have the contracted graph, we pass it to $StarDecomp$ to separate it into parts to be recursively processed.
+\begin{verbatim}
+	result = StarDecomp(contracted_g, image_map[center_vertex], 1/3, beta)
+	c_center_ball, c_vertex_sets, c_cone_side_links, c_core_side_links = result
+\end{verbatim}
+$StarDecomp$ begins by growing a ball from the image under contraction of the center vertex.  This happens in the $BallCut$ procedure. 
+\begin{verbatim}
+rho = radius(center_vertex, c_g)
+while cost(boundary(c_g, cur_ball), c_g) > ((vol(cur_ball) + 1)/((1-2*delta)*rho))*log2(num_edges(c_g)+1)
+   #Expand the ball to include the next closest vertex.
+   ...
+end
+\end{verbatim}
+Then, we take the part of $c\_g$ not included in the center ball but bordering on the center ball, which we call the center shell, and pass them to $ConeCut$.  $\epsilon$ and $\rho$ depend on the size of the graph.
+\begin{verbatim}
+	cones, cone_side_terminals = ConeDecomp(cored_g, central_shell, epsilon*rho/2)
+\end{verbatim}
+ConeCut begins by using $central\_shell$ as a queue $S$.  While there are vertices in $S$, take one vertex $v$ out, and build a cone centered on that vertex.  The cone is built in $ConeCut$ and is defined with the following invariant.  If the shortest path from $center\_vertex$ to $v$ intersects $build\_cone(g, S, l, center)$, v is in the cone.  Here $l$ depends on the size of the graph.
+Once we have the cones, $StarDecomp$ finds the best link from each cone to the central ball, then returns them to $LowStretchTree$.  $LowStretchTree$ then passes each section returned from $StarDecomp$ to $process\_star\_section$.  Since each section is processed independently, this may be a good place to parallelize the algorithm. 
+\begin{verbatim}
+	f = (a, b, c) -> process_star_section(a, b, c,g,  preimage_arrays, original_num_vertices)
+	trees_and_links = map(f, c_vertex_sets, c_cone_side_links, c_core_side_links)
+\end{verbatim}
+$process\_star\_section$ finds the preimage of each cone and the link from the cone to the central ball, then passes the cone to $LowStretchTree$.   It then returns the subtrees and their links to the central ball to $LowStretchTree$, which combines them with the center and returns the full tree.
+\begin{verbatim}
+	for (tree, link) in trees_and_links
+		result = combine(tree, result)
+		push!(cone_core_links, link)
+	end
+
+	result = add_edges(result, cone_core_links)
+
+	return result
+\end{verbatim}
 
 \section*{Results}
 

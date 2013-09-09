@@ -1,0 +1,6 @@
+#!/bin/bash
+
+pdflatex project
+bibtex project
+pdflatex project
+pdflatex project
